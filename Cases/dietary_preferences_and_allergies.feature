@@ -1,9 +1,9 @@
-Feature : dietary preferences and allergies
+Feature : Store dietary preferences and allergies
 
-  Scenario : no dietary preferences and allergies
+  Scenario : no dietary preferences and allergies entered
     When : the customer leave the fields empty
-    Then : masssage error will pop up
-    And : give the user another chance
+    Then : the system will pop up an error masssage
+    And : the system give the user another chance
 
     Scenario: enter dietary preferences only
      When : the customer enter dietary preferences
