@@ -7,6 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class featurer2_1 {
+
+   //  boolean ingredientUnavailable;
+   //  boolean dietaryConflict;
+   // boolean substitutionSuggested;
+    //boolean chefAlerted;
+
     @Given("the customer selects an ingredient that is unavailable")
     public void  customer_selects_unavailable_ingredient() {}
 

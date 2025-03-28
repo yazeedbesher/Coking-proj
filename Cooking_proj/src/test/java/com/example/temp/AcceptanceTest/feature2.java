@@ -10,6 +10,9 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertArrayEquals;
 
 public class feature2 {
+  //   boolean validSelection;
+   //  boolean errorDisplayed;
+
     @Given("the customer is on the custom meal selection page")
     public void theCustomer_selectmeal() {}
 

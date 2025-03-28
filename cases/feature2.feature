@@ -1,6 +1,6 @@
-Feature: Allow ccustomers to create custome meal request
+Feature: Allow customers to create custom meal request
 
-  Scenario: Create a custome mea with available ingredients
+  Scenario: Create a custome meal with available ingredients
     Given the customer is on the custom meal selection page
     When the customer selects ingredients from the available list
     Then the system should validate the ingredient combinations
