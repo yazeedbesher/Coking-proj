@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.show();//yazeed
+        stage.show();//yazeed besher
     }
 //hi wirld
     public static void main(String[] args) {
