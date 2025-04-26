@@ -13,8 +13,8 @@ import java.util.*;
 import static org.junit.Assert.assertArrayEquals;
 
 public class feature2 {
- // نفرض انه هاي الداتا الي عندي
-  private List<String> availableIngredients = Arrays.asList("Chicken","Botato","milk","pasta", "Tomato", "Lettuce", "Cheese", "Beef", "Fish");
+ // Assume this is the data
+  private List<String> availableIngredients = Arrays.asList("Chicken","milk","pasta", "Tomato", "Lettuce", "Cheese", "Beef", "Fish");
   private Map<String, String> incompatiblePairs = new HashMap<>();
   private List<String> selectedIngredients = new ArrayList<>();
   private boolean validationPassed = false;

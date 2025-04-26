@@ -21,16 +21,16 @@ public class feature2_2 {
     private boolean chefAlerted = false;
 
     public feature2_2() {
-        //  unavailable or restricted ingredients to alternatives
-        substitutionSuggestions.put("Beef", "Tofu");         //  beef not available ➔ suggest tofu
-        substitutionSuggestions.put("Cheese", "Vegan Cheese"); //dairy restriction ➔ suggest vegan cheese
-        substitutionSuggestions.put("Fish", "Mushroom");     // Fish unavailable ➔ suggest mushroom
+        // alternatives unavailable or restricted ingredients
+        substitutionSuggestions.put("Beef", "Tofu");         //  بدل الbeef في Tofu
+        substitutionSuggestions.put("Cheese", "Vegan Cheese");
+        substitutionSuggestions.put("Fish", "Mushroom");
     }
 
     @Given("the customer selects an ingredients that unavailable")
     public void theCustomerSelectsAnIngredientsThatUnavailable() {
 
-        selectedIngredient = "Fish"; // Simulate selecting an unavailable ingredient
+        selectedIngredient = "Fish";
         System.out.println("Customer selected (unavailable): " + selectedIngredient);
 
     }
@@ -68,7 +68,7 @@ public class feature2_2 {
     @Given("the customer selects an ingredients  that does not fit their dietary restrictions")
     public void theCustomerSelectsAnIngredientsThatDoesNotFitTheirDietaryRestrictions() {
 
-        selectedIngredient = "Cheese"; // Simulate selecting a restricted ingredient
+        selectedIngredient = "Cheese";
         System.out.println("Customer selected (restricted): " + selectedIngredient);
     }
 
