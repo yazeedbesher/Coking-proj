@@ -1,21 +1,29 @@
 Feature: Store dietary preferences and allergies
 
-  Scenario: no dietary preferences and allergies entered
-    When the customer leave the fields empty
+  Scenario: no dietary preferences entered
+    When the customer leave the preferences field empty
     Then the system will pop up an error massage
-    And the system give the user another chance
+    And the system return false
 
 
 
-  Scenario: enter dietary preferences only
+  Scenario: enter dietary preferences
     When the customer enter dietary preferences
-    And leave the allergies empty
-    Then the system by default consider there is no allergies
-    And the system allows the user to proceed without errors
-    And the system save the data in user information
+    Then the system will pop up a success message
+    And the system return true
 
-  Scenario: dietary preferences and allergies
-    When the customer enter dietary preferences and allergies
-    Then the system allows the user to proceed without errors
-    And the system save the data in user information
+
+
+
+  Scenario: no dietary allergies entered
+    When the customer leave the allergies field empty
+    Then the system will pop up an error massage
+    And the system return false
+
+
+
+  Scenario: enter dietary allergies
+    When the customer enter dietary allergies
+    Then the system will pop up a success message
+    And the system return true
 
