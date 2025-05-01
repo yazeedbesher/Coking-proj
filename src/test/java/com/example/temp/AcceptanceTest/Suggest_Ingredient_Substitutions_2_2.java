@@ -1,5 +1,6 @@
 package com.example.temp.AcceptanceTest;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -90,6 +91,47 @@ public class Suggest_Ingredient_Substitutions_2_2 {
             System.out.println("No alternative suggestion available for dietary restriction.");
         }
     }
+    @Given("the customer selects Grilled Salmon and steamed vegetables")
+    public void thecustomerselectsGrilledSalmonAndSteamedVegetables() {}
+
+    @And("the system should suggest an alternative")
+    public void theSystemShouldSuggestAnAlternative() {}
+
+    @When("the system processes the request")
+    public void theSystemProcessesTheRequest() {}
+
+    @Then("the system should proceed without suggesting substitutions")
+    public void theSystemShouldProceedWithoutSuggestingSubstitutions() {}
+
+    @And("there are no dietary conflicts or availability issues")
+    public void thereAreNoDietaryConflictsAndAvailabilityIssues() {}
+
+@Given("the customer is allergic to nuts")
+    public void theCustomerIsAllergicToNuts() {}
+
+    @And("selects Pesto Sauce which contains nuts")
+    public void selectsPestoSauceThatContainsNuts() {}
+
+    @And("the system substitutes it with Sunflower Seed Pesto")
+    public void theSystemSubstitutesItWithSunflowerSeedPesto() {}
+
+    @When("the substitution is applied")
+    public void theSubstitutionIsApplied() {}
+
+    @Given("Miso Paste is out of stock")
+    public void misoPasteIsOutOfStock() {}
+
+    @And("the system substitutes it with Soy Sauce")
+    public void theSystemSubstitutesItWithSoySauce() {}
+
+    @Then("the chef should be notified to review and approve the change")
+    public void theChefShouldBeNotifiedToReviewAndApproveTheChange() {}
+
+    @Given("the customer selects all available and compatible ingredients")
+    public void theCustomerSelectsAllAvailableAndCompatibleIngredients() {}
+
+    @Then("the chef should not receive any substitution alert")
+    public void theChefShouldNotReceiveAnySubstitutionAlert() {}
 
 }
 

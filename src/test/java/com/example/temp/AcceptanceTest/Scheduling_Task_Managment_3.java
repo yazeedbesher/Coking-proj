@@ -1,4 +1,5 @@
 package com.example.temp.AcceptanceTest;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -72,6 +73,50 @@ public class Scheduling_Task_Managment_3 {
             System.out.println("Meals are delayed. No notification or no task assigned.");
         }
     }
+
+@Given("first chef already has 5 active tasks")
+    public void firstChefAlreadyHas5ActiveTasks() {}
+
+    @And("second chef has 2 active tasks")
+    public void secondChefHas2ActiveTasks() {}
+
+    @When("a new task is created")
+    public void aNewTaskIsCreated() {}
+
+    @Then("the system should assign the task for second chef")
+    public void theSystemShouldAssignTheTaskForSecondChef() {}
+
+    @Given("Kitchen Staff Member Sam is available")
+    public void KitchenStaffMemberSamIsAvailable() {}
+
+    @And("a vegetable chopping task needs to be done")
+    public void aVegetableChoppingTaskNeedsToBeDone() {}
+
+    @When("the task is assigned")
+    public void theTaskIsAssigned() {}
+
+    @Then("it should be assigned to Sam")
+    public void itShouldBeAssignedToSam() {}
+
+    @Given("Chef Alex receives a new cooking task")
+    public void ChefAlexReceivesNewCookingTask() {}
+
+    @When("the task is due in 2 hours")
+    public void theTaskIsDueIn2Hours() {}
+
+    @Then("the notification should include the task deadline")
+    public void theNotificationShouldIncludeTheTaskDeadline() {}
+
+    @Given("Chef Jordan has already been notified about a task")
+    public void ChefJordanHasAlreadyBeenNotifiedAboutATask() {}
+
+    @When("the same task is reassigned without change")
+    public void theSameTaskIsReassignedWithoutChange() {}
+
+    @Then("the system should not send another notification")
+    public void theSystemShouldNotSendAnotherNotification() {}
+
+
 }
 
 
