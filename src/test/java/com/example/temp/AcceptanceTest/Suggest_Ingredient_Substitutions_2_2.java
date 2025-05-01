@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.Assert.assertArrayEquals;
 
 
-public class feature2_2 {
+public class Suggest_Ingredient_Substitutions_2_2 {
 
     private List<String> availableIngredients = Arrays.asList("Chicken","Botato","milk","pasta", "Tomato", "Lettuce", "Cheese", "Beef", "Fish");
     private Map<String, String> substitutionSuggestions = new HashMap<>();
@@ -20,7 +20,7 @@ public class feature2_2 {
     private String suggestedAlternative = "";
     private boolean chefAlerted = false;
 
-    public feature2_2() {
+    public Suggest_Ingredient_Substitutions_2_2() {
         // alternatives unavailable or restricted ingredients
         substitutionSuggestions.put("Beef", "Tofu");         //  بدل الbeef في Tofu
         substitutionSuggestions.put("Cheese", "Vegan Cheese");

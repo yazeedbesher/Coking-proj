@@ -1,25 +1,23 @@
 package com.example.temp.AcceptanceTest;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import io.cucumber.junit.CucumberOptions.SnippetType;
-import org.junit.runner.RunWith;
+import io.cucumber.java.en_scouse.An;
 
 import java.util.*;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class feature2 {
+public class Create_Custome_Meal_2_1 {
  // Assume this is the data
   private List<String> availableIngredients = Arrays.asList("Chicken","milk","pasta", "Tomato", "Lettuce", "Cheese", "Beef", "Fish");
   private Map<String, String> incompatiblePairs = new HashMap<>();
   private List<String> selectedIngredients = new ArrayList<>();
   private boolean validationPassed = false;
 
-    public feature2() {
+    public Create_Custome_Meal_2_1() {
         // Setup incompatible ingredient example
         incompatiblePairs.put("Fish", "Cheese");
     }
@@ -65,12 +63,6 @@ public class feature2 {
     @Then("the system should allow the customer to proceed with the order")
     public void theSystemShouldAllowTheCustomerToProceedWithTheOrder() {
 
-        if (validationPassed) {
-            System.out.println("Customer can proceed with the order!");
-        } else {
-            System.out.println("Customer cannot proceed due to invalid ingredients!");
-            throw new RuntimeException("Invalid ingredient combination!");
-        }
 
     }
 
@@ -101,7 +93,44 @@ public class feature2 {
             throw new RuntimeException("Invalid logic: Customer proceeded with bad ingredients!");
         }
     }
+    @When("the customer does not select any ingredients")
+    public void theCustomerDoesNotSelectAnyIngredients() {
 
+}
+
+    @And("Submit the request")
+     public void submitTheRequest() {
+
+}
+
+@And("prompt the customer to select at least one ingredient")
+    public void promptTheCustomerToSelectAtLeastOneIngredient() {
+
+}
+@And("the customer selects Shrimp and Peanut Butter for a meal")
+    public void theCustomerSelectsShrimpAndPeanutButterForAMeal() {}
+
+@When("the system checks for ingredient compatibility")
+    public void theSystemChecksForIngredientCompatibility() {
+
+}
+@Given("the customer selects Truffle Oil")
+    public void theCustomerSelectsTruffleOil() {}
+
+    @When("the customer tries to submit the request")
+    public void theCustomerTriesToSubmitTheRequest() {}
+
+    @And("Truffle Oil is currently out of stock")
+    public void TruffleOilIsCurrentlyOutOfStock() {}
+
+@Given("the customer selects Chicken,Brown Rice, and Spinach")
+public void theCustomerSelectsChickenAndBrownRiceAndSpinach() {}
+
+@When("the customer submits the meal request")
+public void theCustomerSubmitsTheMealRequest() {}
+
+@And("all ingredients are available and compatible")
+    public void allIngredientsAreAvailableAndCompatible() {}
 
 
 

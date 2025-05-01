@@ -1,16 +1,11 @@
 package com.example.temp.AcceptanceTest;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import io.cucumber.junit.CucumberOptions.SnippetType;
-import org.junit.runner.RunWith;
 
 import java.util.*;
 
-public class feature3 {
+public class Scheduling_Task_Managment_3 {
 
     private Map<String, Integer> chefsWorkload = new HashMap<>(); // this for chef name
     private Map<String, String> chefTasks = new HashMap<>(); // this the assigned task for the chef

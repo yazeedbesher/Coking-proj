@@ -11,3 +11,5 @@ Feature: Suggest ingredient substitutions based on dietary restrictions
     When the system detects the dietary restriction conflict
     Then the system suggest a suitable alternative ingredient
     And the system alerts the chef for approval
+
+  Scenario:
