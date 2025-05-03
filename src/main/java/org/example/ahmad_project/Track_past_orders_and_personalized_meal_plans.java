@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Track_past_orders_and_personalized_meal_plans {
     ArrayList<String> past_orders;
-
+    ArrayList<String> personalized_meals;
 
     public Track_past_orders_and_personalized_meal_plans(){
         past_orders = new ArrayList<>();
@@ -23,7 +23,10 @@ public class Track_past_orders_and_personalized_meal_plans {
             return past_orders;
     }
 
+    public void addPersonalizedMealPlans(String meal){
 
+
+    }
 
 
 }
