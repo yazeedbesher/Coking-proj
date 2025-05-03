@@ -10,6 +10,9 @@ public class Create_Custome_Meal_2 {
     Map<String , String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients = new ArrayList<>(); // المكونات المختارة
     boolean alertChef = false;
+    String notification = "You Have Recieced a New Task To do" ;
+    String mealname = "Meal";
+    Scheduling_Task_Managment_3 sch_task;
 
     Map<String, String> substitutionSuggestions = new HashMap<>(); // عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
@@ -45,7 +48,7 @@ public class Create_Custome_Meal_2 {
 
     }
 
-    public void create_meal(List<String> selectedIngredients){
+    public void create_meal(String mealname,List<String> selectedIngredients){
 
         for (String ingredient1 : selectedIngredients) {
 
@@ -71,10 +74,13 @@ public class Create_Custome_Meal_2 {
             }
 
         }
-
-
+        sch_task.Task_Managment();
     }
 
-
+@Override
+    public String toString() {
+        notification = notification + mealname + "\n";
+    return notification;
+}
 
 }
