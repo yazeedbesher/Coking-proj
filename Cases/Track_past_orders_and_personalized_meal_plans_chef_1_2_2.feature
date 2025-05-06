@@ -11,12 +11,17 @@ Feature: chef want to access customers’ order history and suggest personalized
     And the system will display the list of customers’ order history
 
 
-  Scenario: no suggested personalized meal plans
-    When the chef doesnot enter any suggested personalized meal plans
-    Then the system will display an error masage : no personalized meal plans entered
+  Scenario: no suggested personalized meal plan
+    When the chef doesn't enter any suggested personalized meal plan
+    Then the system will display an error message : no personalized meal plan entered
     And the system will return false
 
-  Scenario: entered  suggested personalized meal plans
-    When the chef enter suggested personalized meal plans
-    Then the system will display a success message : Successfully added personalized meal plans
+  Scenario: the entered suggested personalized meal plan already exist
+    When the chef enter suggested personalized meal plan already exist
+    Then the system will display an error message : personalized meal plan you entered is already exist
+    And the system will return false
+
+  Scenario: entered  suggested personalized meal plan
+    When the chef enter suggested personalized meal plan
+    Then the system will display a success message : Successfully added personalized meal plan
     And the system will return true

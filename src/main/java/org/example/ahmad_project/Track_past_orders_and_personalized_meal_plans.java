@@ -8,6 +8,7 @@ public class Track_past_orders_and_personalized_meal_plans {
 
     public Track_past_orders_and_personalized_meal_plans(){
         past_orders = new ArrayList<>();
+        personalized_meals = new ArrayList<>();
 
     }
 
@@ -23,9 +24,19 @@ public class Track_past_orders_and_personalized_meal_plans {
             return past_orders;
     }
 
-    public void addPersonalizedMealPlans(String meal){
 
 
+    public boolean addPersonalizedMealPlan(String meal){
+        if (meal==null||meal.isEmpty()) {
+            return false;
+        }
+        if(personalized_meals.contains(meal)) {
+            return false;
+        }
+        else {
+            personalized_meals.add(meal);
+            return true;
+        }
     }
 
 
