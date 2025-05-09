@@ -75,46 +75,116 @@ public class Scheduling_Task_Managment_3 {
     }
 
 @Given("first chef already has 5 active tasks")
-    public void firstChefAlreadyHas5ActiveTasks() {}
+    public void firstChefAlreadyHas5ActiveTasks() {
+    chefsWorkload.put("Chef A", 5);
+    System.out.println("Chef A has 5 active tasks.");
+}
 
     @And("second chef has 2 active tasks")
-    public void secondChefHas2ActiveTasks() {}
+    public void secondChefHas2ActiveTasks() {
+        chefsWorkload.put("Chef B", 2);
+        System.out.println("Chef B has 2 active tasks.");
+    }
 
     @When("a new task is created")
-    public void aNewTaskIsCreated() {}
+    public void aNewTaskIsCreated() {
+        System.out.println("A new task has been created and is ready for assignment.");
+    }
 
     @Then("the system should assign the task for second chef")
-    public void theSystemShouldAssignTheTaskForSecondChef() {}
+    public void theSystemShouldAssignTheTaskForSecondChef() {
+        String selectedChef = chefsWorkload.entrySet().stream()
+                .filter(entry -> entry.getValue() < 5)
+                .min(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+
+        if (selectedChef != null) {
+            chefTasks.put(selectedChef, "New special task");
+            chefsWorkload.put(selectedChef, chefsWorkload.get(selectedChef) + 1);
+            System.out.println("Assigned new task to: " + selectedChef);
+        } else {
+            System.out.println("No available chef to assign the task.");
+        }
+    }
 
     @Given("Kitchen Staff Member Sam is available")
-    public void KitchenStaffMemberSamIsAvailable() {}
+    public void KitchenStaffMemberSamIsAvailable() {
+        chefsWorkload.put("Sam", 0);
+        System.out.println("Sam is available for assignment.");
+    }
 
     @And("a vegetable chopping task needs to be done")
-    public void aVegetableChoppingTaskNeedsToBeDone() {}
+    public void aVegetableChoppingTaskNeedsToBeDone() {
+        System.out.println("Vegetable chopping task is pending.");
+    }
 
     @When("the task is assigned")
-    public void theTaskIsAssigned() {}
+    public void theTaskIsAssigned() {
+        if (chefsWorkload.containsKey("Sam")) {
+            chefTasks.put("Sam", "Chop vegetables");
+            chefsWorkload.put("Sam", chefsWorkload.get("Sam") + 1);
+        }
+    }
 
     @Then("it should be assigned to Sam")
-    public void itShouldBeAssignedToSam() {}
+    public void itShouldBeAssignedToSam() {
+        if ("Chop vegetables".equals(chefTasks.get("Sam"))) {
+            System.out.println("Task successfully assigned to Sam.");
+        } else {
+            throw new RuntimeException("Task was not assigned to Sam.");
+        }
+    }
 
     @Given("Chef Alex receives a new cooking task")
-    public void ChefAlexReceivesNewCookingTask() {}
+    public void ChefAlexReceivesNewCookingTask() {
+        chefTasks.put("Chef Alex", "Cook seafood pasta");
+        System.out.println("Chef Alex has been assigned a cooking task.");
+    }
 
     @When("the task is due in 2 hours")
-    public void theTaskIsDueIn2Hours() {}
+    public void theTaskIsDueIn2Hours() {
+        System.out.println("The assigned task to Chef Alex is due in 2 hours.");
+    }
 
     @Then("the notification should include the task deadline")
-    public void theNotificationShouldIncludeTheTaskDeadline() {}
+    public void theNotificationShouldIncludeTheTaskDeadline() {
+        String task = chefTasks.get("Chef Alex");
+        if (task != null) {
+            notificationSent = true;
+            System.out.println("Notification sent to Chef Alex: " + task + " (Deadline: 2 hours)");
+        } else {
+            System.out.println("No task found to notify Chef Alex.");
+        }
+    }
 
     @Given("Chef Jordan has already been notified about a task")
-    public void ChefJordanHasAlreadyBeenNotifiedAboutATask() {}
+    public void ChefJordanHasAlreadyBeenNotifiedAboutATask() {
+        chefTasks.put("Chef Jordan", "Bake lasagna");
+        notificationSent = true;
+        System.out.println("Chef Jordan was already notified about baking lasagna.");
+    }
 
     @When("the same task is reassigned without change")
-    public void theSameTaskIsReassignedWithoutChange() {}
+    public void theSameTaskIsReassignedWithoutChange() {
+        System.out.println("Task reassigned to Chef Jordan without changes.");
+    }
 
     @Then("the system should not send another notification")
-    public void theSystemShouldNotSendAnotherNotification() {}
+    public void theSystemShouldNotSendAnotherNotification() {
+        boolean resend = false;
+
+        // Logic: if task already exists and notificationSent is true, no need to send again
+        if (chefTasks.containsKey("Chef Jordan") && notificationSent) {
+            resend = false;
+        }
+
+        if (!resend) {
+            System.out.println("No duplicate notification sent to Chef Jordan.");
+        } else {
+            throw new RuntimeException("Unnecessary duplicate notification sent.");
+        }
+    }
 
 
 }

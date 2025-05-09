@@ -62,7 +62,11 @@ public class Create_Custome_Meal_2_1 {
 
     @Then("the system should allow the customer to proceed with the order")
     public void theSystemShouldAllowTheCustomerToProceedWithTheOrder() {
-
+if(validationPassed) {
+    System.out.println("Customer is on the custom meal selection page.");
+}else {
+    throw new RuntimeException("validation failed : the customer should not be allowed to proceed");
+}
 
     }
 
@@ -100,37 +104,98 @@ public class Create_Custome_Meal_2_1 {
 
     @And("Submit the request")
      public void submitTheRequest() {
-
+if(selectedIngredients.isEmpty()){
+    validationPassed = false;
+    System.out.println("Cannot submit : no ingredient selected");
+}
+else {
+    System.out.println("Submitting request with ingredients:" + selectedIngredients);
+}
 }
 
 @And("prompt the customer to select at least one ingredient")
     public void promptTheCustomerToSelectAtLeastOneIngredient() {
-
+if(selectedIngredients.isEmpty()){
+    System.out.println("Cannot select at least one ingredient");
+}else {
+    throw new RuntimeException("Expected no ingredients, but some were selected.");
+}
 }
 @And("the customer selects Shrimp and Peanut Butter for a meal")
-    public void theCustomerSelectsShrimpAndPeanutButterForAMeal() {}
+    public void theCustomerSelectsShrimpAndPeanutButterForAMeal() {
+        selectedIngredients.clear();
+        selectedIngredients.add("Shrimp");
+        selectedIngredients.add("Peanut");
+        incompatiblePairs.put("Shrimp", "Peanut Butter");
+        System.out.println("Customer selected: " + selectedIngredients);
+}
 
 @When("the system checks for ingredient compatibility")
     public void theSystemChecksForIngredientCompatibility() {
+        validationPassed = true;
+        for (String ingredient1 : selectedIngredients) {
+            for (String ingredient2 : incompatiblePairs.keySet()) {
+                if(incompatiblePairs.containsKey(ingredient1) && incompatiblePairs.get(ingredient1).equals(ingredient2)) {
+                    validationPassed = false;
+                    break;
+                }
+            }
+        }
 
 }
 @Given("the customer selects Truffle Oil")
-    public void theCustomerSelectsTruffleOil() {}
+    public void theCustomerSelectsTruffleOil() {
+        selectedIngredients.clear();
+        selectedIngredients.add("Oil");
+        System.out.println("Customer selected: " + selectedIngredients);
+}
 
     @When("the customer tries to submit the request")
-    public void theCustomerTriesToSubmitTheRequest() {}
+    public void theCustomerTriesToSubmitTheRequest() {
+       validationPassed =selectedIngredients.stream().allMatch(availableIngredients::contains);
+    }
 
     @And("Truffle Oil is currently out of stock")
-    public void TruffleOilIsCurrentlyOutOfStock() {}
+    public void TruffleOilIsCurrentlyOutOfStock() {
+        availableIngredients = new ArrayList<>(availableIngredients); // Ensure it's mutable
+        availableIngredients.remove("Truffle Oil");
+        System.out.println("Truffle Oil marked as out of stock.");
+    }
 
 @Given("the customer selects Chicken,Brown Rice, and Spinach")
-public void theCustomerSelectsChickenAndBrownRiceAndSpinach() {}
+public void theCustomerSelectsChickenAndBrownRiceAndSpinach() {
+        selectedIngredients.clear();
+        selectedIngredients.addAll(Arrays.asList("Chicken", "Brown Rice", "Spinach"));
+        System.out.println("Customer selected: " + selectedIngredients);
+}
 
 @When("the customer submits the meal request")
-public void theCustomerSubmitsTheMealRequest() {}
+public void theCustomerSubmitsTheMealRequest() {
+        validationPassed = true;
+
+        // check if available
+        for (String ingredient1 : selectedIngredients) {
+            if(!availableIngredients.contains(ingredient1)) {
+                validationPassed = false;
+                return;
+            }
+        }
+        // check if compatibile
+    for(String ingredient1 : selectedIngredients) {
+        for(String ingredient2 : selectedIngredients) {
+            if(incompatiblePairs.containsKey(ingredient1) && incompatiblePairs.get(ingredient1).equals(ingredient2)) {
+                validationPassed = false;
+                return;
+            }
+        }
+    }
+}
 
 @And("all ingredients are available and compatible")
-    public void allIngredientsAreAvailableAndCompatible() {}
+    public void allIngredientsAreAvailableAndCompatible() {
+    availableIngredients = Arrays.asList("Chicken", "Brown Rice", "Spinach", "Tomato");
+    incompatiblePairs.clear();
+}
 
 
 

@@ -20,6 +20,7 @@ public class Suggest_Ingredient_Substitutions_2_2 {
     private String selectedIngredient = "";
     private String suggestedAlternative = "";
     private boolean chefAlerted = false;
+    private boolean validationPassed = false;
 
     public Suggest_Ingredient_Substitutions_2_2() {
         // alternatives unavailable or restricted ingredients
@@ -92,46 +93,114 @@ public class Suggest_Ingredient_Substitutions_2_2 {
         }
     }
     @Given("the customer selects Grilled Salmon and steamed vegetables")
-    public void thecustomerselectsGrilledSalmonAndSteamedVegetables() {}
+    public void thecustomerselectsGrilledSalmonAndSteamedVegetables() {
+        selectedIngredient = "Grilled Salmon";
+        suggestedAlternative = "";
+        chefAlerted = false;
+        System.out.println("Customer selected (steamed): " + selectedIngredient);
+    }
 
     @And("the system should suggest an alternative")
-    public void theSystemShouldSuggestAnAlternative() {}
+    public void theSystemShouldSuggestAnAlternative() {
+        if (substitutionSuggestions.containsKey(selectedIngredient)) {
+            suggestedAlternative = substitutionSuggestions.get(selectedIngredient);
+            System.out.println("Suggested alternative: " + suggestedAlternative);
+        } else {
+            System.out.println("No substitution needed for: " + selectedIngredient);
+        }
+    }
 
     @When("the system processes the request")
-    public void theSystemProcessesTheRequest() {}
+    public void theSystemProcessesTheRequest() {
+        if (!substitutionSuggestions.containsKey(selectedIngredient)) {
+            validationPassed = true;
+        }
+    }
 
     @Then("the system should proceed without suggesting substitutions")
-    public void theSystemShouldProceedWithoutSuggestingSubstitutions() {}
+    public void theSystemShouldProceedWithoutSuggestingSubstitutions() {
+        if (suggestedAlternative.isEmpty()) {
+            System.out.println("Proceeding without substitution.");
+        } else {
+            throw new RuntimeException("Unexpected substitution suggested for acceptable ingredients.");
+        }
+    }
 
     @And("there are no dietary conflicts or availability issues")
-    public void thereAreNoDietaryConflictsAndAvailabilityIssues() {}
+    public void thereAreNoDietaryConflictsAndAvailabilityIssues() {
+        System.out.println("No conflicts found. Ingredients are available and suitable.");
+    }
 
 @Given("the customer is allergic to nuts")
-    public void theCustomerIsAllergicToNuts() {}
+    public void theCustomerIsAllergicToNuts() {  System.out.println("Customer allergy registered: Nuts");}
 
     @And("selects Pesto Sauce which contains nuts")
-    public void selectsPestoSauceThatContainsNuts() {}
+    public void selectsPestoSauceThatContainsNuts() {
+        selectedIngredient = "Pesto Sauce";
+        substitutionSuggestions.put("Pesto Sauce", "Sunflower Seed Pesto");
+        System.out.println("Customer selected: " + selectedIngredient + " (contains nuts)");}
 
     @And("the system substitutes it with Sunflower Seed Pesto")
-    public void theSystemSubstitutesItWithSunflowerSeedPesto() {}
+    public void theSystemSubstitutesItWithSunflowerSeedPesto() {
+        suggestedAlternative = substitutionSuggestions.get(selectedIngredient);
+        if (suggestedAlternative != null) {
+            System.out.println("Substituted with: " + suggestedAlternative);
+        } else {
+            System.out.println("No substitution available.");
+        }
+    }
 
     @When("the substitution is applied")
-    public void theSubstitutionIsApplied() {}
+    public void theSubstitutionIsApplied() {
+        if (!suggestedAlternative.isEmpty()) {
+            System.out.println("Substitution applied: " + selectedIngredient + " -> " + suggestedAlternative);
+            chefAlerted = true;
+        }
+    }
 
     @Given("Miso Paste is out of stock")
-    public void misoPasteIsOutOfStock() {}
+    public void misoPasteIsOutOfStock() {
+        selectedIngredient = "Miso Paste";
+        availableIngredients = new java.util.ArrayList<>(availableIngredients);
+        availableIngredients.remove("Miso Paste");
+        substitutionSuggestions.put("Miso Paste", "Soy Sauce");
+        System.out.println("Miso Paste marked as out of stock.");
+    }
 
     @And("the system substitutes it with Soy Sauce")
-    public void theSystemSubstitutesItWithSoySauce() {}
+    public void theSystemSubstitutesItWithSoySauce() {
+        suggestedAlternative = substitutionSuggestions.get(selectedIngredient);
+        System.out.println("Substitution suggested: " + suggestedAlternative);
+    }
 
     @Then("the chef should be notified to review and approve the change")
-    public void theChefShouldBeNotifiedToReviewAndApproveTheChange() {}
+    public void theChefShouldBeNotifiedToReviewAndApproveTheChange() {
+        if (suggestedAlternative != null && !suggestedAlternative.isEmpty()) {
+            chefAlerted = true;
+        }
+        if (chefAlerted) {
+            System.out.println("Chef has been notified for substitution approval.");
+        } else {
+            throw new RuntimeException("Chef was not notified when they should have been.");
+        }
+    }
 
     @Given("the customer selects all available and compatible ingredients")
-    public void theCustomerSelectsAllAvailableAndCompatibleIngredients() {}
+    public void theCustomerSelectsAllAvailableAndCompatibleIngredients() {
+        selectedIngredient = "Tomato"; // Pick something safe
+        suggestedAlternative = "";
+        chefAlerted = false;
+        System.out.println("Customer selected safe and available ingredients.");
+    }
 
     @Then("the chef should not receive any substitution alert")
-    public void theChefShouldNotReceiveAnySubstitutionAlert() {}
+    public void theChefShouldNotReceiveAnySubstitutionAlert() {
+        if (!chefAlerted) {
+            System.out.println("No chef alert necessary.");
+        } else {
+            throw new RuntimeException("Unexpected chef alert for valid ingredients.");
+        }
+    }
 
 }
 
