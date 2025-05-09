@@ -23,7 +23,8 @@ public class Track_past_orders_and_personalized_meal_plans_customer_1_2_1Test {
     }
     @Then("the system will return an empty list")
     public void theSystemWillReturnAnEmptyList() {
-    result = past_orders.getPastOrder();
+
+        result = past_orders.getPastOrder();
     }
     @Then("the system will display the message: You have no past meal orders")
     public void theSystemWillDisplayTheMessageYouHaveNoPastMealOrders() {
@@ -32,7 +33,7 @@ public class Track_past_orders_and_personalized_meal_plans_customer_1_2_1Test {
     }
     @Then("the page will invite the customer to place their first order")
     public void thePageWillInviteTheCustomerToPlaceTheirFirstOrder() {
-   // JOptionPane.showMessageDialog(null,"you can place your first order");
+    //JOptionPane.showMessageDialog(null,"you can place your first order");
     }
 
 
@@ -45,9 +46,7 @@ public class Track_past_orders_and_personalized_meal_plans_customer_1_2_1Test {
     }
     @Then("the system will return a list of past meal orders")
     public void theSystemWillReturnAListOfPastMealOrders() {
-    past_orders.addPastOrder("Past Order 1");
-    past_orders.addPastOrder("Past Order 2");
-    past_orders.addPastOrder("Past Order 3");
+    past_orders.addPastOrder(List("Past Order 1", "Past Order 2", "Past Order 3"));
     result = past_orders.getPastOrder();
     }
     @Then("the system will display the list of past meal orders")

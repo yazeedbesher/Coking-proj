@@ -24,4 +24,3 @@ Feature: chef want to access customers’ order history and suggest personalized
   Scenario: entered  suggested personalized meal plan
     When the chef enter suggested personalized meal plan
     Then the system will display a success message : Successfully added personalized meal plan
-    And the system will return true

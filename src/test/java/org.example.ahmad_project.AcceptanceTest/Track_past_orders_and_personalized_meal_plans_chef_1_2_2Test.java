@@ -38,13 +38,12 @@ public class Track_past_orders_and_personalized_meal_plans_chef_1_2_2Test {
     }
     @Then("the system will return a list of customers’ order history")
     public void theSystemWillReturnAListOfCustomersOrderHistory() {
-        past_orders_and_personalized_meal_plan.addPastOrder("Order 1");
-        past_orders_and_personalized_meal_plan.addPastOrder("Order 2");
+        past_orders_and_personalized_meal_plan.addPastOrder(List("Order 1","Order 2","Order 3"));
     result = past_orders_and_personalized_meal_plan.getPastOrder();
     }
     @Then("the system will display the list of customers’ order history")
     public void theSystemWillDisplayTheListOfCustomersOrderHistory() {
-        Assert.assertEquals(List("Order 1","Order 2"), result);
+        Assert.assertEquals(List("Order 1","Order 2","Order 3"), result);
         String string = "";
         for(String s:result) {
             string+="\n"+s;
