@@ -40,7 +40,7 @@ public class InvoicesAndTrackFinancialReports2 {
     public void somethingGoesWrongDuringReportCreation() {
         //JOptionPane.showMessageDialog(null, "Something goes wrong during report creation");
         gen.makeErrorAtSystem();
-        orders.add(new Order(1,1,LocalDateTime.now(),"Snack","Ahmad's favorite Snack"));
+        orders.add(new Order(1,1,LocalDateTime.now(),"Snack","Ahmad's favorite Snack",LocalDateTime.now()));
 
         result = gen.generateTrackFinancialReport(orders);
     }
@@ -59,7 +59,7 @@ public class InvoicesAndTrackFinancialReports2 {
     @When("the admin sends a non-empty list to the report generator")
     public void theAdminSendsANonEmptyListToTheReportGenerator() {
         //JOptionPane.showMessageDialog(null, "Please select the orders");
-        orders.add(new Order(1,1,LocalDateTime.now(),"Snack","Ahmad's favorite Snack"));
+        orders.add(new Order(1,1,LocalDateTime.now(),"Snack","Ahmad's favorite Snack",LocalDateTime.now()));
         result = gen.generateTrackFinancialReport(orders);
     }
     @Then("the system creates a report from the orders")

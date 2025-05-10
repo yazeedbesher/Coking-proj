@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class InvoicesAndTrackFinancialReports1 {
     GenerateInvoicesAndTrackFinancialReports gen = new GenerateInvoicesAndTrackFinancialReports();
-    Order order = new Order(1,1, LocalDateTime.now(),"Order1","Ahmad Order");
+    Order order = new Order(1,1, LocalDateTime.now(),"Order1","Ahmad Order",LocalDateTime.now());
     boolean result ;
 
 
