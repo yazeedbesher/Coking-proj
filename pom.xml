@@ -12,6 +12,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
+
+             <sonar.organization>senov2023</sonar.organiztion>
+             <sonar.host.url>https://sonarcliud.io</sonar.host.url>
     </properties>
 
     <dependencies>
