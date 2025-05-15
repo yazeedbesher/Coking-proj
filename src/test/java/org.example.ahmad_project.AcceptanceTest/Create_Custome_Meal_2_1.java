@@ -1,10 +1,9 @@
-package com.example.temp.AcceptanceTest;
+package org.example.ahmad_project.AcceptanceTest;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
 
 import java.util.*;
 

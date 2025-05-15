@@ -3,17 +3,10 @@ package org.example.ahmad_project.AcceptanceTest;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 //import org.junit.Assert.assertEquals;
-import java.lang.reflect.Array;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.List;
-import org.example.ahmad_project.dietary_preferences_and_allergies;
 
-import javax.swing.*;
+import com.example.cooking_proj.dietary_preferences_and_allergies;
 
 public class dietary_preferences_and_allergiesTest {
     dietary_preferences_and_allergies PreAndAlle = new dietary_preferences_and_allergies();

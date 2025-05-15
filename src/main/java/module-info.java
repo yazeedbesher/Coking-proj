@@ -10,6 +10,7 @@ module com.example.cooking_proj {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.cooking_proj to javafx.fxml;
     exports com.example.cooking_proj;

@@ -5,7 +5,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.util.ArrayList;
-import org.example.ahmad_project.dietary_preferences_and_allergies;
+import com.example.cooking_proj.dietary_preferences_and_allergies;
 
 public class dietary_preferences_and_allergies2Test {
     dietary_preferences_and_allergies PreAndAlle = new dietary_preferences_and_allergies();

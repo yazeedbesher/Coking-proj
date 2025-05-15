@@ -191,7 +191,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.example.ahmad_project/org.example.ahmad_project.HelloApplication</mainClass>
+                            <mainClass>com.example.cooking_proj/com.example.cooking_proj.HelloApplication</mainClass>
 
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

@@ -1,8 +1,6 @@
-package org.example.ahmad_project;
+package com.example.cooking_proj;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class dietary_preferences_and_allergies {
     ArrayList<String> preferences;

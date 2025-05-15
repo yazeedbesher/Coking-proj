@@ -1,10 +1,9 @@
 package org.example.ahmad_project.AcceptanceTest;
 
-import com.sun.source.tree.AssertTree;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.ahmad_project.NotificationsAndAlerts;
-import org.example.ahmad_project.Order;
+import com.example.cooking_proj.NotificationsAndAlerts;
+import com.example.cooking_proj.Order;
 import org.junit.Assert;
 
 import javax.swing.*;
@@ -19,7 +18,7 @@ public class SendRemindersForUpcomingOrdersAndDeliveries1 {
 
    @When("the customer has a meal scheduled for delivery")
     public void theCustomerHasAMealScheduledForDelivery() {
-        JOptionPane.showMessageDialog(null,"The customer has a meal scheduled for delivery");
+        //JOptionPane.showMessageDialog(null,"The customer has a meal scheduled for delivery");
         result=Customer.UpcomingOrdersReminder(60,order2);
     }
     @Then("the system will send a reminder notification")
@@ -36,7 +35,7 @@ public class SendRemindersForUpcomingOrdersAndDeliveries1 {
 
     @When("the delivery time is less than one hour away")
     public void theDeliveryTimeIsLessThanOneHourAway() {
-       JOptionPane.showMessageDialog(null,"The customer has a meal scheduled for delivery");
+       //JOptionPane.showMessageDialog(null,"The customer has a meal scheduled for delivery");
        result=Customer.UpcomingOrdersReminder(60,order);
     }
     @Then("the system will send a final reminder to the customer")

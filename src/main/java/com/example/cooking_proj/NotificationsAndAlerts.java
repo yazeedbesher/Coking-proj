@@ -1,4 +1,4 @@
-package org.example.ahmad_project;
+package com.example.cooking_proj;
 
 import javax.swing.*;
 import java.time.LocalDateTime;
@@ -17,12 +17,12 @@ public class NotificationsAndAlerts {
                 System.out.println("ReminderTime: "+ReminderTime);
                 TimeToRemain -= ReminderTime;
                 System.out.println("TimeToRemain: "+TimeToRemain);
-                Reminder(TimeToRemain-ReminderTime);
+                //Reminder(TimeToRemain-ReminderTime);
 
             }
             String UpcomingOrdersReminder="";
             UpcomingOrdersReminder+="your order will arrive at:\n("+order.PickUpTime.toString()+")\norder Description:\n("+order.orderDescription+")";
-            JOptionPane.showMessageDialog(null, UpcomingOrdersReminder,"Upcoming Orders Reminder",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, UpcomingOrdersReminder,"Upcoming Orders Reminder",JOptionPane.INFORMATION_MESSAGE);
             return true;
         }catch (Exception e) {
             System.out.println(e.toString());

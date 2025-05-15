@@ -1,4 +1,4 @@
-package org.example.ahmad_project;
+package com.example.cooking_proj;
 
 public class Invoice {
 

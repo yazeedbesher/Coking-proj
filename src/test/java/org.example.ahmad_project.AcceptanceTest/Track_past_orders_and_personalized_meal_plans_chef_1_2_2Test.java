@@ -1,12 +1,10 @@
 package org.example.ahmad_project.AcceptanceTest;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.ahmad_project.Track_past_orders_and_personalized_meal_plans;
+import com.example.cooking_proj.Track_past_orders_and_personalized_meal_plans;
 import org.junit.Assert;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Track_past_orders_and_personalized_meal_plans_chef_1_2_2Test {
