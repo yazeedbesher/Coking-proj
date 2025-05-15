@@ -13,4 +13,9 @@
       <module name="Cooking_proj" target="24" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ahmad_Project" options="" />
+    </option>
+  </component>
 </project>
