@@ -6,14 +6,19 @@ public class Admin {
     private String password;
     private String phoneNumber;
     private Boolean logState=false;
+
     public Admin()
-    {}
+    {
+
+    }
+
     public Admin(String s1,String s2,String s3)
     {
         this.name=s3;
         this.username=s1;
         this.password=s2;
     }
+
     public String getName()
     {
         return name;

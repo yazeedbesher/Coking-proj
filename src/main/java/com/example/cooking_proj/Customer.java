@@ -21,15 +21,6 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
         orders = new ArrayList<>();
-        signin = new Signin();
-
-        if(!signin.valid_user(customerID)){
-            System.out.println("Invalid user");
-        }
-        else {
-            System.out.println(customerID + " has been signed in");
-        }
-
 
     }
 

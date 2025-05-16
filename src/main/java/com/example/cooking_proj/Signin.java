@@ -1,34 +1,25 @@
 package com.example.cooking_proj;
 
-
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class Signin {
-Signup signup;
-    List<Customer> customers;
 
-    public Signin() {
-        customers = new ArrayList<>();
-        signup = new Signup();
-        Customer cust1 = new Customer(1221, "yazeed", "jordan", "0599111373");
-        Customer cust2 = new Customer(1222, "Ahmad", "jordan", "0599111373");
-        Customer cust3 = new Customer(1223, "ABD", "jordan", "0599111373");
-        customers.add(cust1);
-        customers.add(cust2);
-        customers.add(cust3);
-    }
-    public boolean valid_user(int id){
-        for (Customer c : customers) {
-            if(c.getCustomerID() == id){
-                return true;
-            }
-            else{
-                return false;
+    public static Customer login(List<Customer> customerList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please Sign in:");
+        System.out.print("Enter your ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        for (Customer customer : customerList) {
+            if (customer.getCustomerID() == id) {
+                System.out.println("Welcome back, " + customer.getCustomerName() + "!");
+                return customer;
             }
         }
-        return true;
+
+        System.out.println("Customer not found.");
+        return null;
     }
-
-
-
 }
