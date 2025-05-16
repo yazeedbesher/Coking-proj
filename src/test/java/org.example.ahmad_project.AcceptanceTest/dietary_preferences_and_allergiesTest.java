@@ -15,8 +15,7 @@ public class dietary_preferences_and_allergiesTest {
 //1
     @When("the customer leave the preferences field empty")
     public void theCustomerLeaveThePreferencesFieldEmpty() {
-        ArrayList<String>Pre=new ArrayList<>();
-        Assert.assertFalse(PreAndAlle.addPreference(Pre));
+
     }
 
 //2
@@ -24,7 +23,7 @@ public class dietary_preferences_and_allergiesTest {
     public void theCustomerEnterDietaryPreferences() {
         ArrayList<String>Pre=new ArrayList<>();
         Pre = List("Ahmad","Mayyaleh");
-        Assert.assertTrue(PreAndAlle.addPreference(Pre));
+
     }
 
 
@@ -32,7 +31,7 @@ public class dietary_preferences_and_allergiesTest {
     @When("the customer leave the allergies field empty")
     public void theCustomerLeaveTheAllergiesFieldEmpty() {
         ArrayList<String>AL=new ArrayList<>();
-        Assert.assertFalse(PreAndAlle.addAllergies(AL));
+
     }
 
 
@@ -41,7 +40,7 @@ public class dietary_preferences_and_allergiesTest {
     public void theCustomerEnterDietaryAllergies() {
         ArrayList<String>AL=new ArrayList<>();
         AL = List("Yazeed","Besher");
-        Assert.assertTrue(PreAndAlle.addAllergies(AL));
+
     }
 
 

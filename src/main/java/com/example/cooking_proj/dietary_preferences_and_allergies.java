@@ -1,101 +1,85 @@
 package com.example.cooking_proj;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class dietary_preferences_and_allergies {
-    ArrayList<String> preferences;
-    ArrayList<String> allergies;
-    boolean thereIsPreference;
-    boolean thereIsAllergies;
+    List<String> selectedAllergies;
+    List<String> selected_Preference;
+
 
     public dietary_preferences_and_allergies() {
-    preferences = new ArrayList<String>();
-    allergies = new ArrayList<String>();
-    thereIsPreference=false;
-        thereIsAllergies=false;
+        selectedAllergies = new ArrayList<>();
+        selected_Preference = new ArrayList<>();
     }
 
-public boolean addPreference(ArrayList <String> preference) {
-        if(preference==null||preference.isEmpty()){
-            //JOptionPane.showMessageDialog(null, "no preference entered");
-            return false;
-        }
-        //JOptionPane.showMessageDialog(null, "Your preferences have been updated");
-        thereIsPreference=true;
-        for(String s : preference){
+public List<String> addPreference() {
+        Scanner scanner = new Scanner(System.in);
 
-            if(!this.preferences.contains(s)){
-                this.preferences.add(s);
-            }
+    System.out.print("How many Ingredients would you like to enter? ");
+    int count = Integer.parseInt(scanner.nextLine());
 
-        }
-return true;
+    for (int i = 0; i < count; i++) {
+        System.out.print("Enter Ingredients " + (i + 1) + ": ");
+        String input = scanner.nextLine();
+        selected_Preference.add(input);
+    }
+    return selected_Preference;
 }
 
-public boolean addAllergies(ArrayList <String> allergies) {
+public List<String> addAllergies() {
 
-        if(allergies==null||allergies.isEmpty()){
-           // JOptionPane.showMessageDialog(null, "no allergies entered");
-            return false;
-        }
-        //JOptionPane.showMessageDialog(null, "Your allergies have been updated");
-        thereIsAllergies=true;
-        for(String s : allergies){
-            if(!this.allergies.contains(s)){
-                this.allergies.add(s);
-            }
+    Scanner scanner = new Scanner(System.in);
 
+    System.out.print("How many Allergies would you like to enter? ");
+    int countA = Integer.parseInt(scanner.nextLine());
+
+    for (int i = 0; i < countA; i++) {
+        System.out.print("Enter Allergies " + (i + 1) + ": ");
+        String input = scanner.nextLine();
+        selectedAllergies.add(input);
+    }
+
+    return selectedAllergies;
+
+}
+
+public List<String> getPreferences() {
+   return selected_Preference;
+}
+
+public List<String> getAllergeis() {
+        return selectedAllergies;}
+
+public boolean addPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies) {
+    if (preferences == null || preferences.isEmpty() ) {
+        return false;
+    }
+    if (allergies == null || allergies.isEmpty() ) {
+        for(String str : preferences) {
+            this.selected_Preference.add(str);
         }
+
         return true;
+    }
+    for(String str : preferences) {
+        this.selected_Preference.add(str);
+    }
+    for(String str : allergies) {
+    this.selectedAllergies.add(str);}
+    return true;
 }
 
-public ArrayList<String> getPreferences() {
-        if(!thereIsPreference){
-            //JOptionPane.showMessageDialog(null, "no preference to show");
-            return new ArrayList<String>();
-        }
-        //JOptionPane.showMessageDialog(null, "preferences are showed");
-        return preferences;
-}
-public ArrayList<String> getAllergies() {
-        if(!thereIsAllergies){
-            //JOptionPane.showMessageDialog(null, "no allergies to show");
-            return new ArrayList<>();
-        }
-        //JOptionPane.showMessageDialog(null, "allergies are showed");
-        return allergies;
-}
 
-//public boolean addPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies) {
-//    if (preferences == null || preferences.isEmpty() ) {
-//        JOptionPane.showMessageDialog(null, "Preferences is empty");
-//        return false;
-//    }
-//    if (allergies == null || allergies.isEmpty() ) {
-//        for(String str : preferences) {
-//            this.preferences.add(str);
-//        }
-//        JOptionPane.showMessageDialog(null, "Preferences saved successfully");
-//        return true;
-//    }
-//    for(String str : preferences) {
-//        this.preferences.add(str);
-//    }
-//    for(String str : allergies) {
-//    this.allergies.add(str);}
-//    JOptionPane.showMessageDialog(null, "Preferences and Allergies saved successfully");
-//    return true;
-//}
-//
-//
-//    public boolean getPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies){
-//    if(this.preferences == null ||this.preferences.isEmpty()){
-//    return false;
-//    }
-//
-//
-//    return true;
-//    }
+    public boolean getPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies){
+    if(this.selected_Preference == null ||this.selected_Preference.isEmpty()){
+    return false;
+    }
+
+
+    return true;
+    }
 
 
     private ArrayList<String> List(String ... strings) {

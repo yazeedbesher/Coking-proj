@@ -11,9 +11,10 @@ public class Customer {
     String customerAddress;
     String customerPhone;
     ArrayList<Order> orders;
-    List<String> selectedIngredients;
-    Create_Custome_Meal_2 custome_Meal_2;
-    Signin signin;
+    List<String> preference;
+    List<String> Allergies;
+    Create_Custome_Meal_2 custome_Meal;
+    dietary_preferences_and_allergies dietary_preferences_and_allergies;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
         this.customerID = customerID;
@@ -21,6 +22,10 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
         orders = new ArrayList<>();
+        preference = new ArrayList<>();
+        Allergies = new ArrayList<>();
+        dietary_preferences_and_allergies = new dietary_preferences_and_allergies();
+        custome_Meal= new Create_Custome_Meal_2();
 
     }
 
@@ -54,21 +59,12 @@ public class Customer {
     }
 
     public void create_order() {
-        List<String> selectedIngredients = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("How many Ingredients would you like to enter? ");
-        int count = Integer.parseInt(scanner.nextLine());
+        List<String> preference= dietary_preferences_and_allergies.addPreference();
+        List<String> Allergies= dietary_preferences_and_allergies.addAllergies();
 
-        for (int i = 0; i < count; i++) {
-            System.out.print("Enter Ingredients " + (i + 1) + ": ");
-            String input = scanner.nextLine();
-            selectedIngredients.add(input);
-        }
-        scanner.close();
-
-        Create_Custome_Meal_2 custome_Meal = new Create_Custome_Meal_2(selectedIngredients);
-        custome_Meal.create_meal();
+         custome_Meal = new Create_Custome_Meal_2();
+         custome_Meal.create_meal(preference,Allergies);
     }
 
 }

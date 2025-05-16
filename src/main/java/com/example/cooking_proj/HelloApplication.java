@@ -27,8 +27,11 @@ public class HelloApplication {
             currentCustomer = Signup.registerCustomer(registeredCustomers);
         }
 
-
         System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+
+
+        currentCustomer.create_order();
+
 
     }
 
