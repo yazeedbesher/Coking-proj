@@ -8,8 +8,7 @@ Scenario: last-minute reminder before delivery
 When the delivery time is less than one hour away
 Then the system will send a final reminder to the customer
 
-Scenario: reminder sent to wrong customer
-When the system sends a reminder for a meal delivery
-And the customer ID is incorrectly matched
-Then the wrong customer will receive the reminder
-And the system will log a delivery mismatch error
+Scenario: reminder not sent due to system error
+When the system tries to send a reminder
+And an error happens
+Then the system will not send the reminder
