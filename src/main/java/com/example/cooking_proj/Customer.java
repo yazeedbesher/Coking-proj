@@ -11,8 +11,8 @@ public class Customer {
     String customerAddress;
     String customerPhone;
     ArrayList<Order> orders;
-    Create_Custome_Meal_2 custome_Meal;
     List<String> selectedIngredients;
+    Create_Custome_Meal_2 custome_Meal_2;
 
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
@@ -54,8 +54,6 @@ public class Customer {
 
     public void create_order() {
         List<String> selectedIngredients = new ArrayList<>();
-
-        System.out.println("Chosoe Your Ingredients To Create Your Order");
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("How many Ingredients would you like to enter? ");
@@ -66,10 +64,10 @@ public class Customer {
             String input = scanner.nextLine();
             selectedIngredients.add(input);
         }
-
         scanner.close();
 
         Create_Custome_Meal_2 custome_Meal = new Create_Custome_Meal_2(selectedIngredients);
+        custome_Meal.create_meal();
     }
 
 }

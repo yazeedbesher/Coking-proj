@@ -3,30 +3,41 @@ package com.example.cooking_proj;
 import java.util.*;
 
 public class Create_Custome_Meal_2 {
-    List<String> ingredients = Arrays.asList("Chicken","milk","pasta","Rice", "Tomato", "Lettuce", "Cheese", "Beef", "Fish"); // المكونات المتوفرة
-    Map<String , String> incompatiblePairs = new HashMap<>();
-    List<String> selectedIngredients = new ArrayList<>(); // المكونات المختارة
+    List<String> ingredients = new ArrayList<>();// المكونات المتوفرة
+    Map<String , String> incompatiblePairs =  new HashMap<>();
+    List<String> selectedIngredients; // المكونات المختارة
     boolean alertChef = false;
     String notification = "You Have Recieced a New Task To do" ;
     String mealname = "Meal";
     Scheduling_Task_Managment_3 sch_task;
 
-    Map<String, String> substitutionSuggestions = new HashMap<>(); // عبي فيها المكونات المقترحة كبديل
+    Map<String, String> substitutionSuggestions =  new HashMap<>();// عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
 
-    public Create_Custome_Meal_2(List<String> selectedIngredients) {
-     this.ingredients = ingredients;
-     this.incompatiblePairs = incompatiblePairs;
-     this.selectedIngredients = selectedIngredients;
+    public Create_Custome_Meal_2(List<String> myselectedIngredients) {
+     selectedIngredients = new ArrayList<>();
+     selectedIngredients.addAll(myselectedIngredients);
 
         incompatiblePairs.put("Fish", "Cheese");
-        incompatiblePairs.put("Chicken", "Milk");
         incompatiblePairs.put("Tomato", "milk");
-        incompatiblePairs.put("Fish", "Beef");
+        incompatiblePairs.put("Fish", "Lettuce");
+        incompatiblePairs.put("pasta", "Fish");
+        incompatiblePairs.put("Lettuce", "Cheese");
 
         substitutionSuggestions.put("Rice", "pasta");
         substitutionSuggestions.put("Cheese", "Milk");
         substitutionSuggestions.put("Chicken", "Beef");
+        substitutionSuggestions.put("Tomato", "milk");
+        substitutionSuggestions.put("Lettuce", "Tomato");
+
+        ingredients.add("Chicken");
+        ingredients.add("pasta");
+        ingredients.add("Rice");
+        ingredients.add("Tomato");
+        ingredients.add("Lettuce");
+        ingredients.add("Cheese");
+        ingredients.add("milk");
+        ingredients.add("Fish");
     }
 
     public void add_ingredient(String ingredient){
@@ -54,7 +65,7 @@ public class Create_Custome_Meal_2 {
 
     }
 
-    public void create_meal(String mealname,List<String> selectedIngredients){
+    public void create_meal(){
 
         for (String ingredient1 : selectedIngredients) {
             for (String ingredient2 : selectedIngredients) {
