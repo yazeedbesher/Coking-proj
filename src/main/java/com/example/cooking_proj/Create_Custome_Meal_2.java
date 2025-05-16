@@ -1,12 +1,9 @@
 package com.example.cooking_proj;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Create_Custome_Meal_2 {
-    List<String> ingredients = new ArrayList<>(); // المكونات المتوفرة
+    List<String> ingredients = Arrays.asList("Chicken","milk","pasta","Rice", "Tomato", "Lettuce", "Cheese", "Beef", "Fish"); // المكونات المتوفرة
     Map<String , String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients = new ArrayList<>(); // المكونات المختارة
     boolean alertChef = false;
@@ -17,10 +14,19 @@ public class Create_Custome_Meal_2 {
     Map<String, String> substitutionSuggestions = new HashMap<>(); // عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
 
-    public Create_Custome_Meal_2(List<String> ingredients, Map<String , String> incompatiblePairs, List<String> selectedIngredients) {
+    public Create_Custome_Meal_2(List<String> selectedIngredients) {
      this.ingredients = ingredients;
      this.incompatiblePairs = incompatiblePairs;
      this.selectedIngredients = selectedIngredients;
+
+        incompatiblePairs.put("Fish", "Cheese");
+        incompatiblePairs.put("Chicken", "Milk");
+        incompatiblePairs.put("Tomato", "milk");
+        incompatiblePairs.put("Fish", "Beef");
+
+        substitutionSuggestions.put("Rice", "pasta");
+        substitutionSuggestions.put("Cheese", "Milk");
+        substitutionSuggestions.put("Chicken", "Beef");
     }
 
     public void add_ingredient(String ingredient){
@@ -51,7 +57,6 @@ public class Create_Custome_Meal_2 {
     public void create_meal(String mealname,List<String> selectedIngredients){
 
         for (String ingredient1 : selectedIngredients) {
-
             for (String ingredient2 : selectedIngredients) {
                 if (incompatiblePairs.containsKey(ingredient1) && incompatiblePairs.get(ingredient1).equals(ingredient2)) {
                     suggestedAlternative = suggest_alternative(ingredient1); // تبديل المكون الغير متوافق
@@ -70,6 +75,7 @@ public class Create_Custome_Meal_2 {
                     alertChef();
                     break;
                 }
+                // start creating the Meal .
 
             }
 

@@ -7,19 +7,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();//yazeed besher
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+public class HelloApplication {
 
-    }
-//hi wirld
     public static void main(String[] args) {
-        launch();
+
+   Customer customer = new Customer(1221,"yazeed","talfeet","0595638731");
+   customer.create_order();
+
+
     }
 }

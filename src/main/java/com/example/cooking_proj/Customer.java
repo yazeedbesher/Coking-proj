@@ -2,6 +2,8 @@ package com.example.cooking_proj;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Customer {
     int customerID;
@@ -9,7 +11,8 @@ public class Customer {
     String customerAddress;
     String customerPhone;
     ArrayList<Order> orders;
-
+    Create_Custome_Meal_2 custome_Meal;
+    List<String> selectedIngredients;
 
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
@@ -17,9 +20,9 @@ public class Customer {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
-        orders =new ArrayList<Order>();
-
+        orders = new ArrayList<>();
     }
+
     public void addOrder(Order order) {
         if(order==null){
             JOptionPane.showMessageDialog(null,"Please enter a valid order");
@@ -48,4 +51,25 @@ public class Customer {
     public ArrayList<Order> getOrders() {
         return orders;
     }
+
+    public void create_order() {
+        List<String> selectedIngredients = new ArrayList<>();
+
+        System.out.println("Chosoe Your Ingredients To Create Your Order");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("How many Ingredients would you like to enter? ");
+        int count = Integer.parseInt(scanner.nextLine());
+
+        for (int i = 0; i < count; i++) {
+            System.out.print("Enter Ingredients " + (i + 1) + ": ");
+            String input = scanner.nextLine();
+            selectedIngredients.add(input);
+        }
+
+        scanner.close();
+
+        Create_Custome_Meal_2 custome_Meal = new Create_Custome_Meal_2(selectedIngredients);
+    }
+
 }

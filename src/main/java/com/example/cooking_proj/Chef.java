@@ -51,8 +51,15 @@ public class Chef {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public void add_task(Create_Custome_Meal_2 task){
         tasks.add(task);
         System.out.println(task);
+        Create_Meal();
+    }
+
+    public List<String> Create_Meal(){
+        List<String> meals = new ArrayList<>();
+        return meals;
     }
 }
