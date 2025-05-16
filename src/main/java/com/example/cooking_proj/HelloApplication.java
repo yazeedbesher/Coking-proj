@@ -14,25 +14,44 @@ public class HelloApplication {
 
     public static void main(String[] args) {
 
-        List<Customer> registeredCustomers = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome ! you want to Sign in as ? ");
+        System.out.println("1- Admin 2- Manager 3- Chef 4- Custoemr");
+        int id = Integer.parseInt(scanner.nextLine());
 
-        registeredCustomers.add(new Customer(1222, "Ahmad", "Nablus", "0599111373"));
-        registeredCustomers.add(new Customer(1223, "Abd", "Jenin", "0595639831"));
-        registeredCustomers.add(new Customer(1224, "Ali", "Ramallah", "0597500172"));
-        registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
+        if (id == 1) {
 
-        Customer currentCustomer = Signin.login(registeredCustomers);
-
-        if (currentCustomer == null) {
-            currentCustomer = Signup.registerCustomer(registeredCustomers);
         }
+        if (id == 2) {
 
-        System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+        }
+        if (id == 3) {
+
+        }
+        if (id == 4) {
+
+            List<Customer> registeredCustomers = new ArrayList<>();
+
+            registeredCustomers.add(new Customer(1222, "Ahmad", "Nablus", "0599111373"));
+            registeredCustomers.add(new Customer(1223, "Abd", "Jenin", "0595639831"));
+            registeredCustomers.add(new Customer(1224, "Ali", "Ramallah", "0597500172"));
+            registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
+
+            Customer currentCustomer = Signin.login(registeredCustomers);
+
+            if (currentCustomer == null) {
+                currentCustomer = Signup.registerCustomer(registeredCustomers);
+            }
+
+            System.out.println("Logged in as: " + currentCustomer.getCustomerName());
 
 
-        currentCustomer.create_order();
+            currentCustomer.create_order();
 
 
+        }
+        else {
+            System.out.println("Invalid ID , please try Later");
+        }
     }
-
 }
