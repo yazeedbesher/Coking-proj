@@ -9,7 +9,7 @@ public class NotificationsAndAlerts {
 
     public boolean UpcomingOrdersReminder(int ReminderTime,Order order) {
         try {
-            ReminderTime = ReminderTime * 60;
+            ReminderTime = ReminderTime * 60; // hours * 60 min
             TimeToRemain = ChronoUnit.SECONDS.between(LocalDateTime.now(),order.getPickUpTime());
 
             if (TimeToRemain>ReminderTime){

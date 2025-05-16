@@ -11,8 +11,9 @@ module com.example.cooking_proj {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
-    requires io.cucumber.java;
+
 
     opens com.example.cooking_proj to javafx.fxml;
     exports com.example.cooking_proj;
 }
+

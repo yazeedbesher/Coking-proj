@@ -1,7 +1,5 @@
 package com.example.cooking_proj;
 
-import io.cucumber.java.ro.Si;
-
 import java.util.Scanner;
 
 public class Signup {
