@@ -13,8 +13,7 @@ public class Customer {
     ArrayList<Order> orders;
     List<String> selectedIngredients;
     Create_Custome_Meal_2 custome_Meal_2;
-
-
+    Signin signin;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
         this.customerID = customerID;
@@ -22,6 +21,16 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
         orders = new ArrayList<>();
+        signin = new Signin();
+
+        if(!signin.valid_user(customerID)){
+            System.out.println("Invalid user");
+        }
+        else {
+            System.out.println(customerID + " has been signed in");
+        }
+
+
     }
 
     public void addOrder(Order order) {

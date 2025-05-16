@@ -38,6 +38,7 @@ public class Create_Custome_Meal_2 {
         ingredients.add("Cheese");
         ingredients.add("milk");
         ingredients.add("Fish");
+
     }
 
     public void add_ingredient(String ingredient){
@@ -70,7 +71,7 @@ public class Create_Custome_Meal_2 {
         for (String ingredient1 : selectedIngredients) {
             for (String ingredient2 : selectedIngredients) {
                 if (incompatiblePairs.containsKey(ingredient1) && incompatiblePairs.get(ingredient1).equals(ingredient2)) {
-                    suggestedAlternative = suggest_alternative(ingredient1); // تبديل المكون الغير متوافق
+                    suggestedAlternative = suggest_alternative(ingredient1); // تبديل المكون الغير متوافر
                     alertChef();
                     break;
                 }
