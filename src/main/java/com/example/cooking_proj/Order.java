@@ -43,6 +43,9 @@ public class Order {
         this.orderDescription = orderDescription;
         this.PickUpTime = PickUpTime;
     }
-
+    public String toString() {
+        String notification= ("orderID: " + orderID + "OrderDate: " + orderDate + "OrderName: " + orderName + "OrderDescription: " + orderDescription);
+        return notification;
+    }
 
 }

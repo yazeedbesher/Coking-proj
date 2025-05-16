@@ -16,7 +16,7 @@ public class HelloApplication {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome ! you want to Sign in as ? ");
-        System.out.println("1- Admin 2- Manager 3- Chef 4- Custoemr");
+        System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
         int id = Integer.parseInt(scanner.nextLine());
 
         if (id == 1) {
@@ -45,9 +45,14 @@ public class HelloApplication {
 
             System.out.println("Logged in as: " + currentCustomer.getCustomerName());
 
-
-            currentCustomer.create_order();
-
+            while (true){
+                currentCustomer.create_order();
+                System.out.println("Do You Want To Create Another Meal ? ");
+                System.out.println("0-NO 1-Yes");
+                String choice = scanner.nextLine();
+                if(choice.equals("1")){currentCustomer.create_order();}
+                else if(choice.equals("0")){break;}
+            }
 
         }
         else {

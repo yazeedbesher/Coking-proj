@@ -15,6 +15,7 @@ public class Customer {
     List<String> Allergies;
     Create_Custome_Meal_2 custome_Meal;
     dietary_preferences_and_allergies dietary_preferences_and_allergies;
+    Order order;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
         this.customerID = customerID;
