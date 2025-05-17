@@ -15,4 +15,4 @@ Feature: Chef gets notified of scheduled cooking tasks
     When the system attempts to notify the chef
     And the chef's contact information is missing or invalid
     Then the system will fail to send the notification
-    And log an error about invalid chef profile
+

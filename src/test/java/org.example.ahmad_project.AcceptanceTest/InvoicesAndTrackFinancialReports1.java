@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 public class InvoicesAndTrackFinancialReports1 {
     GenerateInvoicesAndTrackFinancialReports gen = new GenerateInvoicesAndTrackFinancialReports();
-    Order order = new Order(1,1, LocalDateTime.now(),"Order1","Ahmad Order",LocalDateTime.now());
+    Order order1 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", LocalDateTime.now(), "Meal 1", "Snack", LocalDateTime.now().plusSeconds(30));
     boolean result ;
 
 
@@ -30,7 +30,7 @@ public class InvoicesAndTrackFinancialReports1 {
     @When("the system encounters a database error during invoice creation")
     public void theSystemEncountersADatabaseErrorDuringInvoiceCreation() {
         gen.makeErrorAtDataBase();
-        result = gen.generateInvoice(1,"ahmad",order);
+        result = gen.generateInvoice(1,"ahmad",order1);
     }
     @Then("the system will display an error message: Failed to create invoice due to a system error")
     public void theSystemWillDisplayAnErrorMessageFailedToCreateInvoiceDueToASystemError() {
@@ -41,7 +41,7 @@ public class InvoicesAndTrackFinancialReports1 {
     @When("the customer confirms an order that contains valid customer and product information")
     public void theCustomerConfirmsAnOrderThatContainsValidCustomerAndProductInformation() {
         //JOptionPane.showMessageDialog(null,"Customer confirms an order that contains valid customer and product information");
-        result=gen.generateInvoice(1,"ahmad",order);
+        result=gen.generateInvoice(1,"ahmad",order1);
     }
     @Then("the system will generate an invoice automatically")
     public void theSystemWillGenerateAnInvoiceAutomatically() {

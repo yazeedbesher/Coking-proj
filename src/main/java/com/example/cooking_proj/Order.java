@@ -5,11 +5,12 @@ import java.time.LocalDateTime;
 public class Order {
     int orderID;
     int customerID;
+    String customerName;
+    String chefName;
     LocalDateTime orderDate;
     String orderName;
     String orderDescription;
     LocalDateTime PickUpTime;
-
 
     public int getOrderID() {
         return orderID;
@@ -17,6 +18,14 @@ public class Order {
 
     public int getCustomerID() {
         return customerID;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getChefName() {
+        return chefName;
     }
 
     public LocalDateTime getOrderDate() {
@@ -35,17 +44,23 @@ public class Order {
         return PickUpTime;
     }
 
-    public Order(int orderID, int customerID, LocalDateTime orderDate, String orderName, String orderDescription, LocalDateTime PickUpTime) {
+    public Order(int orderID, int customerID, String customerName, String chefName,
+                 LocalDateTime orderDate, String orderName, String orderDescription, LocalDateTime pickUpTime) {
         this.orderID = orderID;
         this.customerID = customerID;
+        this.customerName = customerName;
+        this.chefName = chefName;
         this.orderDate = orderDate;
         this.orderName = orderName;
         this.orderDescription = orderDescription;
-        this.PickUpTime = PickUpTime;
-    }
-    public String toString() {
-        String notification= ("orderID: " + orderID + "OrderDate: " + orderDate + "OrderName: " + orderName + "OrderDescription: " + orderDescription);
-        return notification;
+        this.PickUpTime = pickUpTime;
     }
 
+    @Override
+    public String toString() {
+        return "orderID: " + orderID +
+                ", OrderDate: " + orderDate +
+                ", OrderName: " + orderName +
+                ", OrderDescription: " + orderDescription;
+    }
 }
