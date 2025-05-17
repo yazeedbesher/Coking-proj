@@ -49,11 +49,6 @@ public class HelloApplication {
 
             Chef chef = Signin.login(registeredChefs);
 
-            if(chef == null){
-                  chef = Signup.Chefsignup(registeredChefs);
-            }
-
-            System.out.println("Logged in as: " + chef.getName());
         }
         if (id == 4) {
 

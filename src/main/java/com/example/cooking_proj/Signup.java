@@ -28,29 +28,4 @@ public class Signup {
         return newCustomer;
     }
 
-    public static Chef Chefsignup(List<Chef> ChefList) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("You're a new customer. Please sign up:");
-
-        System.out.print("Enter your ID: ");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Enter your phone: ");
-        String phone = scanner.nextLine();
-
-        System.out.print("Enter your expretise: ");
-        double number = scanner.nextDouble();
-
-        System.out.print("Enter your workload: ");
-        double number2 = scanner.nextDouble();
-
-        Chef newChef = new Chef(id, name,phone,number,number2);
-        ChefList.add(newChef);
-        System.out.println("Sign-up successful. Welcome, " + name + "!");
-
-        return newChef;
-    }
 }
