@@ -11,11 +11,13 @@ public class Create_Custome_Meal_2 {
     String notification = "You Have Recieced a New Task To do";
     String mealname = "Meal";
     Scheduling_Task_Managment_3 sch_task;
+    List<List> create_meal;
 
     Map<String, String> substitutionSuggestions = new HashMap<>();// عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
 
     public Create_Custome_Meal_2() {
+        create_meal = new ArrayList<>();
         selectedIngredients = new ArrayList<>();
         selectedAllegries = new ArrayList<>();
 
@@ -40,23 +42,6 @@ public class Create_Custome_Meal_2 {
         ingredients.add("Fish");
 
     }
-
-    public void add_ingredient(String ingredient) {
-        ingredients.add(ingredient);
-    }
-
-    public void select_ingredient(String ingredient) {
-        selectedIngredients.add(ingredient);
-    }
-
-    public void add_incompatible_pair(String pair1, String pair2) {
-        incompatiblePairs.put(pair1, pair2);
-    }
-
-    public void add_suggested_alternative(String ingredient, String suggestedAlternative) {
-        substitutionSuggestions.put(ingredient, suggestedAlternative);
-    }
-
     public String suggest_alternative(String ingredient) {
         for (String sa : selectedAllegries) {
             if (!sa.equals(ingredient)) {
@@ -71,7 +56,7 @@ public class Create_Custome_Meal_2 {
 
     }
 
-    public void create_meal(List<String> Preference, List<String> Allergies) {
+    public List<List> create_meal(List<String> Preference, List<String> Allergies) {
         this.selectedAllegries = Allergies;
         this.selectedIngredients = Preference;
 
@@ -83,12 +68,16 @@ public class Create_Custome_Meal_2 {
             if (!ingredients.contains(ingredient1) && !seen.contains(ingredient1)) {
                 seen.add(ingredient1);
                 suggestedAlternative = suggest_alternative(ingredient1);
+                selectedIngredients.remove(ingredient1);
+                selectedIngredients.add(suggestedAlternative);
                 System.out.println("Sorry, we don't have " + ingredient1 + ", so the alternative will be " + suggestedAlternative);
                 alertChef();
             }
 
             if (selectedAllegries.contains(ingredient1)) {
                 suggestedAlternative = suggest_alternative(ingredient1);
+                selectedIngredients.remove(ingredient1);
+                selectedIngredients.add(suggestedAlternative);
                 System.out.println("Warning: " + ingredient1 + " is in the allergy list, so the alternative will be " + suggestedAlternative);
                 alertChef();
             }
@@ -101,6 +90,8 @@ public class Create_Custome_Meal_2 {
                     String incompatibleWith = incompatiblePairs.get(ingredient1);
                     if (incompatibleWith.equals(ingredient2)) {
                         suggestedAlternative = suggest_alternative(ingredient1);
+                        selectedIngredients.remove(ingredient1);
+                        selectedIngredients.add(suggestedAlternative);
                         System.out.println("Incompatible Pair Found: " + ingredient1 + " and " + ingredient2 +
                                 ". Suggested alternative: " + suggestedAlternative);
                         alertChef();
@@ -108,7 +99,10 @@ public class Create_Custome_Meal_2 {
                 }
             }
         }
-        // here we will start cook .
+        create_meal.add(selectedIngredients);
+       create_meal.add(selectedAllegries);
+
+        return create_meal;
     }
 
 

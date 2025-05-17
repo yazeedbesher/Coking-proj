@@ -6,7 +6,7 @@ import java.util.List;
 public class Scheduling_Task_Managment_3{
     List<Chef> chefs = new ArrayList<>();
     int temp = 0 ;
-    manager m;
+    Manager m;
     Create_Custome_Meal_2 meal;
 
     public Scheduling_Task_Managment_3() {

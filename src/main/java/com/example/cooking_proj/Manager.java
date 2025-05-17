@@ -1,15 +1,16 @@
 package com.example.cooking_proj;
 
-public class manager {
+public class Manager extends Person {
     private String name;
     private int ID;// for login
-    private String password;
+    private String Address;
     private String phoneNumber;
 
-    public manager(String name, int ID, String password, String phoneNumber) {
+    public Manager(String name, int ID, String Address, String phoneNumber) {
+        super(ID,name);
         this.name = name;
         this.ID = ID;
-        this.password = password;
+        this.Address = Address;
         this.phoneNumber = phoneNumber;
     }
 
@@ -20,7 +21,7 @@ public class manager {
         return ID;
     }
     public String getPassword() {
-        return password;
+        return Address;
     }
     public String getPhoneNumber() {
         return phoneNumber;
@@ -31,7 +32,7 @@ public class manager {
     }
     public void setPassword(String password)
     {
-        this.password = password;
+        this.Address = password;
     }
     @Override
     public String toString()

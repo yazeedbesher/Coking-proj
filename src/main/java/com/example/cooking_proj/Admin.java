@@ -1,22 +1,19 @@
 package com.example.cooking_proj;
 
-public class Admin {
+public class Admin extends Person{
     private String name;
-    private String username;
-    private String password;
+    private int ID;
+    private String Address;
     private String phoneNumber;
-    private Boolean logState=false;
 
-    public Admin()
+    public Admin(int customerID, String customerName, String customerAddress, String customerPhone)
     {
+        super(customerID,customerName);
+        this.name = customerName;
+        this.Address = customerAddress;
+        this.phoneNumber = customerPhone;
+        this.ID = customerID;
 
-    }
-
-    public Admin(String s1,String s2,String s3)
-    {
-        this.name=s3;
-        this.username=s1;
-        this.password=s2;
     }
 
     public String getName()
@@ -27,38 +24,24 @@ public class Admin {
     {
         this.name = name;
     }
-    public String getUsername()
-    {
-        return username;
-    }
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
     public String getPassword()
     {
-        return password;
+        return Address;
     }
-    public void setPassword(String password)
+    public void setPassword(String Address)
     {
-        this.password = password;
-    }
-    @Override
-    public String toString()
-    {
-        return name;
-    }
-    public Boolean getLogState() {
-        return logState;
-    }
-    public void setLogState(Boolean logStat) {
-        this.logState = logStat;
+        this.Address = Address;
     }
     public String getPhoneNumber() {
         return phoneNumber;
     }
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+    @Override
+    public String toString()
+    {
+        return name;
     }
 
 }
