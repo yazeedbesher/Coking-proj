@@ -9,7 +9,7 @@ public class Create_Custome_Meal_2 {
     List<String> selectedAllegries;
     boolean alertChef = false;
     String notification = "You Have Recieced a New Task To do";
-    String mealname = "Meal";
+    List<String> Meals;
     Scheduling_Task_Managment_3 sch_task;
     List<List> create_meal;
 
@@ -20,6 +20,7 @@ public class Create_Custome_Meal_2 {
         create_meal = new ArrayList<>();
         selectedIngredients = new ArrayList<>();
         selectedAllegries = new ArrayList<>();
+        Meals = new ArrayList<>();
 
         incompatiblePairs.put("Cheese", "Fish");
         incompatiblePairs.put("Tomato", "milk");
@@ -41,11 +42,17 @@ public class Create_Custome_Meal_2 {
         ingredients.add("milk");
         ingredients.add("Fish");
 
+        Meals.add("Kabsa");
+        Meals.add("Lazania");
+        Meals.add("Fish with Tomato");
+        Meals.add("Fried Chicken");
+
     }
     public String suggest_alternative(String ingredient) {
         for (String sa : selectedAllegries) {
             if (!sa.equals(ingredient)) {
                 suggestedAlternative = substitutionSuggestions.get(ingredient);
+                System.out.println("Chef ! We had Subtitute "+ingredient+ "With "+ suggestedAlternative);
                 break;
             }
         }
@@ -104,13 +111,16 @@ public class Create_Custome_Meal_2 {
 
         return create_meal;
     }
+    public List<String>GetMeals(){
+        return Meals;
+    }
 
 
 
 
     @Override
     public String toString() {
-        notification = notification + mealname + "\n";
+        notification = notification + "\n";
     return notification;
 }
 

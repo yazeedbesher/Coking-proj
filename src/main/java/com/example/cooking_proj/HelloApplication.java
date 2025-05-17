@@ -24,9 +24,9 @@ public class HelloApplication {
         Admin admin = new Admin(9222,"Saad","Jenin","0595638731");
         registeredAdmins.add(admin);
 
-        registeredChefs.add(new Chef(2222,"Ali","0595111111",2.5,2.2));
-        registeredChefs.add(new Chef(2223,"Bob","0595111112",1.5,1.82));
-        registeredChefs.add(new Chef(2224,"John","0595111113",3.5,3.2));
+        registeredChefs.add(new Chef(2222,"Ali","0595111111",2.5,0.0));
+        registeredChefs.add(new Chef(2223,"Bob","0595111112",1.5,0.0));
+        registeredChefs.add(new Chef(2224,"John","0595111113",3.5,0.0));
 
         registeredCustomers.add(new Customer(1222, "Ahmad", "Nablus", "0599111373"));
         registeredCustomers.add(new Customer(1223, "Abd", "Jenin", "0595639831"));
@@ -39,19 +39,18 @@ public class HelloApplication {
         int id = Integer.parseInt(scanner.nextLine());
 
         if (id == 1) {
-            Admin admin1= Signin.login(registeredAdmins);
+            Signin.login(registeredAdmins);
 
         }
         if (id == 2) {
-             Manager manager1= Signin.login(registeredManagers);
+         Signin.login(registeredManagers);
         }
         if (id == 3) {
 
-            Chef chef = Signin.login(registeredChefs);
+           Signin.login(registeredChefs);
 
         }
         if (id == 4) {
-//
 
             Customer currentCustomer = Signin.login(registeredCustomers);
 
@@ -62,12 +61,13 @@ public class HelloApplication {
             System.out.println("Logged in as: " + currentCustomer.getCustomerName());
 
             while (true){
-                currentCustomer.make_order();
+                currentCustomer.make_order(registeredChefs,manager);
                 System.out.println("Do You Want To Create Another Meal ? ");
                 System.out.println("0-NO 1-Yes");
                 String choice = scanner.nextLine();
-                if(choice.equals("1")){currentCustomer.make_order();}
-                else if(choice.equals("0")){break;}
+                if(choice.equals("1")){currentCustomer.make_order(registeredChefs,manager);}
+                else if(choice.equals("0")){
+                    System.out.println("Thank You , Welcome!");break;}
             }
 
         }

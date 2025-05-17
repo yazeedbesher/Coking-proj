@@ -8,13 +8,17 @@ public class Customer extends Person{
     String customerName;
     String customerAddress;
     String customerPhone;
-    ArrayList<Order> orders;
     List<String> preference;
     List<String> Allergies;
     Create_Custome_Meal_2 custome_Meal;
     dietary_preferences_and_allergies dietary_preferences_and_allergies;
     Order order;
+    List<Order> orders;
     List<List> create_mealMap;
+    List<String>Meals;
+    Manager manager;
+    Chef chef;
+    List<String>AvailableMeals;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
         super(customerID,customerName);
@@ -28,6 +32,8 @@ public class Customer extends Person{
         dietary_preferences_and_allergies = new dietary_preferences_and_allergies();
         custome_Meal= new Create_Custome_Meal_2();
         create_mealMap = new ArrayList<>();
+        Meals = new ArrayList<>();
+        AvailableMeals= new ArrayList<>();
 
     }
 
@@ -57,15 +63,33 @@ public class Customer extends Person{
         return customerPhone;
     }
 
-    public ArrayList<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void make_order() {
-        System.out.println("Choose / 1-Show Order History 2-Custome My Order 3-Choose Meal");
+    public void make_order(List<Chef> Chefs,Manager manager) {
+        System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
         Scanner scanner = new Scanner(System.in);
         int id = Integer.parseInt(scanner.nextLine());
-        if(id==1){}
+
+        if(id==1){
+            Meals=custome_Meal.GetMeals();
+            int i=1;
+            System.out.println("Choose Your Meal");
+            for (String item : Meals) {
+                System.out.println(i+"- "+ item);
+                i++;
+            }
+            int meal = Integer.parseInt(scanner.nextLine());
+            String mealName = Meals.get(meal-1);
+
+            manager.assign_Task(Chefs,mealName);
+            System.out.println("Your Meal Will Be "+ mealName);
+
+            // Ahmad -> here define the Order object and add it to the list here
+
+        }
+
         if(id==2){
             List<String> preference= dietary_preferences_and_allergies.addPreference();
             List<String> Allergies= dietary_preferences_and_allergies.addAllergies();
@@ -73,16 +97,26 @@ public class Customer extends Person{
             custome_Meal = new Create_Custome_Meal_2();
             create_mealMap = custome_Meal.create_meal(preference,Allergies);
 
-            preference = create_mealMap.get(0);
-            Allergies = create_mealMap.get(1);
+            AvailableMeals = manager.assign_custome_task(Chefs,create_mealMap);
+            System.out.println("Your Available Meals :" +AvailableMeals + "\n"+"Choose What You Want !");
+            int j=1;
+            for (String item : AvailableMeals) {
+                System.out.println(j + "- " + item);
+                j++;
+            }
+            int meal = Integer.parseInt(scanner.nextLine());
+            String mealName = AvailableMeals.get(meal-1);
+            System.out.println("Your Meal Will Be " + mealName + " Enjoy :)");
 
-            System.out.println("Your Preference" +preference);
-            System.out.println("Your Allergies" +Allergies);
-
-
+            // Ahmad -> here define the Order object and add it to the list here
 
         }
-        else if(id==3){}
+        if(id==3){
+             // Ahmad : here depend on the List<Order> we will print the orders then choose one of them to make the chef create again
+            if(orders.isEmpty()){
+                System.out.println("Sorry Your History Is Empty !");
+            }
+        }
 
 }
 public List<String> getPreference() {
@@ -90,6 +124,9 @@ public List<String> getPreference() {
 }
 public List<String> getAllergies() {
         return Allergies;
+}
+public void AddOrder(Order order) {
+        orders.add(order);
 }
 
 }
