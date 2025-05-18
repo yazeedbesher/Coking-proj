@@ -89,7 +89,7 @@ public class Customer extends Person{
             }
             String mealName = Meals.get(meal - 1);
             String chefName = manager.assign_Task(Chefs, mealName);
-            System.out.println("Your Meal Will Be " + mealName);
+            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
 
             Random rand = new Random();
             int randomInt = rand.nextInt(100);
@@ -121,7 +121,7 @@ public class Customer extends Person{
                 break;
             }
             String mealName = AvailableMeals.get(meal - 1);
-            System.out.println("Your Meal Will Be " + mealName + " Enjoy :)");
+            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
             String chefName = manager.getChef_name();
 
             order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);

@@ -57,7 +57,7 @@ public class Chef extends Person {
         List<String> Preference = ingredients.get(0);
         List<String> Allegreis = ingredients.get(1);
 
-        System.out.println("The Customer Prefrence is : ");
+        System.out.println("Chef : This is THe Customer Prefrence is : ");
         int w = 1;
         for (String d : Preference) {
             System.out.println(w + "- " + d);
@@ -122,7 +122,7 @@ public class Chef extends Person {
                     ifCustomerFound = true;
 
                     System.out.println("What would you like to do?");
-                    System.out.println(" 0. Exit 1. Show Order History 2. Add Order to Orders History");
+                    System.out.println("1. Show Order History 2. Add Order to Orders History 0. Exit ");
                     int choice = Integer.parseInt(scanner.nextLine());
 
                     if (choice == 0) {
@@ -132,7 +132,7 @@ public class Chef extends Person {
                     else if (choice == 1) {
                         displayCustomerOrderHistory(customer);
                         System.out.println("What would you like to do?");
-                        System.out.println(" 0. Exit 1. Show Order History for another Customer");
+                        System.out.println("1. Show Order History for another Customer  0. Exit ");
                         int c = Integer.parseInt(scanner.nextLine());
                         if(c == 0){return;}
                         else if (c == 1){showCustomerOrderHistory(customers);}
@@ -154,6 +154,7 @@ public class Chef extends Person {
                     showCustomerOrderHistory(customers);
                 }
             }
+            break;
         }
     }
     public static void displayCustomerOrderHistory(Customer customer){

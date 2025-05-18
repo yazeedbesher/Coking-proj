@@ -66,7 +66,7 @@ public class Admin extends Person{
                         ifCustomerFound = true;
 
                             System.out.println("What would you like to do?");
-                            System.out.println(" 0. Exit 1. Show Order History 2. Add Order to Orders History");
+                            System.out.println("1. Show Order History 2. Add Order to Orders History 0. Exit ");
                             int choice = Integer.parseInt(scanner.nextLine());
 
                             if (choice == 0) {
@@ -76,11 +76,10 @@ public class Admin extends Person{
                             else if (choice == 1) {
                                 displayCustomerOrderHistory(customer);
                                 System.out.println("What would you like to do?");
-                                System.out.println(" 0. Exit 1. Show Order History for another Customer");
+                                System.out.println("1. Show Order History for another Customer 0. Exit");
                                 int c = Integer.parseInt(scanner.nextLine());
                                 if(c == 0){return;}
                                 else if (c == 1){manegeCustomerOrderHistory(customers);}
-
                             }
 
                             else if (choice == 2) {
@@ -98,7 +97,8 @@ public class Admin extends Person{
                         manegeCustomerOrderHistory(customers);
                     }
                 }
-        }
+                break;
+             }
     }
     public static void displayCustomerOrderHistory(Customer customer){
 

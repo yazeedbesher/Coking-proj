@@ -46,25 +46,26 @@ public class HelloApplication {
                 int id = Integer.parseInt(scanner.nextLine());
 
                 if (id == 0) {
+                    System.out.println("Thank you for using our application :)");
                     break;
                 }
 
                 else if (id == 1) {
                     Admin currentAdmin = Signin.login(registeredAdmins);
                     if (currentAdmin != null) {
+                        System.out.println("Welcome ! " + admin.getName() + " What do you want to do ");
                         while (true) {
-                            System.out.println("Welcome ! " + admin.getName() + " What do you want to do ");
                             System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
                             int choice = Integer.parseInt(scanner.nextLine());
                             if (choice == 0) {
-                                break;
+                                return;
                             } else if (choice == 1) {
                                 admin.manegeCustomerOrderHistory(registeredCustomers);
                             } else if (choice == 2) {
                                 admin.createFinanceReport(registeredCustomers, registeredChefs);
                             }
+                            break;
                         }
-                        break;
                     }
                 }
 
