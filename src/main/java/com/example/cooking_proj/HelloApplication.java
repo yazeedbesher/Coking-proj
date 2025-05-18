@@ -44,10 +44,12 @@ public class HelloApplication {
             Scanner scanner = new Scanner(System.in);
             while(true) {
                 System.out.println("Welcome ! you want to Sign in as ? ");
-                System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
+                System.out.println("1-Admin 2-Manager 3-Chef 4-Customer OR 0-Exit");
                 int id = Integer.parseInt(scanner.nextLine());
-
-                if (id == 1) {//Admin
+                if(id==0){
+                    break;
+                }
+                else if (id == 1) {//Admin
                     //Admin currentAdmin = Signin.login(registeredAdmins);
                     //if (currentAdmin != null) {
                         while (true) {
@@ -68,10 +70,10 @@ public class HelloApplication {
 
 
                 }
-                if (id == 2) {
+                else if (id == 2) {
                     Signin.login(registeredManagers);
                 }
-                if (id == 3) {//Chef
+                else if (id == 3) {//Chef
                     Chef currentChef = Signin.login(registeredChefs);
                     if (currentChef != null) {
                         System.out.println("1-Customer Order History 2- 3- 4- ");
@@ -83,7 +85,7 @@ public class HelloApplication {
                         System.out.println("Sorry you are not a Chef");
                     }
                 }
-                if (id == 4) {
+                else if (id == 4) {
 
                     Customer currentCustomer = Signin.login(registeredCustomers);
 
