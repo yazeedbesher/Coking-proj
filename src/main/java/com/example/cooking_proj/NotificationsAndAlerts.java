@@ -63,7 +63,7 @@ public class NotificationsAndAlerts {
                     sendChefReminderNow(order);
                 }
             } catch (InterruptedException e) {
-                System.err.println("Reminder thread interrupted: " + e.getMessage());
+                System.out.println("Reminder thread interrupted: " + e.getMessage());
             }
         });
         timerThread.start();
@@ -74,9 +74,13 @@ public class NotificationsAndAlerts {
             String message = "Hello " + order.getCustomerName() +
                     ",\nYour order will arrive at:\n(" + order.getPickUpTime() +
                     ")\nOrder Name:\n(" + order.getMealName() + ")";
+            System.out.println();
+            System.out.println();
             System.out.println(message);
+            System.out.println();
+            System.out.println();
         } catch (Exception e) {
-            System.err.println("Notification service failed: " + e.getMessage());
+            System.out.println("Notification service failed: " + e.getMessage());
             throw new RuntimeException("Notification service failed", e);
         }
     }
@@ -86,9 +90,13 @@ public class NotificationsAndAlerts {
             String message = "Hello Chef " + order.getChefName() +
                     ",\nYou have to prepare an order to be delivered on:\n(" + order.getPickUpTime() +
                     ")\nOrder Name:\n(" + order.getMealName() + ")";
+            System.out.println();
+            System.out.println();
             System.out.println(message);
+            System.out.println();
+            System.out.println();
         } catch (Exception e) {
-            System.err.println("Notification service failed: " + e.getMessage());
+            System.out.println("Notification service failed: " + e.getMessage());
             throw new RuntimeException("Notification service failed", e);
         }
     }

@@ -1,6 +1,5 @@
 package com.example.cooking_proj;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,44 +13,39 @@ public class FinanceReport {
     }
     public void generateFinanceReport(List<Customer> customers, List<Chef> chefs) {
         this.customers = customers;
-       String report = "";
-       report += "Total orders total: " + getAllOrdersCount() + "\n";
-       for (Chef chef : chefs) {
-           report+="Chef Name: " + chef.getName() +" Orders: "+getChefOrdersCount(chef)+"\n";
-       }
-       for (Customer customer : customers) {
-           report+="Customer Name: "+customer.getCustomerName()+" Orders: "+getcustomerOrdersCount(customer)+"\n";
-       }
-       JOptionPane.showMessageDialog(null, report);
+        String report = "";
+
+        report += "=========== Order Summary ===========\n";
+        report += "Total Orders: " + getAllOrdersCount() + "\n\n";
+
+
+        report += "=========== Orders Per Chef =========\n";
+        for (Chef chef : chefs) {
+            report += "Chef Name: " + chef.getName() +
+                    " | Orders: " + getChefOrdersCount(chef) + "\n";
+        }
+        report += "\n";
+
+
+        report += "========= Orders Per Customer =======\n";
+        for (Customer customer : customers) {
+            report += "Customer Name: " + customer.getCustomerName() +
+                    " | Orders: " + getcustomerOrdersCount(customer) + "\n";
+        }
+        report += "=====================================\n";
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println(report);
+        System.out.println();
+        System.out.println();
 
 
 
     }
 
-//    public int getAllOrdersCount() {
-//        int allOrdersCount = 0;
-//        for(Customer customer : customers) {
-//            for (Order order :customer.getCustomerPastOrders()){
-//            allOrdersCount++;}
-//        }
-//        return allOrdersCount;
-//    }
-//
-//    public int getChefOrdersCount(Chef chef) {
-//        int chefOrdersCount = 0;
-//            for(Customer customer : customers) {
-//                for (Order order :customer.getCustomerPastOrders()){
-//                    if(order.getChefName().equals(chef.getName())){
-//                        chefOrdersCount++;
-//                    }
-//                }
-//            }
-//        return chefOrdersCount;
-//    }
-//
-//    public int getcustomerOrdersCount(Customer customer) {
-//        return customer.getCustomerPastOrders().size();
-//    }
+
 public int getAllOrdersCount() {
     int allOrdersCount = 0;
     for (Customer customer : customers) {
@@ -81,6 +75,7 @@ public int getAllOrdersCount() {
         List<Order> pastOrders = customer.getCustomerPastOrders();
         return pastOrders == null ? 0 : pastOrders.size();
     }
+
 
 
 }

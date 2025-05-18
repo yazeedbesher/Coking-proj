@@ -26,7 +26,7 @@ public class HelloApplication {
             List<Manager> registeredManagers = new ArrayList<>();
         StockSystem stockSystem = new StockSystem();
 
-            Admin admin = new Admin(9222, "Saad", "Jenin", "0595638731");
+            Admin admin = new Admin(222, "Saad", "Jenin", "0595638731");
             registeredAdmins.add(admin);
 
              Manager manager = new Manager("Khaled", 5001, "Ramallah", "0599111373");
@@ -61,13 +61,15 @@ public class HelloApplication {
                             System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
                             int choice = Integer.parseInt(scanner.nextLine());
                             if (choice == 0) {
-                                return;
+                                break;
                             } else if (choice == 1) {
                                 admin.manegeCustomerOrderHistory(registeredCustomers);
                             } else if (choice == 2) {
+
                                 admin.createFinanceReport(registeredCustomers, registeredChefs);
+
                             }
-                            break;
+
                         }
                     }
                 }

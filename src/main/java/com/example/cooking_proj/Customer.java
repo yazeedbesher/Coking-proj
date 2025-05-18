@@ -93,6 +93,8 @@ public class Customer extends Person{
 
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
             pastOrders.addPastOrder(order);
+            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+            invoice.generateInvoice(order);
 
         }
 
@@ -123,6 +125,8 @@ public class Customer extends Person{
 
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
             pastOrders.addPastOrder(order);
+            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+            invoice.generateInvoice(order);
 
             preference.clear();
             Allergies.clear();

@@ -75,16 +75,15 @@ public class Admin extends Person{
 
                             else if (choice == 1) {
                                 displayCustomerOrderHistory(customer);
-                                System.out.println("What would you like to do?");
-                                System.out.println("1. Show Order History for another Customer 0. Exit");
-                                int c = Integer.parseInt(scanner.nextLine());
-                                if(c == 0){return;}
-                                else if (c == 1){manegeCustomerOrderHistory(customers);}
+//                                System.out.println("What would you like to do?");
+//                                System.out.println("1. Show Order History for another Customer 0. Exit");
+//                                int c = Integer.parseInt(scanner.nextLine());
+//                                if(c == 0){return;}
+//                                else if (c == 1){manegeCustomerOrderHistory(customers);}
                             }
 
                             else if (choice == 2) {
-                                break;
-
+                                addOrderToOrderHistory(customer);
                             }
                     }
                 }
@@ -114,8 +113,18 @@ public class Admin extends Person{
 
     }
 
+    public void addOrderToOrderHistory(Customer customer){
+        //بكمل بكراااااااا بدي انااام
+
+
+
+
+
+    }
+
     public void createFinanceReport(List<Customer> customers, List<Chef> chefs){
         GenerateInvoicesAndTrackFinancialReports FinanceReport=new GenerateInvoicesAndTrackFinancialReports();
+
         FinanceReport.generateTrackFinancialReport(customers, chefs);
     }
 
