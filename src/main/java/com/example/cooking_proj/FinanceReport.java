@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FinanceReport {
-//    int allOrdersTotal;
-//    int chefOrdersCount;
-//    int customerOrdersCount;
+
     List<Customer> customers;
     List<Chef> chefs;
     public FinanceReport() {

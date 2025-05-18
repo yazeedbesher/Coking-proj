@@ -18,6 +18,7 @@ public class Chef extends Person {
     boolean ifCustomerFound;
     List<String> MealsAvailable;
     Scanner scanner = new Scanner(System.in);
+    List<Order> Addorders;
 
     public Chef(int ID, String name, String phoneNumber, Double expretise, Double workload) {
         super(ID, name);
@@ -29,7 +30,7 @@ public class Chef extends Person {
         Custome_Meals = new ArrayList<>();
         Meals = new ArrayList<>();
         MealsAvailable = new ArrayList<>();
-
+        Addorders=new ArrayList<>();
 
         Meals.add("Kabsa");
         Meals.add("Lazania");
@@ -122,7 +123,7 @@ public class Chef extends Person {
                     ifCustomerFound = true;
 
                     System.out.println("What would you like to do?");
-                    System.out.println("1. Show Order History 2. Add Order to Orders History 0. Exit ");
+                    System.out.println("1. Show Order History 0. Exit ");
                     int choice = Integer.parseInt(scanner.nextLine());
 
                     if (choice == 0) {
@@ -132,10 +133,24 @@ public class Chef extends Person {
                     else if (choice == 1) {
                         displayCustomerOrderHistory(customer);
                         System.out.println("What would you like to do?");
-                        System.out.println("1. Show Order History for another Customer  0. Exit ");
+                        System.out.println("1.Add These Meals in My kitchen Recommendation 2. Show Order History for another Customer 0. Exit ");
                         int c = Integer.parseInt(scanner.nextLine());
                         if(c == 0){return;}
-                        else if (c == 1){showCustomerOrderHistory(customers);}
+                        if(c == 1){
+
+                            if(customer.getCustomerPastOrders()==null){
+                                System.out.println("Your Orders History is Empty , Try Again :(");
+                                return;
+                            }
+                            Addorders = customer.getCustomerPastOrders();
+                            for(Order order : Addorders){
+                               if(!Meals.contains(order.mealName));{
+                                   Meals.add(order.mealName);
+                                }
+                            }
+
+                        }
+                        else if (c == 2){showCustomerOrderHistory(customers);}
 
                     }
 

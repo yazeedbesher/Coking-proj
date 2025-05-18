@@ -15,12 +15,9 @@ public class Customer extends Person{
     List<Order> orders;
     List<List> create_mealMap;
     List<String>Meals;
-    Manager manager;
-    Chef chef;
     List<String>AvailableMeals;
     NotificationsAndAlerts customer_Notification;
     Order order;
-
     Track_past_orders_and_personalized_meal_plans pastOrders;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
@@ -65,9 +62,7 @@ public class Customer extends Person{
     public List<String> getAllergies() {
         return Allergies;
     }
-//    public List<Order> getPastOrders() {
-//        return pastOrders.getPastOrders();
-//    }
+
     public void make_order(List<Chef> Chefs,Manager manager) {
         while (true){
         System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
@@ -97,7 +92,7 @@ public class Customer extends Person{
             order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
 
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
-            pastOrders.addPastOrder(order); //add it to the Past Order list
+            pastOrders.addPastOrder(order);
 
         }
 
@@ -127,7 +122,7 @@ public class Customer extends Person{
             order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
 
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
-            pastOrders.addPastOrder(order); //add it to the Past Order list
+            pastOrders.addPastOrder(order);
 
             preference.clear();
             Allergies.clear();
@@ -139,7 +134,6 @@ public class Customer extends Person{
 
         }
         if (id == 3) {
-             //Ahmad : here depend on the List<Order> we will print the orders then choose one of them to make the chef create again
             if(pastOrders.getPastOrders()==null){
                 System.out.println("Sorry Your History Is Empty !");
             }

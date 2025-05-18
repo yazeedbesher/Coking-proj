@@ -7,11 +7,9 @@ public class Create_Custome_Meal_2 {
     Map<String, String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients; // المكونات المختارة
     List<String> selectedAllegries;
-    boolean alertChef = false;
     String notification = "You Have Recieced a New Task To do";
     List<String> Meals;
     List<List> create_meal;
-
     Map<String, String> substitutionSuggestions = new HashMap<>();// عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
 
