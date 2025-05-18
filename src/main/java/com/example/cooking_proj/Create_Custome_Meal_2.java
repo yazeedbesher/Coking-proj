@@ -3,17 +3,23 @@ package com.example.cooking_proj;
 import java.util.*;
 
 public class Create_Custome_Meal_2 {
-    List<String> ingredients = new ArrayList<>();// المكونات المتوفرة
+    List<String> ingredients ;// المكونات المتوفرة
     Map<String, String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients; // المكونات المختارة
     List<String> selectedAllegries;
     String notification = "You Have Recieced a New Task To do";
     List<String> Meals;
     List<List> create_meal;
+    List<Integer> quantity;
     Map<String, String> substitutionSuggestions = new HashMap<>();// عبي فيها المكونات المقترحة كبديل
     String suggestedAlternative = "  ";
+    StockSystem stockSystem;
+    Map<List<String>, List<Integer>> Stock;
 
     public Create_Custome_Meal_2() {
+        ingredients = new ArrayList<>();
+        quantity = new ArrayList<>();
+        Stock = new HashMap<>();
         create_meal = new ArrayList<>();
         selectedIngredients = new ArrayList<>();
         selectedAllegries = new ArrayList<>();
@@ -24,25 +30,18 @@ public class Create_Custome_Meal_2 {
         incompatiblePairs.put("pasta", "Fish");
         incompatiblePairs.put("Lettuce", "Cheese");
 
-        substitutionSuggestions.put("pasta", "Rice");
+        substitutionSuggestions.put("Rice", "pasta");
         substitutionSuggestions.put("Cheese", "Milk");
         substitutionSuggestions.put("Beef", "Chicken");
         substitutionSuggestions.put("Tomato", "Lettuce");
         substitutionSuggestions.put("Lemon", "Salt");
 
-        ingredients.add("Chicken");
-        ingredients.add("pasta");
-        ingredients.add("Rice");
-        ingredients.add("Tomato");
-        ingredients.add("Lettuce");
-        ingredients.add("Cheese");
-        ingredients.add("milk");
-        ingredients.add("Fish");
-
         Meals.add("Kabsa");
         Meals.add("Lazania");
         Meals.add("Fish with Tomato");
         Meals.add("Fried Chicken");
+
+        stockSystem= new StockSystem();
 
     }
     public String suggest_alternative(String ingredient) {
@@ -61,6 +60,12 @@ public class Create_Custome_Meal_2 {
     }
 
     public List<List> create_meal(List<String> Preference, List<String> Allergies) {
+        Stock = stockSystem.getStock();
+
+        Map.Entry<List<String>, List<Integer>> StockMap = Stock.entrySet().iterator().next();
+        ingredients = StockMap.getKey();
+        quantity = StockMap.getValue();
+
         this.selectedAllegries = Allergies;
         this.selectedIngredients = Preference;
 
@@ -68,6 +73,8 @@ public class Create_Custome_Meal_2 {
 
         for (int i = 0; i < selectedIngredients.size(); i++) {
             String ingredient1 = selectedIngredients.get(i);
+
+            if(stockSystem.Check_quantity(ingredient1)){
 
             if (!ingredients.contains(ingredient1) && !seen.contains(ingredient1)) {
                 seen.add(ingredient1);
@@ -101,6 +108,13 @@ public class Create_Custome_Meal_2 {
                         alertChef();
                     }
                 }
+            }
+        }
+            else{
+                suggestedAlternative = suggest_alternative(ingredient1);
+                selectedIngredients.remove(ingredient1);
+                selectedIngredients.add(suggestedAlternative);
+                System.out.println("Sorry We dont Have "+ingredient1+ "Now So the Alternative Will Be + "+suggestedAlternative);
             }
         }
         create_meal.add(selectedIngredients);

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class HelloApplication {
             List<Chef> registeredChefs = new ArrayList<>();
             List<Admin> registeredAdmins = new ArrayList<>();
             List<Manager> registeredManagers = new ArrayList<>();
+        StockSystem stockSystem = new StockSystem();
 
             Admin admin = new Admin(9222, "Saad", "Jenin", "0595638731");
             registeredAdmins.add(admin);
@@ -53,8 +55,9 @@ public class HelloApplication {
                 else if (id == 1) {
                     Admin currentAdmin = Signin.login(registeredAdmins);
                     if (currentAdmin != null) {
-                        System.out.println("Welcome ! " + admin.getName() + " What do you want to do ");
+
                         while (true) {
+                            System.out.println("What do you want to do ");
                             System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
                             int choice = Integer.parseInt(scanner.nextLine());
                             if (choice == 0) {
@@ -72,7 +75,28 @@ public class HelloApplication {
                 else if (id == 2) {
                     Manager currentManager = Signin.login(registeredManagers);
                     if (currentManager != null) {
+                        while (true) {
+                            System.out.println("What do you want to do ");
+                            System.out.println("1-Stock quantity 2-Buy From Supplier 0-Exit");
+                            int choice = Integer.parseInt(scanner.nextLine());
+                            if (choice == 0) {
+                                return;
+                            } else if (choice == 1) {
+                                Map<List<String>, List<Integer>> stock = stockSystem.getStock();
+                                for (Map.Entry<List<String>, List<Integer>> entry : stock.entrySet()) {
+                                    List<String> keyList = entry.getKey();
+                                    List<Integer> valueList = entry.getValue();
 
+                                    System.out.println("We Have in Stock : ");
+                                    for(int i = 0; i < valueList.size(); i++) {
+                                        System.out.println(keyList.get(i) + " : " + valueList.get(i));
+                                    }
+                                }
+                            } else if (choice == 2) {
+
+                            }
+                            break;
+                        }
                     }
                 }
 
