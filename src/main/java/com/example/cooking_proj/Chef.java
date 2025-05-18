@@ -16,7 +16,6 @@ public class Chef extends Person{
     List<String>Custome_Meals;
     List<String> Meals;
     List<String> MealsAvailable;
-    NotificationsAndAlerts chef_Notification;
     Scanner scanner=new Scanner(System.in);
 
     public Chef(int ID,String name,String phoneNumber,Double expretise,Double workload) {
@@ -29,6 +28,7 @@ public class Chef extends Person{
         Custome_Meals=new ArrayList<>();
         Meals=new ArrayList<>();
         MealsAvailable= new ArrayList<>();
+
 
         Meals.add("Kabsa");
         Meals.add("Lazania");
@@ -86,6 +86,7 @@ public class Chef extends Person{
      return MealsAvailable;
     }
     public void startRemainder(Order order){
+        NotificationsAndAlerts chef_Notification=new NotificationsAndAlerts();
         chef_Notification.UpcomingOrdersReminder(2,order,2);
     }
     public Double getExpretise() {

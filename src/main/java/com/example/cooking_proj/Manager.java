@@ -11,7 +11,7 @@ public class Manager extends Person {
     private String phoneNumber;
     Chef Task_chef;
     List<String> Meals;
-    Order order1;
+
 
 
     public Manager(String name, int ID, String Address, String phoneNumber) {
@@ -97,15 +97,14 @@ public class Manager extends Person {
         return Task_chef.getName();
     }
 
-    public Order getOrder1() {
-        return order1;
-    }
 
-    public void initlize_order(int customerID, String customerName, String chefName, String mealName){
-        if(order1==null) {
-             order1 = new Order(ordersId++, customerID, customerName, chefName, mealName);
-        }
-        Task_chef.startRemainder(order1);
+
+    public Order initlize_order(int customerID, String customerName, String chefName, String mealName){
+
+
+        Order order = new Order(ordersId++, customerID, customerName, chefName, mealName);
+        Task_chef.startRemainder(order);
+        return order;
 
     }
 

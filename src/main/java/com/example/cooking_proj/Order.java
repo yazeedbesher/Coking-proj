@@ -55,8 +55,13 @@ public class Order {
 
     @Override
     public String toString() {
-        return "orderID: " + orderID +
-                ", OrderDate: " + orderDate ;
+        return "Order ID: " + orderID +
+                ", Customer ID: " + customerID+
+                ", Customer Name: " + customerName+
+                ", Chef Name: " + chefName+
+                ", Meal Name: " + mealName+
+                ", Order Date: " + orderDate.toString()+
+                ", Pick Up Time: " + pickUpTime.toString() ;
     }
 
 

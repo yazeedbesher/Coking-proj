@@ -42,64 +42,62 @@ public class HelloApplication {
             registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Welcome ! you want to Sign in as ? ");
-            System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
-            int id = Integer.parseInt(scanner.nextLine());
+            while(true) {
+                System.out.println("Welcome ! you want to Sign in as ? ");
+                System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
+                int id = Integer.parseInt(scanner.nextLine());
 
-            if (id == 1) {//Admin
-                Admin currentAdmin= Signin.login(registeredAdmins);
-                if (currentAdmin != null) {
-                    System.out.println("Welcome ! "+currentAdmin.getName()+"What do you want to do ");
-                    System.out.println("1-Customer Order History 2-Creat Report");
-                    int choice = Integer.parseInt(scanner.nextLine());
-                    if (choice == 1) {
-                        admin.manegeCustomerOrderHistory(registeredCustomers);}
-                    else if (choice == 2) {
-                        admin.createFinanceReport();
-                    }
+                if (id == 1) {//Admin
+                    //Admin currentAdmin = Signin.login(registeredAdmins);
+                    //if (currentAdmin != null) {
+                        while (true) {
+                            System.out.println("Welcome ! " + admin.getName() + " What do you want to do ");
+                            System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
+                            int choice = Integer.parseInt(scanner.nextLine());
+                            if(choice == 0){
+                                break;
+                            }
+                            else if (choice == 1) {
+                                admin.manegeCustomerOrderHistory(registeredCustomers);
+                            } else if (choice == 2) {
+                                admin.createFinanceReport();
+                            }
+
+                        }
+                   // }
+
+
                 }
-
-
-            }
-            if (id == 2) {
-                Signin.login(registeredManagers);
-            }
-            if (id == 3) {//Chef
-                    Chef currentChef=  Signin.login(registeredChefs);
+                if (id == 2) {
+                    Signin.login(registeredManagers);
+                }
+                if (id == 3) {//Chef
+                    Chef currentChef = Signin.login(registeredChefs);
                     if (currentChef != null) {
                         System.out.println("1-Customer Order History 2- 3- 4- ");
                         int choice = Integer.parseInt(scanner.nextLine());
                         if (choice == 1) {
                             currentChef.showCustomerOrderHistory(registeredCustomers);
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("Sorry you are not a Chef");
                     }
-            }
-            if (id == 4) {
-
-                Customer currentCustomer = Signin.login(registeredCustomers);
-
-                if (currentCustomer == null) {
-                    currentCustomer = Signup.signup(registeredCustomers);
                 }
+                if (id == 4) {
 
-                System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+                    Customer currentCustomer = Signin.login(registeredCustomers);
 
-                while (true) {
-                    currentCustomer.make_order(registeredChefs, manager);
-                    System.out.println("Do You Want To Create Another Meal ? ");
-                    System.out.println("0-NO 1-Yes");
-                    String choice = scanner.nextLine();
-                    if (choice.equals("1")) {
-                        currentCustomer.make_order(registeredChefs, manager);
-                    } else if (choice.equals("0")) {
-                        System.out.println("Thank You , Welcome!");
-                        break;
+                    if (currentCustomer == null) {
+                        currentCustomer = Signup.signup(registeredCustomers);
                     }
-                }
 
+                    System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+
+
+                    currentCustomer.make_order(registeredChefs, manager);
+
+
+                }
             }
         }
     }}

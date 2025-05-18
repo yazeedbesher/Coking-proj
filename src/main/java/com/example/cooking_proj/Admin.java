@@ -1,10 +1,13 @@
 package com.example.cooking_proj;
 
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Admin extends Person{
+    boolean ifCustomerFound = false;
     private String name;
     private int ID;
     private String Address;
@@ -57,31 +60,50 @@ public class Admin extends Person{
 
 
             System.out.println("Please enter Customer ID");
-            int customerId = Integer.parseInt(scanner.nextLine());
-            for (Customer customer : customers) {
-                if (customer.getCustomerID() == customerId) {
-                    System.out.println("What would you like to do?");
-                    System.out.println("1. Show Order History 2. Add Orders to Order History");
-                    int choice = Integer.parseInt(scanner.nextLine());
-                    switch (choice) {
-                        case 1: {
-                            displayCustomerOrderHistory(customer);
-                            break;
-                        }
-                        case 2: {
+        while(true){
+                int customerId = Integer.parseInt(scanner.nextLine());
+                if (customerId == 0){
+                    return;
+                }
 
-                            break;
-                        }
+                for (Customer customer : customers) {
+                    if (customer.getCustomerID() == customerId) {
+                        ifCustomerFound = true;
+
+                            System.out.println("What would you like to do?");
+                            System.out.println("1. Show Order History 2. Add Orders to Order History 0. Exit");
+                            int choice = Integer.parseInt(scanner.nextLine());
+                            if (choice == 0) {
+                                return;
+                            }
+                            else if (choice == 1) {
+                                displayCustomerOrderHistory(customer);
+                                break;
+                            } else if (choice == 2) {
+                                break;
+
+                            }
+
                     }
                 }
-            }
+                if (!ifCustomerFound) {System.out.println("Please enter Valid Customer ID or Enter 0 to Exit");
+                continue;}
+                break;
+
+        }
     }
     public static void displayCustomerOrderHistory(Customer customer){
-        List<Order> past_orders;
-        past_orders=customer.getCustomerPastOrders();
-        for (Order order : past_orders) {
-            System.out.println("-"+order);
+
+
+        if(customer.getCustomerPastOrders()!=null){
+            int i=1;
+            for (Order order : customer.getCustomerPastOrders()) {
+            System.out.println(i+"- "+order.toString());
         }
+        }else {
+            System.out.println("Order History is empty\n");
+        }
+
     }
     public void createFinanceReport(){
 

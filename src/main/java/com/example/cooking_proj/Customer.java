@@ -1,7 +1,5 @@
 package com.example.cooking_proj;
 
-import javax.swing.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class Customer extends Person{
@@ -14,7 +12,7 @@ public class Customer extends Person{
     List<String> Allergies;
     Create_Custome_Meal_2 custome_Meal;
     dietary_preferences_and_allergies dietary_preferences_and_allergies;
-    Order order;
+    //Order order;
     //List<Order> orders;
     List<List> create_mealMap;
     List<String>Meals;
@@ -37,13 +35,14 @@ public class Customer extends Person{
         dietary_preferences_and_allergies = new dietary_preferences_and_allergies();
         custome_Meal= new Create_Custome_Meal_2();
         create_mealMap = new ArrayList<>();
+
+
         Meals = new ArrayList<>();
         AvailableMeals= new ArrayList<>();
         pastOrders=new Track_past_orders_and_personalized_meal_plans();
         customer_Notification = new NotificationsAndAlerts();
 
     }
-
 
 
     public int getCustomerID() {
@@ -62,72 +61,72 @@ public class Customer extends Person{
         return customerPhone;
     }
 
-    public List<Order> getOrders() {
-        return pastOrders.getPastOrders();
-    }
     public List<String> getPreference() {
         return preference;
     }
     public List<String> getAllergies() {
         return Allergies;
     }
-    public List<Order> getPastOrders() {
-        return pastOrders.getPastOrders();
-    }
+//    public List<Order> getPastOrders() {
+//        return pastOrders.getPastOrders();
+//    }
     public void make_order(List<Chef> Chefs,Manager manager) {
+        while (true){
         System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
         Scanner scanner = new Scanner(System.in);
         int id = Integer.parseInt(scanner.nextLine());
 
-        if(id==1){
-            Meals=custome_Meal.GetMeals();
-            int i=1;
+        if (id == 1) {
+            Meals = custome_Meal.GetMeals();
+            int i = 1;
             System.out.println("Choose Your Meal");
             for (String item : Meals) {
-                System.out.println(i+"- "+ item);
+                System.out.println(i + "- " + item);
                 i++;
             }
             int meal = Integer.parseInt(scanner.nextLine());
-            String mealName = Meals.get(meal-1);
-            String chefName=manager.assign_Task(Chefs,mealName);
-            System.out.println("Your Meal Will Be "+ mealName);
-            manager.initlize_order(getCustomerID(),getCustomerName(),chefName,mealName);//the define of Order object
-            customer_Notification.UpcomingOrdersReminder(1,manager.getOrder1(),1);
-            pastOrders.addPastOrder(manager.getOrder1()); //add it to the Past Order list
+            String mealName = Meals.get(meal - 1);
+            String chefName = manager.assign_Task(Chefs, mealName);
+            System.out.println("Your Meal Will Be " + mealName);
+
+            Order order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
+            //orders.add(order);//the define of Order object
+            customer_Notification.UpcomingOrdersReminder(1, order, 1);
+            pastOrders.addPastOrder(order); //add it to the Past Order list
             // Ahmad -> here define the Order object and add it to the list here (DONE)
 
         }
 
-        if(id==2){
-             preference= dietary_preferences_and_allergies.addPreference();
-             Allergies= dietary_preferences_and_allergies.addAllergies();
+        if (id == 2) {
+            preference = dietary_preferences_and_allergies.addPreference();
+            Allergies = dietary_preferences_and_allergies.addAllergies();
 
             custome_Meal = new Create_Custome_Meal_2();
-            create_mealMap = custome_Meal.create_meal(preference,Allergies);
+            create_mealMap = custome_Meal.create_meal(preference, Allergies);
 
-            AvailableMeals = manager.assign_custome_task(Chefs,create_mealMap);
-            System.out.println("Your Available Meals :" +AvailableMeals + "\n"+"Choose What You Want !");
-            int j=1;
+            AvailableMeals = manager.assign_custome_task(Chefs, create_mealMap);
+            System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
+            int j = 1;
             for (String item : AvailableMeals) {
                 System.out.println(j + "- " + item);
                 j++;
             }
             int meal = Integer.parseInt(scanner.nextLine());
-            String mealName = AvailableMeals.get(meal-1);
+            String mealName = AvailableMeals.get(meal - 1);
             System.out.println("Your Meal Will Be " + mealName + " Enjoy :)");
-            String chefName=manager.getChef_name();
+            String chefName = manager.getChef_name();
 
 
-            manager.initlize_order(getCustomerID(),getCustomerName(),chefName,mealName);//the define of Order object
-            customer_Notification = new NotificationsAndAlerts();
-            customer_Notification.UpcomingOrdersReminder(1,manager.getOrder1(),1);
-            pastOrders.addPastOrder(manager.getOrder1()); //add it to the Past Order list
-            // Ahmad -> here define the Order object and add it to the list here (DONE)
+//            manager.initlize_order(getCustomerID(),getCustomerName(),chefName,mealName);//the define of Order object
+//            customer_Notification = new NotificationsAndAlerts();
+//            customer_Notification.UpcomingOrdersReminder(1,manager.getOrder1(),1);
+//            pastOrders.addPastOrder(manager.getOrder1()); //add it to the Past Order list
+//            // Ahmad -> here define the Order object and add it to the list here (DONE)
 
         }
-        if(id==3){
-             // Ahmad : here depend on the List<Order> we will print the orders then choose one of them to make the chef create again
-            if(pastOrders.getPastOrders().equals(new ArrayList<>())){
+        if (id == 3) {
+             //Ahmad : here depend on the List<Order> we will print the orders then choose one of them to make the chef create again
+            if(pastOrders.getPastOrders()==null){
                 System.out.println("Sorry Your History Is Empty !");
             }
             else{
@@ -141,11 +140,19 @@ public class Customer extends Person{
                 //Yazeed contenue the order
             }
         }
+        System.out.println("Do You Want To Do Anything Else ? ");
+        System.out.println("0-NO 1-Yes");
+        String choice = scanner.nextLine();
+        if (choice.equals("1")) {
 
-}
+        } else if (choice.equals("0")) {
+            System.out.println("Thank You , Welcome!");
+            return;
+        }
 
-public List<Order> getCustomerPastOrders() {
+
+    }}
+    public List<Order> getCustomerPastOrders () {
         return pastOrders.getPastOrders();
-}
-
+    }
 }

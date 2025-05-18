@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Track_past_orders_and_personalized_meal_plans {
-    ArrayList<Order> past_orders;
+    List<Order> past_orders;
     ArrayList<String> personalized_meals;
 
 
@@ -16,16 +16,17 @@ public class Track_past_orders_and_personalized_meal_plans {
 
     public boolean addPastOrder(Order order){
         if (order==null){return false;}
-        for(Order order1 : past_orders){
-        if(!past_orders.contains(order1)) {
-            past_orders.add(order1);
-        }}
+
+        if(!past_orders.contains(order)) {
+            past_orders.add(order);
+
+        }
         return true;
     }
 
     public List<Order> getPastOrders(){
         if(past_orders.isEmpty()) {
-            return new ArrayList<>();
+            return null;
         }
             return past_orders;
     }
