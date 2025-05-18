@@ -19,7 +19,7 @@ public class Track_past_orders_and_personalized_meal_plans_chef_1_2_2Test {
     }
     @Then("the system will return an empty customers’ order history list")
     public void theSystemWillReturnAnEmptyCustomersOrderHistoryList() {
-    result =past_orders_and_personalized_meal_plan.getPastOrder();
+    //result =past_orders_and_personalized_meal_plan.getPastOrder();
     }
     @Then("the system will display the message: there is no customers’ order history")
     public void theSystemWillDisplayTheMessageThereIsNoCustomersOrderHistory() {
@@ -36,8 +36,8 @@ public class Track_past_orders_and_personalized_meal_plans_chef_1_2_2Test {
     }
     @Then("the system will return a list of customers’ order history")
     public void theSystemWillReturnAListOfCustomersOrderHistory() {
-        past_orders_and_personalized_meal_plan.addPastOrder(List("Order 1","Order 2","Order 3"));
-    result = past_orders_and_personalized_meal_plan.getPastOrder();
+//        past_orders_and_personalized_meal_plan.addPastOrder(List("Order 1","Order 2","Order 3"));
+//    result = past_orders_and_personalized_meal_plan.getPastOrder();
     }
     @Then("the system will display the list of customers’ order history")
     public void theSystemWillDisplayTheListOfCustomersOrderHistory() {

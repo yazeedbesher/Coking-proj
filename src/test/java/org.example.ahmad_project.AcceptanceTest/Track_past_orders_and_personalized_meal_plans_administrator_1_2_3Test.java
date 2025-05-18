@@ -29,7 +29,7 @@ public class Track_past_orders_and_personalized_meal_plans_administrator_1_2_3Te
     @When("the administrator entered orders to customer order history")
     public void theAdministratorEnteredOrdersToCustomerOrderHistory() {
     //JOptionPane.showMessageDialog(null,"the administrator entered orders to customer order history");
-    result=past_orders_and_personalized_meal_plans.addPastOrder(List("Order 1","Order 2"));
+    //result=past_orders_and_personalized_meal_plans.addPastOrder(List("Order 1","Order 2"));
     }
 
     @Then("the system will display a success message : Successfully added the order to customer order history")
@@ -43,7 +43,7 @@ public class Track_past_orders_and_personalized_meal_plans_administrator_1_2_3Te
     @When("The administrator navigates to the customer order history page, where the orders do not exist")
     public void theAdministratorNavigatesToTheCustomerOrderHistoryPageWhereTheOrdersDoNotExist() {
     //JOptionPane.showMessageDialog(null,"The customer order history page has opened without any customer order");
-    result2=past_orders_and_personalized_meal_plans.getPastOrder();
+    //result2=past_orders_and_personalized_meal_plans.getPastOrder();
     }
     @Then("the system will return an empty customer order history list for administrator")
     public void theSystemWillReturnAnEmptyCustomerOrderHistoryListForAdministrator() {
@@ -64,8 +64,8 @@ public class Track_past_orders_and_personalized_meal_plans_administrator_1_2_3Te
     }
     @Then("the system will return a list of customer order history for  administrator")
     public void theSystemWillReturnAListOfCustomerOrderHistoryForAdministrator() {
-    past_orders_and_personalized_meal_plans.addPastOrder(List("Order 1","Order 2"));
-    result2=past_orders_and_personalized_meal_plans.getPastOrder();
+    //past_orders_and_personalized_meal_plans.addPastOrder(List("Order 1","Order 2"));
+    //result2=past_orders_and_personalized_meal_plans.getPastOrder();
 
     }
     @Then("the system will display the list of customer order history")

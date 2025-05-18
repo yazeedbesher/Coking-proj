@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Manager extends Person {
+    int ordersId=1;
     private String name;
     private int ID;// for login
     private String Address;
     private String phoneNumber;
     Chef Task_chef;
     List<String> Meals;
+    Order order1;
+
 
     public Manager(String name, int ID, String Address, String phoneNumber) {
         super(ID,name);
@@ -69,8 +72,11 @@ public class Manager extends Person {
         Meals= Task_chef.Create_Custome_Meal(ingredients);
         return Meals;
     }
+    public String getChef_name() {
+        return Task_chef.getName();
+    }
 
-    public void assign_Task(List<Chef> Chefs,String meal){
+    public String assign_Task(List<Chef> Chefs, String meal){
 
         Double Chef0  =Chefs.get(0).getExpretise()+ -1 * (Chefs.get(0).getWorkload());
 
@@ -87,6 +93,20 @@ public class Manager extends Person {
         System.out.println("Your Chef is "+Task_chef.getName());
 
         Task_chef.Create_Meal(meal);
+
+        return Task_chef.getName();
+    }
+
+    public Order getOrder1() {
+        return order1;
+    }
+
+    public void initlize_order(int customerID, String customerName, String chefName, String mealName){
+        if(order1==null) {
+             order1 = new Order(ordersId++, customerID, customerName, chefName, mealName);
+        }
+        Task_chef.startRemainder(order1);
+
     }
 
 }

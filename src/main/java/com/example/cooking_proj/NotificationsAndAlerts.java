@@ -73,7 +73,7 @@ public class NotificationsAndAlerts {
         try {
             String message = "Hello " + order.getCustomerName() +
                     ",\nYour order will arrive at:\n(" + order.getPickUpTime() +
-                    ")\nOrder Description:\n(" + order.getOrderDescription() + ")";
+                    ")\nOrder Name:\n(" + order.getMealName() + ")";
             System.out.println(message);
         } catch (Exception e) {
             System.err.println("Notification service failed: " + e.getMessage());
@@ -85,7 +85,7 @@ public class NotificationsAndAlerts {
         try {
             String message = "Hello Chef " + order.getChefName() +
                     ",\nYou have to prepare an order to be delivered on:\n(" + order.getPickUpTime() +
-                    ")\nOrder Description:\n(" + order.getOrderDescription() + ")";
+                    ")\nOrder Name:\n(" + order.getMealName() + ")";
             System.out.println(message);
         } catch (Exception e) {
             System.err.println("Notification service failed: " + e.getMessage());

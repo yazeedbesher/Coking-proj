@@ -4,6 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import java.io.IOException;
@@ -13,63 +18,87 @@ import java.util.List;
 public class HelloApplication {
 
     public static void main(String[] args) {
-        List<Customer> registeredCustomers = new ArrayList<>();
-        List<Chef> registeredChefs = new ArrayList<>();
-        List<Admin> registeredAdmins = new ArrayList<>();
-        List<Manager> registeredManagers = new ArrayList<>();
+        {
 
-        Manager manager = new Manager("Khaled",5001,"Ramallah","0599111373");
-        registeredManagers.add(manager);
+            List<Customer> registeredCustomers = new ArrayList<>();
+            List<Chef> registeredChefs = new ArrayList<>();
+            List<Admin> registeredAdmins = new ArrayList<>();
+            List<Manager> registeredManagers = new ArrayList<>();
 
-        Admin admin = new Admin(9222,"Saad","Jenin","0595638731");
-        registeredAdmins.add(admin);
+            Manager manager = new Manager("Khaled", 5001, "Ramallah", "0599111373");
+            registeredManagers.add(manager);
 
-        registeredChefs.add(new Chef(2222,"Ali","0595111111",2.5,0.0));
-        registeredChefs.add(new Chef(2223,"Bob","0595111112",1.5,0.0));
-        registeredChefs.add(new Chef(2224,"John","0595111113",3.5,0.0));
+            Admin admin = new Admin(9222, "Saad", "Jenin", "0595638731");
+            registeredAdmins.add(admin);
 
-        registeredCustomers.add(new Customer(1222, "Ahmad", "Nablus", "0599111373"));
-        registeredCustomers.add(new Customer(1223, "Abd", "Jenin", "0595639831"));
-        registeredCustomers.add(new Customer(1224, "Ali", "Ramallah", "0597500172"));
-        registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
+            registeredChefs.add(new Chef(2222, "Ali", "0595111111", 2.5, 0.0));
+            registeredChefs.add(new Chef(2223, "Bob", "0595111112", 1.5, 0.0));
+            registeredChefs.add(new Chef(2224, "John", "0595111113", 3.5, 0.0));
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome ! you want to Sign in as ? ");
-        System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
-        int id = Integer.parseInt(scanner.nextLine());
+            registeredCustomers.add(new Customer(1222, "Ahmad", "Nablus", "0599111373"));
+            registeredCustomers.add(new Customer(1223, "Abd", "Jenin", "0595639831"));
+            registeredCustomers.add(new Customer(1224, "Ali", "Ramallah", "0597500172"));
+            registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
 
-        if (id == 1) {
-            Signin.login(registeredAdmins);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Welcome ! you want to Sign in as ? ");
+            System.out.println("1-Admin 2-Manager 3-Chef 4-Customer");
+            int id = Integer.parseInt(scanner.nextLine());
 
-        }
-        if (id == 2) {
-         Signin.login(registeredManagers);
-        }
-        if (id == 3) {
+            if (id == 1) {//Admin
+                Admin currentAdmin= Signin.login(registeredAdmins);
+                if (currentAdmin != null) {
+                    System.out.println("Welcome ! "+currentAdmin.getName()+"What do you want to do ");
+                    System.out.println("1-Customer Order History 2-Creat Report");
+                    int choice = Integer.parseInt(scanner.nextLine());
+                    if (choice == 1) {
+                        admin.manegeCustomerOrderHistory(registeredCustomers);}
+                    else if (choice == 2) {
+                        admin.createFinanceReport();
+                    }
+                }
 
-           Signin.login(registeredChefs);
 
-        }
-        if (id == 4) {
-
-            Customer currentCustomer = Signin.login(registeredCustomers);
-
-            if (currentCustomer == null) {
-                currentCustomer = Signup.signup(registeredCustomers);
             }
-
-            System.out.println("Logged in as: " + currentCustomer.getCustomerName());
-
-            while (true){
-                currentCustomer.make_order(registeredChefs,manager);
-                System.out.println("Do You Want To Create Another Meal ? ");
-                System.out.println("0-NO 1-Yes");
-                String choice = scanner.nextLine();
-                if(choice.equals("1")){currentCustomer.make_order(registeredChefs,manager);}
-                else if(choice.equals("0")){
-                    System.out.println("Thank You , Welcome!");break;}
+            if (id == 2) {
+                Signin.login(registeredManagers);
             }
+            if (id == 3) {//Chef
+                    Chef currentChef=  Signin.login(registeredChefs);
+                    if (currentChef != null) {
+                        System.out.println("1-Customer Order History 2- 3- 4- ");
+                        int choice = Integer.parseInt(scanner.nextLine());
+                        if (choice == 1) {
+                            currentChef.showCustomerOrderHistory(registeredCustomers);
+                        }
+                    }
+                    else {
+                        System.out.println("Sorry you are not a Chef");
+                    }
+            }
+            if (id == 4) {
 
+                Customer currentCustomer = Signin.login(registeredCustomers);
+
+                if (currentCustomer == null) {
+                    currentCustomer = Signup.signup(registeredCustomers);
+                }
+
+                System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+
+                while (true) {
+                    currentCustomer.make_order(registeredChefs, manager);
+                    System.out.println("Do You Want To Create Another Meal ? ");
+                    System.out.println("0-NO 1-Yes");
+                    String choice = scanner.nextLine();
+                    if (choice.equals("1")) {
+                        currentCustomer.make_order(registeredChefs, manager);
+                    } else if (choice.equals("0")) {
+                        System.out.println("Thank You , Welcome!");
+                        break;
+                    }
+                }
+
+            }
         }
-    }
-}
+    }}

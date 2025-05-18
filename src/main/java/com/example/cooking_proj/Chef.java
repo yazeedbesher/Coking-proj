@@ -3,6 +3,7 @@ package com.example.cooking_proj;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Chef extends Person{
     private String name;
@@ -15,7 +16,8 @@ public class Chef extends Person{
     List<String>Custome_Meals;
     List<String> Meals;
     List<String> MealsAvailable;
-    Order order;
+    NotificationsAndAlerts chef_Notification;
+    Scanner scanner=new Scanner(System.in);
 
     public Chef(int ID,String name,String phoneNumber,Double expretise,Double workload) {
         super(ID,name);
@@ -83,11 +85,30 @@ public class Chef extends Person{
      }
      return MealsAvailable;
     }
-
+    public void startRemainder(Order order){
+        chef_Notification.UpcomingOrdersReminder(2,order,2);
+    }
     public Double getExpretise() {
         return expretise;
     }
     public Double getWorkload() {
         return workload;
     }
+
+
+
+    public void showCustomerOrderHistory(List<Customer> customers){
+        System.out.println("Please enter Customer ID");
+        int customerId = Integer.parseInt(scanner.nextLine());
+        for (Customer customer : customers) {
+            if (customer.getCustomerID() == customerId) {
+
+                        Admin.displayCustomerOrderHistory(customer);
+            }
+        }
+    }
+
+
+
+
 }
