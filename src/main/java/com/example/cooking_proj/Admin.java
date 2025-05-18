@@ -57,43 +57,50 @@ public class Admin extends Person{
 
     public void manegeCustomerOrderHistory(List<Customer> customers){
 
-
-
             System.out.println("Please enter Customer ID");
-        while(true){
+             while(true){
                 int customerId = Integer.parseInt(scanner.nextLine());
-                if (customerId == 0){
-                    return;
-                }
 
                 for (Customer customer : customers) {
                     if (customer.getCustomerID() == customerId) {
                         ifCustomerFound = true;
 
                             System.out.println("What would you like to do?");
-                            System.out.println("1. Show Order History 2. Add Orders to Order History 0. Exit");
+                            System.out.println(" 0. Exit 1. Show Order History 2. Add Order to Orders History");
                             int choice = Integer.parseInt(scanner.nextLine());
+
                             if (choice == 0) {
                                 return;
                             }
+
                             else if (choice == 1) {
                                 displayCustomerOrderHistory(customer);
-                                break;
-                            } else if (choice == 2) {
-                                break;
+                                System.out.println("What would you like to do?");
+                                System.out.println(" 0. Exit 1. Show Order History for another Customer");
+                                int c = Integer.parseInt(scanner.nextLine());
+                                if(c == 0){return;}
+                                else if (c == 1){manegeCustomerOrderHistory(customers);}
 
                             }
 
+                            else if (choice == 2) {
+                                break;
+
+                            }
                     }
                 }
-                if (!ifCustomerFound) {System.out.println("Please enter Valid Customer ID or Enter 0 to Exit");
-                continue;}
-                break;
 
+                if (!ifCustomerFound) {
+                    System.out.println("Invalid Customer ID /0- Exit  1-Try Again ");
+                    int choice = Integer.parseInt(scanner.nextLine());
+                    if (choice == 0) {return;}
+                    else if (choice == 1) {
+                        manegeCustomerOrderHistory(customers);
+                    }
+                }
         }
     }
     public static void displayCustomerOrderHistory(Customer customer){
-
 
         if(customer.getCustomerPastOrders()!=null){
             int i=1;
@@ -109,7 +116,5 @@ public class Admin extends Person{
         GenerateInvoicesAndTrackFinancialReports FinanceReport=new GenerateInvoicesAndTrackFinancialReports();
         FinanceReport.generateTrackFinancialReport(customers, chefs);
     }
-
-
 
 }

@@ -10,7 +10,6 @@ public class Create_Custome_Meal_2 {
     boolean alertChef = false;
     String notification = "You Have Recieced a New Task To do";
     List<String> Meals;
-    Scheduling_Task_Managment_3 sch_task;
     List<List> create_meal;
 
     Map<String, String> substitutionSuggestions = new HashMap<>();// عبي فيها المكونات المقترحة كبديل

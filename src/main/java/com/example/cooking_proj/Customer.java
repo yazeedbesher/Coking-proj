@@ -12,14 +12,14 @@ public class Customer extends Person{
     List<String> Allergies;
     Create_Custome_Meal_2 custome_Meal;
     dietary_preferences_and_allergies dietary_preferences_and_allergies;
-    //Order order;
-    //List<Order> orders;
+    List<Order> orders;
     List<List> create_mealMap;
     List<String>Meals;
     Manager manager;
     Chef chef;
     List<String>AvailableMeals;
     NotificationsAndAlerts customer_Notification;
+    Order order;
 
     Track_past_orders_and_personalized_meal_plans pastOrders;
 
@@ -29,19 +29,17 @@ public class Customer extends Person{
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
-        //orders = new ArrayList<>();
         preference = new ArrayList<>();
         Allergies = new ArrayList<>();
         dietary_preferences_and_allergies = new dietary_preferences_and_allergies();
         custome_Meal= new Create_Custome_Meal_2();
         create_mealMap = new ArrayList<>();
-
+        orders = new ArrayList<>();
 
         Meals = new ArrayList<>();
         AvailableMeals= new ArrayList<>();
         pastOrders=new Track_past_orders_and_personalized_meal_plans();
         customer_Notification = new NotificationsAndAlerts();
-
     }
 
 
@@ -80,20 +78,26 @@ public class Customer extends Person{
             Meals = custome_Meal.GetMeals();
             int i = 1;
             System.out.println("Choose Your Meal");
+            System.out.println("0- Nothing, Thank You!");
             for (String item : Meals) {
                 System.out.println(i + "- " + item);
                 i++;
             }
             int meal = Integer.parseInt(scanner.nextLine());
+            if(meal==0){
+                break;
+            }
             String mealName = Meals.get(meal - 1);
             String chefName = manager.assign_Task(Chefs, mealName);
             System.out.println("Your Meal Will Be " + mealName);
 
-            Order order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
-            //orders.add(order);//the define of Order object
+            Random rand = new Random();
+            int randomInt = rand.nextInt(100);
+
+            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
+
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
             pastOrders.addPastOrder(order); //add it to the Past Order list
-            // Ahmad -> here define the Order object and add it to the list here (DONE)
 
         }
 
@@ -107,16 +111,26 @@ public class Customer extends Person{
             AvailableMeals = manager.assign_custome_task(Chefs, create_mealMap);
             System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
             int j = 1;
+            System.out.println("0- Nothing, Thank You!");
             for (String item : AvailableMeals) {
                 System.out.println(j + "- " + item);
                 j++;
             }
             int meal = Integer.parseInt(scanner.nextLine());
+            if(meal==0){
+                break;
+            }
             String mealName = AvailableMeals.get(meal - 1);
             System.out.println("Your Meal Will Be " + mealName + " Enjoy :)");
             String chefName = manager.getChef_name();
 
+            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
 
+            customer_Notification.UpcomingOrdersReminder(1, order, 1);
+            pastOrders.addPastOrder(order); //add it to the Past Order list
+
+            preference.clear();
+            Allergies.clear();
 //            manager.initlize_order(getCustomerID(),getCustomerName(),chefName,mealName);//the define of Order object
 //            customer_Notification = new NotificationsAndAlerts();
 //            customer_Notification.UpcomingOrdersReminder(1,manager.getOrder1(),1);
@@ -130,7 +144,6 @@ public class Customer extends Person{
                 System.out.println("Sorry Your History Is Empty !");
             }
             else{
-
                 System.out.println("Your Past Meals: \n");
                 int i=1;
                 for (Order order : pastOrders.getPastOrders()) {
@@ -140,6 +153,7 @@ public class Customer extends Person{
                 //Yazeed contenue the order
             }
         }
+
         System.out.println("Do You Want To Do Anything Else ? ");
         System.out.println("0-NO 1-Yes");
         String choice = scanner.nextLine();
@@ -147,6 +161,7 @@ public class Customer extends Person{
 
         } else if (choice.equals("0")) {
             System.out.println("Thank You , Welcome!");
+
             return;
         }
 
