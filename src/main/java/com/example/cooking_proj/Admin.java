@@ -105,8 +105,9 @@ public class Admin extends Person{
         }
 
     }
-    public void createFinanceReport(){
-
+    public void createFinanceReport(List<Customer> customers, List<Chef> chefs){
+        GenerateInvoicesAndTrackFinancialReports FinanceReport=new GenerateInvoicesAndTrackFinancialReports();
+        FinanceReport.generateTrackFinancialReport(customers, chefs);
     }
 
 

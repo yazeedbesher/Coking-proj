@@ -1,45 +1,32 @@
 package com.example.cooking_proj;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GenerateInvoicesAndTrackFinancialReports {
+List<Invoice> Invoices;
+List<FinanceReport> FinanceReports;
 
-Invoice invoice;
-FinanceReport financeReport;
-boolean ErrorAtDataBase=false;
-boolean ErrorAtSystem=false;
-
-public void makeErrorAtDataBase() {
-    ErrorAtDataBase=true;
-}
-public void makeErrorAtSystem() {
-    ErrorAtSystem=true;
-}
 
 public boolean generateInvoice(int customerID, String customerName,Order order) {
-    if(customerName == null || customerName == ""||order==null){
+    if(customerName == null || customerName.isEmpty() ||order==null){
         return false;
     }
-    if(ErrorAtDataBase){
-        return false;
-    }
+
     Invoice invoice = new Invoice();
-    invoice.generateInvoice(customerID, customerName, order);
+    Invoices.add(invoice);
+    invoice.generateInvoice(order);
     return true;
 }
 
-public boolean generateTrackFinancialReport(ArrayList<Order> orders) {
-    if(orders==null|| orders.isEmpty()){
-        financeReport = new FinanceReport();
-        financeReport.generateFinanceReport(new ArrayList<Order>());
-        return true;
+public void generateTrackFinancialReport(List<Customer> customers, List<Chef> chefs) {
+    if(customers==null|| customers.isEmpty()){
+        return;
     }
-    if(ErrorAtSystem){
-        return false;
+    if(chefs==null||chefs.isEmpty()){
+        return;
     }
-    financeReport = new FinanceReport();
-    financeReport.generateFinanceReport(orders);
-    return true;
+    FinanceReport financeReport = new FinanceReport();
+    financeReport.generateFinanceReport(customers, chefs);
 
 }
 

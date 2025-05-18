@@ -27,16 +27,7 @@ public class InvoicesAndTrackFinancialReports1 {
 
 
 
-    @When("the system encounters a database error during invoice creation")
-    public void theSystemEncountersADatabaseErrorDuringInvoiceCreation() {
-        gen.makeErrorAtDataBase();
-        result = gen.generateInvoice(1,"ahmad",order1);
-    }
-    @Then("the system will display an error message: Failed to create invoice due to a system error")
-    public void theSystemWillDisplayAnErrorMessageFailedToCreateInvoiceDueToASystemError() {
-        Assert.assertFalse(result);
-        //JOptionPane.showMessageDialog(null, "Failed to create invoice due to a system error");
-    }
+
 
     @When("the customer confirms an order that contains valid customer and product information")
     public void theCustomerConfirmsAnOrderThatContainsValidCustomerAndProductInformation() {

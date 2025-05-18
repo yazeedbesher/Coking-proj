@@ -62,7 +62,7 @@ public class HelloApplication {
                             else if (choice == 1) {
                                 admin.manegeCustomerOrderHistory(registeredCustomers);
                             } else if (choice == 2) {
-                                admin.createFinanceReport();
+                                admin.createFinanceReport(registeredCustomers,registeredChefs);
                             }
 
                         }

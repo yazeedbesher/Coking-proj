@@ -55,13 +55,17 @@ public class Order {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String orderDateString = orderDate.format(formatter);
+        String pickUpTimeString = pickUpTime.format(formatter);
+
         return "Order ID: " + orderID +
                 ", Customer ID: " + customerID+
                 ", Customer Name: " + customerName+
                 ", Chef Name: " + chefName+
                 ", Meal Name: " + mealName+
-                ", Order Date: " + orderDate.toString()+
-                ", Pick Up Time: " + pickUpTime.toString() ;
+                ", Order Date: " + orderDateString+
+                ", Pick Up Time: " + pickUpTimeString ;
     }
 
 
