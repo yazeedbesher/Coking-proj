@@ -117,7 +117,6 @@ public class Chef extends Person {
                 if (customer.getCustomerID() == customerId) {
                     ifCustomerFound = true;
 
-                    System.out.println("What would you like to do?");
                     System.out.println("1. Show Order History 0. Exit ");
                     int choice = Integer.parseInt(scanner.nextLine());
 

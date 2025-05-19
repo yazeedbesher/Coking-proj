@@ -132,11 +132,9 @@ public class HelloApplication {
                 else if (id == 3) {
                         Chef currentChef = Signin.login(registeredChefs);
                         if (currentChef != null) {
-                            System.out.println("1-Customer Order History 2- 3- 4- ");
-                            int choice = Integer.parseInt(scanner.nextLine());
-                            if (choice == 1) {
+
                                 currentChef.showCustomerOrderHistory(registeredCustomers);
-                            }
+
                         }
                 }
 
