@@ -1,29 +1,40 @@
 package com.example.cooking_proj;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class dietary_preferences_and_allergies {
     List<String> selectedAllergies;
     List<String> selected_Preference;
-
+    StockSystem stockSystem;
+    Map<List<String>, List<Integer>> Stock;
+    List<String> ingredients ;
 
     public dietary_preferences_and_allergies() {
         selectedAllergies = new ArrayList<>();
         selected_Preference = new ArrayList<>();
+        stockSystem = new StockSystem();
+        Stock = new HashMap<>();
+        ingredients = new ArrayList<>();
     }
 
 public List<String> addPreference() {
-        Scanner scanner = new Scanner(System.in);
+    Stock = stockSystem.getStock();
+    Map.Entry<List<String>, List<Integer>> StockMap = Stock.entrySet().iterator().next();
+    ingredients = StockMap.getKey();
 
+        Scanner scanner = new Scanner(System.in);
     System.out.print("How many Ingredients would you like to enter? ");
     int count = Integer.parseInt(scanner.nextLine());
 
     for (int i = 0; i < count; i++) {
         System.out.print("Enter Ingredients " + (i + 1) + ": ");
         String input = scanner.nextLine();
-        selected_Preference.add(input);
+        if(!ingredients.contains(input)) {
+            System.out.println("Sorry We Dont Have " + input + " right Now");
+        }
+        else{
+            selected_Preference.add(input);
+        }
     }
     return selected_Preference;
 }

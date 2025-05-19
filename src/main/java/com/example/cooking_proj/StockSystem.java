@@ -91,7 +91,7 @@ public class StockSystem {
                 int index = ingredients.indexOf(ingredient);
                 int correspondingValue = quantity.get(index);
                 quantity.set(index, correspondingValue += 3);
-                System.out.println("The new quantity of " + ingredient + " is " + correspondingValue);
+                System.out.println("Buy Done Successfully !  ");
             }
         }
         else if(id==0) {
