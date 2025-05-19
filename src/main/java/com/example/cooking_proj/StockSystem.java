@@ -19,7 +19,7 @@ public class StockSystem {
         ingredients.add("pasta");
         quantity.add(5);
         ingredients.add("Rice");
-        quantity.add(1);
+        quantity.add(0);
         ingredients.add("Tomato");
         quantity.add(6);
         ingredients.add("Lettuce");
@@ -38,8 +38,7 @@ public class StockSystem {
         return Stock;
     }
 
-    public boolean Check_quantity(String ingredient){
-        boolean flag = true;
+    public void Check_quantity(String ingredient){
 
         if (ingredients.contains(ingredient)) {
             int index = ingredients.indexOf(ingredient);
@@ -49,31 +48,57 @@ public class StockSystem {
                 if(correspondingValue == 0) {
                     Empty_storage(ingredient,correspondingValue);
                     Automatic_Restocking(ingredient);
-                    return false;
+                    return;
                 }
                 if(correspondingValue == 1 ) {
                     Almost_End(ingredient,correspondingValue);
                     Automatic_Restocking(ingredient);
-                     return flag;
+                    return;
                 }
                 Alert_quantity(ingredient,correspondingValue);
                 Automatic_Restocking(ingredient);
             }
 
         }
-        return flag;
+    }
+
+    public void decrease_quantity(String ingredient){
+        int index = ingredients.indexOf(ingredient);
+        int correspondingValue = quantity.get(index);
+        quantity.set(index, correspondingValue - 1);
+        System.out.println("The new quantity of "+ ingredient+" is "+quantity.get(index) );
     }
 
     public void Automatic_Restocking(String ingredient) {
-        System.out.println("Depend on Low Storage quantity -> System Automatic Restocking "+ ingredient );
+        System.out.println("System : Depend on Low Storage quantity -> System suggest  Automatic Restocking "+ ingredient );
 
-        if (ingredients.contains(ingredient)) {
+        System.out.println("Manager : Do You Want Automatic Restocking For " + ingredient + "?  0- No 1-Yes");
+        Scanner scanner = new Scanner(System.in);
+        int id = Integer.parseInt(scanner.nextLine());
+
+        if(id==1) {
+            if (ingredients.contains(ingredient)) {
+                int index = ingredients.indexOf(ingredient);
+                int correspondingValue = quantity.get(index);
+                quantity.set(index, correspondingValue += 3);
+                System.out.println("The new quantity of " + ingredient + " is " + correspondingValue);
+            }
+        }
+        else if(id==0) {
             int index = ingredients.indexOf(ingredient);
             int correspondingValue = quantity.get(index);
-            quantity.set(index, correspondingValue += 3);
-            System.out.println("The new quantity of "+ ingredient+" is "+quantity.get(index) );
+            System.out.println("Be Careful ! The quantity of " + ingredient + " is " + correspondingValue);
         }
+    }
 
+    public boolean is_empty_storage(String ingredient){
+        int index = ingredients.indexOf(ingredient);
+        int correspondingValue = quantity.get(index);
+
+        if(correspondingValue==0) {
+            return true;
+        }
+        return false;
     }
 
     public void Alert_quantity(String name,Integer quantity){
@@ -81,11 +106,11 @@ public class StockSystem {
         System.out.println("Try To Contact with Any Supplier immedietly !");
     }
     public void Almost_End(String name,Integer quantity){
-        System.out.println("Manager Alert:This is Last Pease of -> " +name);
+        System.out.println("Manager Alert :This is Last Pease of -> " +name);
         System.out.println("Try To Contact with Any Supplier immedietly !");
     }
     public void Empty_storage(String name,Integer quantity){
-        System.out.println("Manager Alert:We Dont Have -> " +name);
+        System.out.println("Manager Alert :We Dont Have -> " +name);
         System.out.println("Try To Contact with Any Supplier immedietly !");
     }
 

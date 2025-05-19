@@ -7,7 +7,6 @@ public class Create_Custome_Meal_2 {
     Map<String, String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients; // المكونات المختارة
     List<String> selectedAllegries;
-    String notification = "You Have Recieced a New Task To do";
     List<String> Meals;
     List<List> create_meal;
     List<Integer> quantity;
@@ -42,21 +41,17 @@ public class Create_Custome_Meal_2 {
         Meals.add("Fried Chicken");
 
         stockSystem= new StockSystem();
-
     }
+
     public String suggest_alternative(String ingredient) {
         for (String sa : selectedAllegries) {
             if (!sa.equals(ingredient)) {
                 suggestedAlternative = substitutionSuggestions.get(ingredient);
-                System.out.println("Chef ! We had Subtitute "+ingredient+ "With "+ suggestedAlternative);
+                System.out.println("Chef ! We had Subtitute "+ingredient+ " with "+ suggestedAlternative);
                 break;
             }
         }
         return suggestedAlternative;
-    }
-
-    public void alertChef() {
-
     }
 
     public List<List> create_meal(List<String> Preference, List<String> Allergies) {
@@ -74,15 +69,13 @@ public class Create_Custome_Meal_2 {
         for (int i = 0; i < selectedIngredients.size(); i++) {
             String ingredient1 = selectedIngredients.get(i);
 
-            if(stockSystem.Check_quantity(ingredient1)){
-
             if (!ingredients.contains(ingredient1) && !seen.contains(ingredient1)) {
                 seen.add(ingredient1);
                 suggestedAlternative = suggest_alternative(ingredient1);
                 selectedIngredients.remove(ingredient1);
                 selectedIngredients.add(suggestedAlternative);
                 System.out.println("Sorry, we don't have " + ingredient1 + ", so the alternative will be " + suggestedAlternative);
-                alertChef();
+
             }
 
             if (selectedAllegries.contains(ingredient1)) {
@@ -90,9 +83,7 @@ public class Create_Custome_Meal_2 {
                 selectedIngredients.remove(ingredient1);
                 selectedIngredients.add(suggestedAlternative);
                 System.out.println("Warning: " + ingredient1 + " is in the allergy list, so the alternative will be " + suggestedAlternative);
-                alertChef();
             }
-
 
             for (int j = i + 1; j < selectedIngredients.size(); j++) {
                 String ingredient2 = selectedIngredients.get(j);
@@ -105,34 +96,42 @@ public class Create_Custome_Meal_2 {
                         selectedIngredients.add(suggestedAlternative);
                         System.out.println("Incompatible Pair Found: " + ingredient1 + " and " + ingredient2 +
                                 ". Suggested alternative: " + suggestedAlternative);
-                        alertChef();
                     }
                 }
             }
         }
-            else{
-                suggestedAlternative = suggest_alternative(ingredient1);
-                selectedIngredients.remove(ingredient1);
-                selectedIngredients.add(suggestedAlternative);
-                System.out.println("Sorry We dont Have "+ingredient1+ "Now So the Alternative Will Be + "+suggestedAlternative);
+
+        for(String s: selectedIngredients) {
+            stockSystem.Check_quantity(s);
+        }
+
+        Iterator<String> iterator = selectedIngredients.iterator();
+        List<String> updatedIngredients = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+            if (stockSystem.is_empty_storage(s)) {
+                suggestedAlternative = suggest_alternative(s);
+                System.out.println("Sorry Because We Don't Have " + s + " So Your Alternative Will Be " + suggestedAlternative);
+                updatedIngredients.add(suggestedAlternative);
+                iterator.remove();
             }
         }
+
+        selectedIngredients.addAll(updatedIngredients);
+
+        for (String s : selectedIngredients) {
+            stockSystem.decrease_quantity(s);
+        }
+
         create_meal.add(selectedIngredients);
-       create_meal.add(selectedAllegries);
+        create_meal.add(selectedAllegries);
 
         return create_meal;
     }
+
     public List<String>GetMeals(){
         return Meals;
     }
-
-
-
-
-    @Override
-    public String toString() {
-        notification = notification + "\n";
-    return notification;
-}
 
 }

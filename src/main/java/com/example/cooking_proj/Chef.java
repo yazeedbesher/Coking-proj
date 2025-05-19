@@ -1,9 +1,6 @@
 package com.example.cooking_proj;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Chef extends Person {
     private String name;
@@ -55,48 +52,46 @@ public class Chef extends Person {
 
     public List<String> Create_Custome_Meal(List<List> ingredients) {
         workload++;
-        List<String> Preference = ingredients.get(0);
-        List<String> Allegreis = ingredients.get(1);
 
-        System.out.println("Chef : This is THe Customer Prefrence is : ");
+        List<String> Preference = ingredients.get(0);
+        List<String> Allergies = ingredients.get(1);
+        MealsAvailable.clear();
+
+        System.out.println("Chef : The Customer's Preferences are:");
         int w = 1;
         for (String d : Preference) {
             System.out.println(w + "- " + d);
             w++;
         }
-        MealsAvailable.clear();
-        for (String c : Preference) {
-            Preference.remove(c);
-            if (Preference.isEmpty()) {
-                if (c.equals("Chicken")) {
-                    MealsAvailable.add("Fried Chicken");
-                    break;
-                }
-                if (c.equals("Rice")) {
-                    MealsAvailable.add("Cooked Rice");
-                    break;
-                }
-            }
-            for (String a : Preference) {
-                if (a.equals("Chicken")) {
-                    MealsAvailable.add("Fried Chicken");
-                    if (c.equals("Rice")) {
-                        MealsAvailable.add("Kabsa"); // enter rice then chicken
-                    }
-                    if (c.equals("pasta")) {
-                        MealsAvailable.add("Lazania");
-                    }
-                }
-                if (a.equals("Fish")) {
-                    if (c.equals("Tomato")) {
-                        MealsAvailable.add("Fish with Tomato");
-                    }
-                }
-            }
+
+        // تحويل التفضيلات إلى مجموعة لتسهيل الفحص بدون ترتيب
+        Set<String> preferenceSet = new HashSet<>(Preference);
+
+        // اقتراحات بناءً على التفضيلات بدون ترتيب
+        if (preferenceSet.contains("Chicken")) {
+            MealsAvailable.add("Fried Chicken");
         }
+        if (preferenceSet.contains("Rice")) {
+            MealsAvailable.add("Cooked Rice");
+        }
+        if (preferenceSet.contains("Rice") && preferenceSet.contains("Chicken")) {
+            MealsAvailable.add("Kabsa");
+        }
+        if (preferenceSet.contains("pasta") && preferenceSet.contains("Chicken")) {
+            MealsAvailable.add("Lazania");
+        }
+        if (preferenceSet.contains("Fish") && preferenceSet.contains("Tomato")) {
+            MealsAvailable.add("Fish with Tomato");
+        }
+        if (preferenceSet.contains("Egg") && preferenceSet.contains("Cheese")) {
+            MealsAvailable.add("Cheese Omelette");
+        }
+
+        // add more
 
         return MealsAvailable;
     }
+
 
     public void startRemainder(Order order) {
         NotificationsAndAlerts chef_Notification = new NotificationsAndAlerts();
@@ -146,6 +141,7 @@ public class Chef extends Person {
                             for(Order order : Addorders){
                                if(!Meals.contains(order.mealName));{
                                    Meals.add(order.mealName);
+                                    System.out.println(order.mealName+" Added To the Kitchen");
                                 }
                             }
 

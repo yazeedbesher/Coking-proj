@@ -130,11 +130,6 @@ public class Customer extends Person{
 
             preference.clear();
             Allergies.clear();
-//            manager.initlize_order(getCustomerID(),getCustomerName(),chefName,mealName);//the define of Order object
-//            customer_Notification = new NotificationsAndAlerts();
-//            customer_Notification.UpcomingOrdersReminder(1,manager.getOrder1(),1);
-//            pastOrders.addPastOrder(manager.getOrder1()); //add it to the Past Order list
-//            // Ahmad -> here define the Order object and add it to the list here (DONE)
 
         }
         if (id == 3) {
@@ -148,7 +143,6 @@ public class Customer extends Person{
                     System.out.println(i + "- " + order.getMealName());
                     i++;
                 }
-                //Yazeed contenue the order
             }
         }
 
