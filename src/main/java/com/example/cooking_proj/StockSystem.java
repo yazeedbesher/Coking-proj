@@ -7,12 +7,13 @@ public class StockSystem {
     List<String> ingredients;
     List<Integer> quantity;
     Map<List<String>, List<Integer>> Stock;
-    Manager manager;
+    Supplier supplier;
 
     public StockSystem() {
         Stock = new HashMap<>();
         ingredients = new ArrayList<>();
         quantity = new ArrayList<>();
+        supplier = new Supplier();
 
         ingredients.add("Chicken");
         quantity.add(3);
@@ -28,8 +29,10 @@ public class StockSystem {
         quantity.add(4);
         ingredients.add("milk");
         quantity.add(3);
-        ingredients.add("Fish");
-        quantity.add(4);
+        ingredients.add("Egg");
+        quantity.add(10);
+        ingredients.add("Onion");
+        quantity.add(12);
 
         Stock.put(ingredients, quantity);
     }
@@ -69,10 +72,17 @@ public class StockSystem {
         System.out.println("The new quantity of "+ ingredient+" is "+quantity.get(index) );
     }
 
+    public void increase_quantity(Integer quantity_buy,String ingredient){
+        int index = ingredients.indexOf(ingredient);
+        int correspondingValue = quantity.get(index);
+        quantity.set(index, correspondingValue + quantity_buy);
+        System.out.println("The new quantity of "+ ingredient+" is "+quantity.get(index) );
+    }
+
     public void Automatic_Restocking(String ingredient) {
         System.out.println("System : Depend on Low Storage quantity -> System suggest  Automatic Restocking "+ ingredient );
 
-        System.out.println("Manager : Do You Want Automatic Restocking For " + ingredient + "?  0- No 1-Yes");
+        System.out.println("Manager : Do You Want Automatic Restocking For " + ingredient + "\n" +"The Price is :"+supplier.Check_Price(ingredient)+ " ?  0- No 1-Yes");
         Scanner scanner = new Scanner(System.in);
         int id = Integer.parseInt(scanner.nextLine());
 
