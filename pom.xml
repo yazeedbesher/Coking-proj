@@ -23,6 +23,11 @@
             <artifactId>javafx-controls</artifactId>
             <version>17.0.6</version>
         </dependency>
+             <dependency>
+    <groupId>eu.hansolo</groupId>
+    <artifactId>tilesfx</artifactId>
+    <version>1.7.18</version> <!-- Use the latest version if available -->
+</dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
