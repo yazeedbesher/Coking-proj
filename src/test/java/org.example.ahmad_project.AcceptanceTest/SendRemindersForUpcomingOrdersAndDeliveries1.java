@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class SendRemindersForUpcomingOrdersAndDeliveries1 {
     boolean result;
     NotificationsAndAlerts CustomerReminder=new NotificationsAndAlerts() ;
-    Order order1 = new Order(1, 1, "Ahmad", "Chef Ahmad", LocalDateTime.now(), "Ahmad Meal", "My favorite snack", LocalDateTime.now().plusSeconds(30));
-    Order order2 = new Order(1, 1, "Ahmad", "Chef Ahmad", LocalDateTime.now(), "Ahmad Meal", "My favorite snack", LocalDateTime.now().plusHours(2));
+    Order order1 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Ahmad Meal");
+    Order order2 = new Order(1, 1, "Ahmad", "Chef Ahmad",  "Ahmad Meal");
 //Order order3 = new Order(1, 1, LocalDateTime.now(), "Ahmad", "Snack", LocalDateTime.now().plusMinutes(30));
 
 

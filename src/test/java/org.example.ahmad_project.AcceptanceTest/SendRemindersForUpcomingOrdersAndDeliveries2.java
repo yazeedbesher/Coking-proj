@@ -12,10 +12,10 @@ public class SendRemindersForUpcomingOrdersAndDeliveries2 {
     boolean result;
     NotificationsAndAlerts ChefReminder = new NotificationsAndAlerts();
 
-    Order order1 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", LocalDateTime.now(), "Meal 1", "Snack", LocalDateTime.now().plusSeconds(30));
-    Order order2 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", LocalDateTime.now(), "Meal 2", "Snack", LocalDateTime.now().plusHours(2));
-    Order order3 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", LocalDateTime.now(), "Canceled Meal", "Canceled Meal", LocalDateTime.now().minusHours(1));
-    Order orderWithMissingInfo = new Order(1, 1, "Customer Ahmad", "", LocalDateTime.now(), "Meal with missing info", "Meal with missing info", LocalDateTime.now().plusHours(1));
+    Order order1 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad",  "Meal 1");
+    Order order2 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", "Meal 2");
+    Order order3 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad",  "Canceled Meal");
+    Order orderWithMissingInfo = new Order(1, 1, "Customer Ahmad", "", "Meal with missing info");
 
     @When("the chef is scheduled to prepare meals today")
     public void theChefIsScheduledToPrepareMealsToday() {

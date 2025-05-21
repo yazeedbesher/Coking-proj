@@ -10,22 +10,14 @@
     <version>1.0-SNAPSHOT</version>
     <name>Ahmad_Project</name>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <properties>
+        <junit.version>5.9.2</junit.version>
+        <cucumber.version>7.18.1</cucumber.version>
+        <sonar.organization>Coking-proj-soft</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
+        <java.version>24</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jacoco.version>0.8.12</jacoco.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
     </properties>
@@ -36,11 +28,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>17.0.6</version>
         </dependency>
-             <dependency>
-               <groupId>eu.hansolo</groupId>
-              <artifactId>tilesfx</artifactId>
-               <version>1.7.18</version> <!-- Use the latest version if available -->
-           </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -110,6 +98,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.github.almasb</groupId>
             <artifactId>fxgl</artifactId>
