@@ -3,7 +3,7 @@ package com.example.cooking_proj;
 import java.util.List;
 
 public class Admin extends Person{
-//Ahmad
+
     private String name;
     private int ID;
     private String Address;
