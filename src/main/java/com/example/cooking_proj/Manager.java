@@ -93,7 +93,7 @@ public class Manager extends Person {
 
         System.out.println("Your Chef is "+Task_chef.getName());
 
-        Task_chef.Create_Meal();
+        Task_chef.Create_Meal(meal);
         return Task_chef.getName();
     }
 
