@@ -12,10 +12,11 @@ public class SendRemindersForUpcomingOrdersAndDeliveries2 {
     boolean result;
     NotificationsAndAlerts ChefReminder = new NotificationsAndAlerts();
 
-    Order order1 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad",  "Meal 1");
-    Order order2 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad", "Meal 2");
-    Order order3 = new Order(1, 1, "Customer Ahmad", "Chef Ahmad",  "Canceled Meal");
-    Order orderWithMissingInfo = new Order(1, 1, "Customer Ahmad", "", "Meal with missing info");
+    Order order1 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Rice",LocalDateTime.of(2025, 5, 22, 8, 5, 5));
+    Order order2 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Rice",LocalDateTime.of(2025, 5, 22, 5, 5));
+    Order order3 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Rice",LocalDateTime.of(2025, 5, 22, 8, 5, 5));
+    Order order4 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Rice",LocalDateTime.of(2025, 5, 22, 8, 5, 5));
+    Order order5 = new Order(1, 1, "Ahmad", "Chef Ahmad", "Rice",LocalDateTime.of(2025, 5, 22, 8, 5, 5));
 
     @When("the chef is scheduled to prepare meals today")
     public void theChefIsScheduledToPrepareMealsToday() {
@@ -54,7 +55,7 @@ public class SendRemindersForUpcomingOrdersAndDeliveries2 {
 
     @When("the system attempts to notify the chef")
     public void theSystemAttemptsToNotifyTheChef() {
-        result = ChefReminder.UpcomingOrdersReminder(2, orderWithMissingInfo, 2);
+        result = ChefReminder.UpcomingOrdersReminder(2, order5, 2);
     }
 
     @When("the chef's contact information is missing or invalid")

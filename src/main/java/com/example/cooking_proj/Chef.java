@@ -41,8 +41,10 @@ public class Chef extends Person {
         return name;
     }
 
-    public void Create_Meal() {
+    public void Create_Meal(String meal) {
         workload++;
+
+
     }
 
     public List<String> Create_Custome_Meal(List<List> ingredients) {
@@ -59,8 +61,10 @@ public class Chef extends Person {
             w++;
         }
 
+        // تحويل التفضيلات إلى مجموعة لتسهيل الفحص بدون ترتيب
         Set<String> preferenceSet = new HashSet<>(Preference);
 
+        // اقتراحات بناءً على التفضيلات بدون ترتيب
         if (preferenceSet.contains("Chicken")) {
             MealsAvailable.add("Fried Chicken");
         }
@@ -81,8 +85,10 @@ public class Chef extends Person {
         }
 
         // add more
+
         return MealsAvailable;
     }
+
 
     public void startRemainder(Order order) {
         NotificationsAndAlerts chef_Notification = new NotificationsAndAlerts();
@@ -100,6 +106,7 @@ public class Chef extends Person {
 
     public void showCustomerOrderHistory(Customer customer) {
 
+
         if (customer.getCustomerPastOrders() == null) {
             System.out.println("Your Orders History is Empty");
             return;
@@ -112,6 +119,7 @@ public class Chef extends Person {
                 System.out.println(order.mealName + " Added To the Kitchen");
             }
         }
+
     }
 
     public static void displayCustomerOrderHistory(Customer customer){
@@ -124,5 +132,6 @@ public class Chef extends Person {
         }else {
             System.out.println("Order History is empty\n");
         }
+
     }
 }
