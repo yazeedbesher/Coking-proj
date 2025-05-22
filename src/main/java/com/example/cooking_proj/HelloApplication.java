@@ -204,9 +204,6 @@ public class HelloApplication {
         boolean ifCustomerFound=false;
         Chef currentChef = Signin.login(chefs);
         if (currentChef != null) {
-
-
-
             System.out.println("Please enter Customer ID");
             while(true){
                 int customerId = Integer.parseInt(scanner.nextLine());
@@ -225,14 +222,12 @@ public class HelloApplication {
                         else if (choice == 1) {
                             displayCustomerOrderHistory(customer);
                             System.out.println("What would you like to do?");
-                            System.out.println("1.Add These Meals in My kitchen Recommendation 2. Show Order History for another Customer 0. Exit ");
+                            System.out.println("1.Add These Meals in My kitchen Recommendation 0. Exit ");
                             int c = Integer.parseInt(scanner.nextLine());
-                            if(c == 0){return;}
+                            if(c == 0){break;}
                             if(c == 1) {
+                                currentChef.showCustomerOrderHistory(customer);
                             }
-                            else if (c == 2){
-                                currentChef.showCustomerOrderHistory(customer);}
-
                             }
                         }
                     }
@@ -242,11 +237,8 @@ public class HelloApplication {
                     }
                     break;
                 }
+
             }
-
-
-
-
 
         }
     }

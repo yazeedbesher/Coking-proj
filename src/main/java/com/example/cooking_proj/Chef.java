@@ -8,13 +8,10 @@ public class Chef extends Person {
     private String phoneNumber;
     private Double expretise;
     private Double workload;
-    boolean chefsAvailable = true;
-    String notification = "You Have Recieced a New Task To do";
     List<String> Custome_Meals;
     List<String> Meals;
 
     List<String> MealsAvailable;
-    Scanner scanner = new Scanner(System.in);
     List<Order> Addorders;
 
     public Chef(int ID, String name, String phoneNumber, Double expretise, Double workload) {
@@ -111,7 +108,7 @@ public class Chef extends Person {
 
 
         if (customer.getCustomerPastOrders() == null) {
-            System.out.println("Your Orders History is Empty , Try Again :(");
+            System.out.println("Your Orders History is Empty");
             return;
         }
         Addorders = customer.getCustomerPastOrders();
