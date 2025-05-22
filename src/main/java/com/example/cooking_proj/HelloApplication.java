@@ -25,7 +25,7 @@ public class HelloApplication {
         List<Manager> registeredManagers = new ArrayList<>();
         StockSystem stockSystem = new StockSystem();
         Supplier supplier = new Supplier();
-
+        dietary_preferences_and_allergies dietary_preferences_and_allergies = new dietary_preferences_and_allergies();
 
         Admin admin = new Admin(222, "Saad", "Jenin", "0595638731");
         registeredAdmins.add(admin);
@@ -123,6 +123,7 @@ public class HelloApplication {
  static void customerWork(Customer currentCustomer,List<Chef> chefs,Manager manager) {
      List<String>Meals;
      Create_Custome_Meal_2 custome_Meal=new Create_Custome_Meal_2();
+     Track_past_orders_and_personalized_meal_plans pastOrders= new Track_past_orders_and_personalized_meal_plans();
 
         while (true){
             System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History 0-Exit");
@@ -144,13 +145,63 @@ public class HelloApplication {
                 if(meal==0){
                     break;
                 }
-                currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal);
+                currentCustomer.setMeals(Meals);
+                currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal,pastOrders);
             }
             else if (id==2){
+                List<String> preference;
+                List<String> Allergies;
+                List<List> create_mealMap;
+                List<String>AvailableMeals;
+                NotificationsAndAlerts customer_Notification = new NotificationsAndAlerts();
 
+                preference = dietary_preferences_and_allergies.addPreference();
+            Allergies = dietary_preferences_and_allergies.addAllergies();
+            currentCustomer.setcustomerpreference(preference);
+            currentCustomer.seecustomerAllegries(Allergies);
+
+            custome_Meal = new Create_Custome_Meal_2();
+            create_mealMap = custome_Meal.create_meal(preference, Allergies);
+            AvailableMeals = manager.assign_custome_task(chefs, create_mealMap);
+            System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
+            int j = 1;
+            System.out.println("0- Nothing, Thank You!");
+            for (String item : AvailableMeals) {
+                System.out.println(j + "- " + item);
+                j++;
             }
-            else if (id==3){
+            int meal = Integer.parseInt(scanner.nextLine());
+            if(meal==0){
+                break;
+            }
+            String mealName = AvailableMeals.get(meal - 1);
+            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
+            String chefName = manager.getChef_name();
 
+                LocalDateTime pickUpTime = SelectTime();
+           Order order = manager.initlize_order(currentCustomer.getCustomerID(), currentCustomer.getCustomerName(), chefName, mealName,pickUpTime);
+
+            customer_Notification.UpcomingOrdersReminder(1, order, 1);
+            pastOrders.addPastOrder(order);
+            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+            invoice.generateInvoice(order);
+
+            preference.clear();
+            Allergies.clear();
+            }
+
+            else if (id==3){
+                if(pastOrders.getPastOrders()==null){
+                System.out.println("Sorry Your History Is Empty !");
+            }
+            else{
+                System.out.println("Your Past Meals: \n");
+                int i=1;
+                for (Order order : pastOrders.getPastOrders()) {
+                    System.out.println(i + "- " + order.getMealName());
+                    i++;
+                }
+            }
             }
             }
     }

@@ -3,11 +3,11 @@ package com.example.cooking_proj;
 import java.util.*;
 
 public class dietary_preferences_and_allergies {
-    List<String> selectedAllergies;
-    List<String> selected_Preference;
-    StockSystem stockSystem;
-    Map<List<String>, List<Integer>> Stock;
-    List<String> ingredients ;
+    static List<String> selectedAllergies;
+    static List<String> selected_Preference;
+    static StockSystem stockSystem;
+    static Map<List<String>, List<Integer>> Stock;
+    static List<String> ingredients ;
 
     public dietary_preferences_and_allergies() {
         selectedAllergies = new ArrayList<>();
@@ -17,7 +17,7 @@ public class dietary_preferences_and_allergies {
         ingredients = new ArrayList<>();
     }
 
-public List<String> addPreference() {
+public static List<String> addPreference() {
     Stock = stockSystem.getStock();
     Map.Entry<List<String>, List<Integer>> StockMap = Stock.entrySet().iterator().next();
     ingredients = StockMap.getKey();
@@ -39,7 +39,7 @@ public List<String> addPreference() {
     return selected_Preference;
 }
 
-public List<String> addAllergies() {
+public static List<String> addAllergies() {
 
     Scanner scanner = new Scanner(System.in);
 
