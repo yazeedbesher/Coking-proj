@@ -1,5 +1,6 @@
 package com.example.cooking_proj;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,10 +100,10 @@ public class Manager extends Person {
 
 
 
-    public Order initlize_order(int customerID, String customerName, String chefName, String mealName){
+    public Order initlize_order(int customerID, String customerName, String chefName, String mealName, LocalDateTime pickUpTime){
 
 
-        Order order = new Order(ordersId++, customerID, customerName, chefName, mealName);
+        Order order = new Order(ordersId++, customerID, customerName, chefName, mealName, pickUpTime);
         Task_chef.startRemainder(order);
         return order;
 

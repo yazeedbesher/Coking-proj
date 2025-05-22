@@ -1,5 +1,9 @@
 package com.example.cooking_proj;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -105,15 +109,14 @@ public class HelloApplication {
                 chefWork(registeredChefs, registeredCustomers);
             } else if (id == 4) {
 
-                Customer currentCustomer = Signin.login(registeredCustomers);
 
-                if (currentCustomer == null) {
-                    currentCustomer = Signup.signup(registeredCustomers);
-                }
 
-                System.out.println("Logged in as: " + currentCustomer.getCustomerName());
 
-                currentCustomer.make_order(registeredChefs, manager);
+
+
+
+
+                //currentCustomer.make_order(registeredChefs, );
 
             }
 
@@ -160,7 +163,7 @@ public class HelloApplication {
                                                 if (chef.getName().equals(chefName)) {
                                                     System.out.println("Please Enter Meal Name: ");
                                                     String mealName = scanner.nextLine();
-                                                    Order newOrder = new Order(HelloApplication.ordersTDs++, customerId, customer.getCustomerName(), chef.getName(), mealName);
+                                                    Order newOrder = new Order(HelloApplication.ordersTDs++, customerId, customer.getCustomerName(), chef.getName(), mealName,SelectTime());
                                                     customer.pastOrders.addPastOrder(newOrder);
                                                     ifChefFound = true;
                                                 }
@@ -238,6 +241,70 @@ public class HelloApplication {
 
         }
     }
+
+
+    static void customerWork(List<Customer> customers, List<Chef> chefs,Manager manager) {
+//        Customer currentCustomer = Signin.login(customers);
+//        if (currentCustomer == null) {
+//            currentCustomer = Signup.signup(customers);
+//        }
+//        System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+//
+//        while (true){
+//            System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
+//            Scanner scanner = new Scanner(System.in);
+//            int id = Integer.parseInt(scanner.nextLine());
+//            if (id==0){
+//                break;
+//            }
+//            else if (id==1){
+//
+//                Meals = custome_Meal.GetMeals();
+//                int i = 1;
+//                System.out.println("Choose Your Meal");
+//                System.out.println("0- Nothing, Thank You!");
+//                for (String item : Meals) {
+//                    System.out.println(i + "- " + item);
+//                    i++;
+//                }
+//                int meal = Integer.parseInt(scanner.nextLine());
+//                if(meal==0){
+//                    break;
+//                }
+//                currentCustomer.makeOrder1(chefs,manager,SelectTime());
+//            }
+//
+//
+//
+//
+//
+//        }
+    }
+
+
+
+
+    static LocalDateTime SelectTime(){
+        Scanner scanner = new Scanner(System.in);
+
+        LocalDate today = LocalDate.now();
+        System.out.println("Please enter your order date:");
+        for (int i = 0; i < 3; i++) {
+            System.out.println((i + 1) + ". " + today.plusDays(i));
+        }
+        int dateChoice = scanner.nextInt();
+        LocalDate selectedDate = today.plusDays(dateChoice - 1);
+        System.out.println("\nPlease enter your order Time:");
+        LocalTime[] times = new LocalTime[8];
+        for (int i = 0; i < 8; i++) {
+            times[i] = LocalTime.of(10 + i, 0);
+            System.out.println((i + 1) + ". " + times[i].format(DateTimeFormatter.ofPattern("HH:mm")));
+        }
+        int timeChoice = scanner.nextInt();
+        LocalTime selectedTime = times[timeChoice - 1];
+        return LocalDateTime.of(selectedDate, selectedTime);
+    }
+
 }
 
 

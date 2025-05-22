@@ -63,43 +63,5 @@ public List<String> getPreferences() {
 public List<String> getAllergeis() {
         return selectedAllergies;}
 
-//public boolean addPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies) {
-//    if (preferences == null || preferences.isEmpty() ) {
-//        return false;
-//    }
-//    if (allergies == null || allergies.isEmpty() ) {
-//        for(String str : preferences) {
-//            this.selected_Preference.add(str);
-//        }
-//
-//        return true;
-//    }
-//    for(String str : preferences) {
-//        this.selected_Preference.add(str);
-//    }
-//    for(String str : allergies) {
-//    this.selectedAllergies.add(str);}
-//    return true;
-//}
-//
-//
-//    public boolean getPreferencesAndAllergies(ArrayList<String> preferences, ArrayList<String> allergies){
-//    if(this.selected_Preference == null ||this.selected_Preference.isEmpty()){
-//    return false;
-//    }
-//
-//
-//    return true;
-//    }
-//
-//
-//    private ArrayList<String> List(String ... strings) {
-//        ArrayList<String>list =new ArrayList<>();
-//        for(String s: strings){
-//            list.add(s);
-//        }
-//        return list;
-//
-//    }
 
 }

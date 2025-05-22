@@ -1,5 +1,7 @@
 package com.example.cooking_proj;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Customer extends Person{
@@ -63,102 +65,90 @@ public class Customer extends Person{
         return Allergies;
     }
 
-    public void make_order(List<Chef> Chefs,Manager manager) {
-        while (true){
-        System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
-        Scanner scanner = new Scanner(System.in);
-        int id = Integer.parseInt(scanner.nextLine());
+//    public void make_order(,int State) {
+//
+//
+//
+//        if (id == 1) {
+//
+//
+//        }
+//
+//        if (id == 2) {
+//            preference = dietary_preferences_and_allergies.addPreference();
+//            Allergies = dietary_preferences_and_allergies.addAllergies();
+//            custome_Meal = new Create_Custome_Meal_2();
+//            create_mealMap = custome_Meal.create_meal(preference, Allergies);
+//            AvailableMeals = manager.assign_custome_task(Chefs, create_mealMap);
+//            System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
+//            int j = 1;
+//            System.out.println("0- Nothing, Thank You!");
+//            for (String item : AvailableMeals) {
+//                System.out.println(j + "- " + item);
+//                j++;
+//            }
+//            int meal = Integer.parseInt(scanner.nextLine());
+//            if(meal==0){
+//                break;
+//            }
+//            String mealName = AvailableMeals.get(meal - 1);
+//            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
+//            String chefName = manager.getChef_name();
+//
+//            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
+//
+//            customer_Notification.UpcomingOrdersReminder(1, order, 1);
+//            pastOrders.addPastOrder(order);
+//            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+//            invoice.generateInvoice(order);
+//
+//            preference.clear();
+//            Allergies.clear();
+//
+//        }
+//        if (id == 3) {
+//
+//            if(pastOrders.getPastOrders()==null){
+//                System.out.println("Sorry Your History Is Empty !");
+//            }
+//            else{
+//                System.out.println("Your Past Meals: \n");
+//                int i=1;
+//                for (Order order : pastOrders.getPastOrders()) {
+//                    System.out.println(i + "- " + order.getMealName());
+//                    i++;
+//                }
+//            }
+//        }
+//
+//
+//
+//
+//    }
+//    public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){
+//
+//        String mealName = Meals.get(meal - 1);
+//        String chefName = manager.assign_Task(Chefs, mealName);
+//        System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
+//
+//        Random rand = new Random();
+//        int randomInt = rand.nextInt(100);
+//
+//        order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
+//
+//        customer_Notification.UpcomingOrdersReminder(1, order, 1);
+//        pastOrders.addPastOrder(order);
+//        GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+//        invoice.generateInvoice(order);
+//
+//    }
+//    public void makeOrder2(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){
+//
+//
+//
+//    }
+//    public void makeOrder3(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){}
 
-        if (id == 1) {
-            Meals = custome_Meal.GetMeals();
-            int i = 1;
-            System.out.println("Choose Your Meal");
-            System.out.println("0- Nothing, Thank You!");
-            for (String item : Meals) {
-                System.out.println(i + "- " + item);
-                i++;
-            }
-            int meal = Integer.parseInt(scanner.nextLine());
-            if(meal==0){
-                break;
-            }
-            String mealName = Meals.get(meal - 1);
-            String chefName = manager.assign_Task(Chefs, mealName);
-            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
-
-            Random rand = new Random();
-            int randomInt = rand.nextInt(100);
-
-            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
-
-            customer_Notification.UpcomingOrdersReminder(1, order, 1);
-            pastOrders.addPastOrder(order);
-            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
-            invoice.generateInvoice(order);
-
-        }
-
-        if (id == 2) {
-            preference = dietary_preferences_and_allergies.addPreference();
-            Allergies = dietary_preferences_and_allergies.addAllergies();
-
-            custome_Meal = new Create_Custome_Meal_2();
-            create_mealMap = custome_Meal.create_meal(preference, Allergies);
-
-            AvailableMeals = manager.assign_custome_task(Chefs, create_mealMap);
-            System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
-            int j = 1;
-            System.out.println("0- Nothing, Thank You!");
-            for (String item : AvailableMeals) {
-                System.out.println(j + "- " + item);
-                j++;
-            }
-            int meal = Integer.parseInt(scanner.nextLine());
-            if(meal==0){
-                break;
-            }
-            String mealName = AvailableMeals.get(meal - 1);
-            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
-            String chefName = manager.getChef_name();
-
-            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName);
-
-            customer_Notification.UpcomingOrdersReminder(1, order, 1);
-            pastOrders.addPastOrder(order);
-            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
-            invoice.generateInvoice(order);
-
-            preference.clear();
-            Allergies.clear();
-
-        }
-        if (id == 3) {
-            if(pastOrders.getPastOrders()==null){
-                System.out.println("Sorry Your History Is Empty !");
-            }
-            else{
-                System.out.println("Your Past Meals: \n");
-                int i=1;
-                for (Order order : pastOrders.getPastOrders()) {
-                    System.out.println(i + "- " + order.getMealName());
-                    i++;
-                }
-            }
-        }
-
-        System.out.println("Do You Want To Do Anything Else ? ");
-        System.out.println("0-NO 1-Yes");
-        String choice = scanner.nextLine();
-        if (choice.equals("1")) {
-
-        } else if (choice.equals("0")) {
-            System.out.println("Thank You , Welcome!");
-
-            return;
-        }
-
-
-    }}
     public List<Order> getCustomerPastOrders () {
         return pastOrders.getPastOrders();
     }
