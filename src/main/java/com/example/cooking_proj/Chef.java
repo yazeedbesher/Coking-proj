@@ -10,7 +10,6 @@ public class Chef extends Person {
     private Double workload;
     List<String> Custome_Meals;
     List<String> Meals;
-
     List<String> MealsAvailable;
     List<Order> Addorders;
 
@@ -43,8 +42,6 @@ public class Chef extends Person {
 
     public void Create_Meal(String meal) {
         workload++;
-
-
     }
 
     public List<String> Create_Custome_Meal(List<List> ingredients) {

@@ -13,6 +13,7 @@ module com.example.cooking_proj {
     requires java.desktop;
 
 
+
     opens com.example.cooking_proj to javafx.fxml;
     exports com.example.cooking_proj;
 
