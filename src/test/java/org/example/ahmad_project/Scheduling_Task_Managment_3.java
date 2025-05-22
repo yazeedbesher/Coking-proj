@@ -1,38 +1,33 @@
 package org.example.ahmad_project;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+
+import io.cucumber.java.en.*;
 
 import java.util.*;
 
+import static org.junit.Assert.*;
+
 public class Scheduling_Task_Managment_3 {
 
-    private Map<String, Integer> chefsWorkload = new HashMap<>(); // this for chef name
-    private Map<String, String> chefTasks = new HashMap<>(); // this the assigned task for the chef
+    private Map<String, Integer> chefsWorkload = new HashMap<>();
+    private Map<String, String> chefTasks = new HashMap<>();
     private boolean chefsAvailable = true;
     private boolean notificationSent = false;
     private boolean customerReceivedMeal = false;
 
     @Given("the Kitchen manager assign task for chefs")
     public void theKitchenManagerAssignsTasksToChefs() {
-
+        chefsWorkload.clear();
+        chefTasks.clear();
         chefsWorkload.put("Chef John", 1);
         chefsWorkload.put("Chef Maria", 2);
-        chefsWorkload.put("Chef Alex", 0); //this mean the chef is free
-
+        chefsWorkload.put("Chef Alex", 0);
         System.out.println("Kitchen manager is preparing task assignments...");
     }
 
     @When("the chefs are available and not overloaded")
     public void theChefsAreAvailableAndNotOverloaded() {
-        // check if any chef has 0 workload
         chefsAvailable = chefsWorkload.values().stream().anyMatch(workload -> workload <= 1);
-        if (chefsAvailable) {
-            System.out.println("Some chefs are available to take tasks.");
-        } else {
-            System.out.println("All chefs are busy currently.");
-        }
+        System.out.println(chefsAvailable ? "Some chefs are available to take tasks." : "All chefs are busy currently.");
     }
 
     @Then("the manager assigns tasks based on their workloads and expertise")
@@ -41,9 +36,9 @@ public class Scheduling_Task_Managment_3 {
             for (Map.Entry<String, Integer> entry : chefsWorkload.entrySet()) {
                 if (entry.getValue() <= 1) {
                     chefTasks.put(entry.getKey(), "Prepare special meal");
-                    chefsWorkload.put(entry.getKey(), entry.getValue() + 1); // Increase workload
+                    chefsWorkload.put(entry.getKey(), entry.getValue() + 1);
                     System.out.println(entry.getKey() + " has been assigned a new task.");
-                    break; // Assign only to one chef for simplicity
+                    break;
                 }
             }
         }
@@ -51,11 +46,8 @@ public class Scheduling_Task_Managment_3 {
 
     @Then("the chefs start preparing meals on time")
     public void theChefsStartPreparingMealsOnTime() {
-        if (!chefTasks.isEmpty()) {
-            System.out.println("Chefs started preparing meals on time.");
-        } else {
-            System.out.println("No tasks assigned yet.");
-        }
+        assertFalse("No tasks assigned yet.", chefTasks.isEmpty());
+        System.out.println("Chefs started preparing meals on time.");
     }
 
     @Given("the chef receives notifications about assigned tasks")
@@ -66,19 +58,17 @@ public class Scheduling_Task_Managment_3 {
 
     @Then("the customers receive their meals")
     public void theCustomersReceiveTheirMeals() {
-        if (notificationSent && !chefTasks.isEmpty()) {
-            customerReceivedMeal = true;
-            System.out.println("Customers have received their meals.");
-        } else {
-            System.out.println("Meals are delayed. No notification or no task assigned.");
-        }
+        customerReceivedMeal = notificationSent && !chefTasks.isEmpty();
+        assertTrue("Meals are delayed.", customerReceivedMeal);
+        System.out.println("Customers have received their meals.");
     }
 
-@Given("first chef already has 5 active tasks")
+    @Given("first chef already has 5 active tasks")
     public void firstChefAlreadyHas5ActiveTasks() {
-    chefsWorkload.put("Chef A", 5);
-    System.out.println("Chef A has 5 active tasks.");
-}
+        chefsWorkload.clear();
+        chefsWorkload.put("Chef A", 5);
+        System.out.println("Chef A has 5 active tasks.");
+    }
 
     @And("second chef has 2 active tasks")
     public void secondChefHas2ActiveTasks() {
@@ -99,17 +89,16 @@ public class Scheduling_Task_Managment_3 {
                 .map(Map.Entry::getKey)
                 .orElse(null);
 
-        if (selectedChef != null) {
-            chefTasks.put(selectedChef, "New special task");
-            chefsWorkload.put(selectedChef, chefsWorkload.get(selectedChef) + 1);
-            System.out.println("Assigned new task to: " + selectedChef);
-        } else {
-            System.out.println("No available chef to assign the task.");
-        }
+        assertNotNull("No available chef to assign the task.", selectedChef);
+        chefTasks.put(selectedChef, "New special task");
+        chefsWorkload.put(selectedChef, chefsWorkload.get(selectedChef) + 1);
+        System.out.println("Assigned new task to: " + selectedChef);
     }
 
     @Given("Kitchen Staff Member Sam is available")
     public void KitchenStaffMemberSamIsAvailable() {
+        chefsWorkload.clear();
+        chefTasks.clear();
         chefsWorkload.put("Sam", 0);
         System.out.println("Sam is available for assignment.");
     }
@@ -129,11 +118,8 @@ public class Scheduling_Task_Managment_3 {
 
     @Then("it should be assigned to Sam")
     public void itShouldBeAssignedToSam() {
-        if ("Chop vegetables".equals(chefTasks.get("Sam"))) {
-            System.out.println("Task successfully assigned to Sam.");
-        } else {
-            throw new RuntimeException("Task was not assigned to Sam.");
-        }
+        assertEquals("Chop vegetables", chefTasks.get("Sam"));
+        System.out.println("Task successfully assigned to Sam.");
     }
 
     @Given("Chef Alex receives a new cooking task")
@@ -150,12 +136,9 @@ public class Scheduling_Task_Managment_3 {
     @Then("the notification should include the task deadline")
     public void theNotificationShouldIncludeTheTaskDeadline() {
         String task = chefTasks.get("Chef Alex");
-        if (task != null) {
-            notificationSent = true;
-            System.out.println("Notification sent to Chef Alex: " + task + " (Deadline: 2 hours)");
-        } else {
-            System.out.println("No task found to notify Chef Alex.");
-        }
+        assertNotNull("No task found to notify Chef Alex.", task);
+        notificationSent = true;
+        System.out.println("Notification sent to Chef Alex: " + task + " (Deadline: 2 hours)");
     }
 
     @Given("Chef Jordan has already been notified about a task")
@@ -172,21 +155,8 @@ public class Scheduling_Task_Managment_3 {
 
     @Then("the system should not send another notification")
     public void theSystemShouldNotSendAnotherNotification() {
-        boolean resend = false;
-
-        // Logic: if task already exists and notificationSent is true, no need to send again
-        if (chefTasks.containsKey("Chef Jordan") && notificationSent) {
-            resend = false;
-        }
-
-        if (!resend) {
-            System.out.println("No duplicate notification sent to Chef Jordan.");
-        } else {
-            throw new RuntimeException("Unnecessary duplicate notification sent.");
-        }
+        boolean resend = chefTasks.containsKey("Chef Jordan") && notificationSent;
+        assertFalse("Unnecessary duplicate notification sent.", resend && notificationSent);
+        System.out.println("No duplicate notification sent to Chef Jordan.");
     }
-
-
 }
-
-

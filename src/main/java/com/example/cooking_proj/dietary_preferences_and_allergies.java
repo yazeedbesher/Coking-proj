@@ -17,7 +17,7 @@ public class dietary_preferences_and_allergies {
         ingredients = new ArrayList<>();
     }
 
-public static List<String> addPreference() {
+public static List<String> addPreference(String vegan) {
     Stock = stockSystem.getStock();
     Map.Entry<List<String>, List<Integer>> StockMap = Stock.entrySet().iterator().next();
     ingredients = StockMap.getKey();
@@ -64,4 +64,27 @@ public List<String> getAllergeis() {
         return selectedAllergies;}
 
 
+    public boolean setPreferences(ArrayList<Object> objects) {
+        return false;
+    }
+
+    public void setAllergies(ArrayList<String> objects) {
+        this.selected_Preference = objects;
+    }
+
+    public ArrayList<String> getAllergies() {
+        return (ArrayList<String>) selectedAllergies;
+    }
+
+    public void addAllergy(String peanuts) {
+        this.selectedAllergies.add(peanuts);
+    }
+
+    public void clearPreferences() {
+     selected_Preference.clear();
+    }
+
+    public void clearAllergies() {
+        selectedAllergies.clear();
+    }
 }

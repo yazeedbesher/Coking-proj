@@ -10,8 +10,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.cooking_proj.Chef.displayCustomerOrderHistory;
-
 //Ahmad
 public class HelloApplication {//Ahmad
     static int ordersTDs = 200;
@@ -161,7 +159,7 @@ public class HelloApplication {//Ahmad
 
     private static void handleCustomMealOrder(Customer customer, List<Chef> chefs, Manager manager, Scanner scanner) {
         NotificationsAndAlerts notifications = new NotificationsAndAlerts();
-        List<String> preferences = dietary_preferences_and_allergies.addPreference();
+        List<String> preferences = dietary_preferences_and_allergies.addPreference("Vegan");
         List<String> allergies = dietary_preferences_and_allergies.addAllergies();
 
         customer.setcustomerpreference(preferences);
