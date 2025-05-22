@@ -154,7 +154,6 @@ public class HelloApplication {
                 List<List> create_mealMap;
                 List<String>AvailableMeals;
                 NotificationsAndAlerts customer_Notification = new NotificationsAndAlerts();
-
                 preference = dietary_preferences_and_allergies.addPreference();
             Allergies = dietary_preferences_and_allergies.addAllergies();
             currentCustomer.setcustomerpreference(preference);
