@@ -131,7 +131,7 @@ public class Customer extends Person{
 //
 //    }
 
-    public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime,int meal,Track_past_orders_and_personalized_meal_plans PastOrders){
+    public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime,int meal){
 
         String mealName = Meals.get(meal - 1);
         System.out.println("We are here "+mealName);
@@ -144,15 +144,15 @@ public class Customer extends Person{
         order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
 
         customer_Notification.UpcomingOrdersReminder(1, order, 1);
-       PastOrders.addPastOrder(order);
+       pastOrders.addPastOrder(order);
         GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
         invoice.generateInvoice(order);
 
     }
-    public void setOrders(Order order) {
-        orders = getCustomerPastOrders();
-        orders.add(order);
-    }
+//    public void setOrders(Order order) {
+//        orders = getCustomerPastOrders();
+//        orders.add(order);
+//    }
 
 
     public List<Order> getCustomerPastOrders () {

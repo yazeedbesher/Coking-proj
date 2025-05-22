@@ -123,7 +123,7 @@ public class HelloApplication {
  static void customerWork(Customer currentCustomer,List<Chef> chefs,Manager manager) {
      List<String>Meals;
      Create_Custome_Meal_2 custome_Meal=new Create_Custome_Meal_2();
-     Track_past_orders_and_personalized_meal_plans pastOrders= new Track_past_orders_and_personalized_meal_plans();
+
 
         while (true){
             System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History 0-Exit");
@@ -146,7 +146,7 @@ public class HelloApplication {
                     break;
                 }
                 currentCustomer.setMeals(Meals);
-                currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal,pastOrders);
+                currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal);
             }
             else if (id==2){
                 List<String> preference;
@@ -182,7 +182,7 @@ public class HelloApplication {
            Order order = manager.initlize_order(currentCustomer.getCustomerID(), currentCustomer.getCustomerName(), chefName, mealName,pickUpTime);
 
             customer_Notification.UpcomingOrdersReminder(1, order, 1);
-            pastOrders.addPastOrder(order);
+                currentCustomer.pastOrders.addPastOrder(order);
             GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
             invoice.generateInvoice(order);
 
@@ -191,13 +191,13 @@ public class HelloApplication {
             }
 
             else if (id==3){
-                if(pastOrders.getPastOrders()==null){
+                if(currentCustomer.pastOrders.getPastOrders()==null){
                 System.out.println("Sorry Your History Is Empty !");
             }
             else{
                 System.out.println("Your Past Meals: \n");
                 int i=1;
-                for (Order order : pastOrders.getPastOrders()) {
+                for (Order order : currentCustomer.pastOrders.getPastOrders()) {
                     System.out.println(i + "- " + order.getMealName());
                     i++;
                 }
