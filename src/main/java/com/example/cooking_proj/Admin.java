@@ -1,10 +1,6 @@
 package com.example.cooking_proj;
 
-import io.cucumber.java.bs.A;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Admin extends Person{
 
