@@ -6,12 +6,13 @@ public class GenerateInvoicesAndTrackFinancialReports {
 
 
 
-public void generateInvoice(Order order) {
+public boolean generateInvoice(Order order) {
     if(order==null){
-        return;
+        return false;
     }
     Invoice invoice = new Invoice();
     invoice.generateInvoice(order);
+    return true;
 }
 
 public void generateTrackFinancialReport(List<Customer> customers, List<Chef> chefs) {

@@ -7,14 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Admin extends Person{
-    boolean ifCustomerFound = false;
+
     private String name;
     private int ID;
     private String Address;
     private String phoneNumber;
-    Scanner scanner=new Scanner(System.in);
-    int ordersTDs=200;
-    Boolean ifChefFound=false;
+
+
 
 
 
@@ -57,46 +56,6 @@ public class Admin extends Person{
     }
 
 
-    public void manegeCustomerOrderHistory(List<Customer> customers,List<Chef> chefs){
-
-
-             while(true){
-                 System.out.println("Please enter Customer ID");
-                int customerId = Integer.parseInt(scanner.nextLine());
-
-                for (Customer customer : customers) {
-                    if (customer.getCustomerID() == customerId) {
-                        ifCustomerFound = true;
-                            while (true) {
-                                System.out.println("What would you like to do?");
-                                System.out.println("1. Show Order History 2. Add Order to Orders History 0. Exit ");
-                                int choice = Integer.parseInt(scanner.nextLine());
-
-                                if (choice == 0) {
-                                    return;
-                                } else if (choice == 1) {
-                                    displayCustomerOrderHistory(customer);
-                                } else if (choice == 2) {
-                                    addOrderToOrderHistory(customer, chefs);
-                                }
-
-                            }
-                    }
-
-                }
-
-                if (!ifCustomerFound) {
-                    System.out.println("Invalid Customer ID /0- Exit  1-Try Again ");
-                    int choice = Integer.parseInt(scanner.nextLine());
-                    if (choice == 0) {return;}
-//                    else if (choice == 1) {
-//                        manegeCustomerOrderHistory(customers,chefs);
-//                    }
-                }
-
-             }
-    }
-
     public static void displayCustomerOrderHistory(Customer customer){
 
         if(customer.getCustomerPastOrders()!=null){
@@ -110,32 +69,7 @@ public class Admin extends Person{
 
     }
 
-    public void addOrderToOrderHistory(Customer customer,List<Chef> chefs){
-        while (true) {
-            System.out.println("Please Enter Chef Name: ");
-            String chefName = scanner.nextLine();
-            for (Chef chef : chefs) {
-                if (chef.getName().equals(chefName)) {
-                    System.out.println("Please Enter Meal Name: ");
-                    String mealName = scanner.nextLine();
-                    Order newOrder = new Order(ordersTDs++, customerID, customerName, chefName, mealName);
-                    customer.pastOrders.addPastOrder(newOrder);
-                    ifChefFound = true;
-                }
-            }
-            if (!ifChefFound) {
-                System.out.println("Invalid Chef Name /0- Exit  1-Try Again ");
-                int choice = Integer.parseInt(scanner.nextLine());
-                if (choice == 0) {
-                    return;
-                }
-                continue;
-            }
-            return;
 
-        }
-
-    }
 
     public void createFinanceReport(List<Customer> customers, List<Chef> chefs){
         GenerateInvoicesAndTrackFinancialReports FinanceReport=new GenerateInvoicesAndTrackFinancialReports();

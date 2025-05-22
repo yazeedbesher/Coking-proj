@@ -1,24 +1,14 @@
 package com.example.cooking_proj;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class HelloApplication {
-
+    static int ordersTDs=200;
 
     public static void main(String[] args) {
 
@@ -28,6 +18,8 @@ public class HelloApplication {
             List<Manager> registeredManagers = new ArrayList<>();
             StockSystem stockSystem = new StockSystem();
             Supplier supplier = new Supplier();
+            Scanner scanner = new Scanner(System.in);
+
 
             Admin admin = new Admin(222, "Saad", "Jenin", "0595638731");
             registeredAdmins.add(admin);
@@ -44,7 +36,7 @@ public class HelloApplication {
             registeredCustomers.add(new Customer(1224, "Ali", "Ramallah", "0597500172"));
             registeredCustomers.add(new Customer(1225, "Mohammed", "Nablus", "0592729162"));
 
-            Scanner scanner = new Scanner(System.in);
+
             while (true) {
                 System.out.println("Welcome ! you want to Sign in as ? ");
                 System.out.println("1-Admin 2-Manager 3-Chef 4-Customer OR 0-Exit");
@@ -56,25 +48,7 @@ public class HelloApplication {
                 }
 
                 else if (id == 1) {
-                    Admin currentAdmin = Signin.login(registeredAdmins);
-                    if (currentAdmin != null) {
-
-                        while (true) {
-                            System.out.println("What do you want to do ");
-                            System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
-                            int choice = Integer.parseInt(scanner.nextLine());
-                            if (choice == 0) {
-                                break;
-                            } else if (choice == 1) {
-                                admin.manegeCustomerOrderHistory(registeredCustomers,registeredChefs);
-                            } else if (choice == 2) {
-
-                                admin.createFinanceReport(registeredCustomers, registeredChefs);
-
-                            }
-
-                        }
-                    }
+                    AdminWork(registeredAdmins,registeredCustomers,registeredChefs);
                 }
 
                 else if (id == 2) {
@@ -155,5 +129,77 @@ public class HelloApplication {
                 }
 
             }//Ahmad
+
+        }
+    static void AdminWork(List<Admin> admins, List<Customer> customers, List<Chef> chefs) {
+        Scanner scanner = new Scanner(System.in);
+        boolean ifCustomerFound = false;
+        Boolean ifChefFound=false;
+        Admin currentAdmin = Signin.login(admins);
+        if (currentAdmin != null) {
+
+            while (true) {
+                System.out.println("What do you want to do ");
+                System.out.println("1-Customer Order History 2-Creat Report 0-Exit");
+                int choice = Integer.parseInt(scanner.nextLine());
+                if (choice == 0) {
+                    break;
+                } else if (choice == 1) {
+                    System.out.println("Please enter Customer ID");
+                    int customerId = Integer.parseInt(scanner.nextLine());
+
+                    while(true){
+                        for (Customer customer : customers) {
+                            if (customer.getCustomerID() == customerId) {
+                                ifCustomerFound = true;
+                                while (true) {
+                                    System.out.println("What would you like to do?");
+                                    System.out.println("1. Show Order History 2. Add Order to Orders History 0. Exit ");
+                                    int choice1 = Integer.parseInt(scanner.nextLine());
+
+                                    if (choice1 == 0) {
+                                        break;
+                                    } else if (choice1 == 1) {
+                                        Admin.displayCustomerOrderHistory(customer);
+                                    } else if (choice1 == 2) {
+                                        //currentAdmin.addOrderToOrderHistory(customer, chefs);
+                                        while (true) {
+                                            System.out.println("Please Enter Chef Name: ");
+                                            String chefName = scanner.nextLine();
+                                            for (Chef chef : chefs) {
+                                                if (chef.getName().equals(chefName)) {
+                                                    System.out.println("Please Enter Meal Name: ");
+                                                    String mealName = scanner.nextLine();
+                                                    Order newOrder = new Order(HelloApplication.ordersTDs++, customerId, customer.getCustomerName(), chef.getName(), mealName);
+                                                    customer.pastOrders.addPastOrder(newOrder);
+                                                    ifChefFound = true;
+                                                }
+                                            }
+                                            if (!ifChefFound) {
+                                                System.out.println("Invalid Chef Name");
+                                                continue;
+                                            }
+                                            break;
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (!ifCustomerFound) {
+                            System.out.println("Invalid Customer ID ");
+                            break;
+                        }
+                        break;
+                    }
+                } else if (choice == 2) {
+
+                    currentAdmin.createFinanceReport(customers, chefs);
+
+                }
+
+            }
+        }
     }
-}
+    }
+

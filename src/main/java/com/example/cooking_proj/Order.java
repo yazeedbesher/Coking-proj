@@ -51,6 +51,7 @@ public class Order {
         this.mealName = mealName;
         this.orderDate=LocalDateTime.now();
         this.pickUpTime = SelectTime();
+        //this.pickUpTime =
     }
 
     @Override
