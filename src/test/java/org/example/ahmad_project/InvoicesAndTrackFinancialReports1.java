@@ -17,7 +17,6 @@ public class InvoicesAndTrackFinancialReports1 {
     List<Customer> customerList;
     List<Chef> chefList;
 
-    // ✅ 1. Order contains no products
     @When("the customer confirms an order that contains no products")
     public void theCustomerConfirmsAnOrderThatContainsNoProducts() {
         Customer customer = new Customer(1, "Ahmad", "123 Main St", "555-1234");
