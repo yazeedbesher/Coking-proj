@@ -17,7 +17,7 @@ public class HelloApplication {
     static int ordersTDs = 200;
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {//
+    public static void main(String[] args) {
 
         List<Customer> registeredCustomers = new ArrayList<>();
         List<Chef> registeredChefs = new ArrayList<>();
