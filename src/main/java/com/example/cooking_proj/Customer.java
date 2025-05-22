@@ -70,66 +70,7 @@ public class Customer extends Person{
         return Allergies;
     }
 
-//    public void make_order(int id) {
-//
-//
-//
-//        if (id == 1) {
-//
-//
-//        }
-//
-//        if (id == 2) {
-//            preference = dietary_preferences_and_allergies.addPreference();
-//            Allergies = dietary_preferences_and_allergies.addAllergies();
-//            custome_Meal = new Create_Custome_Meal_2();
-//            create_mealMap = custome_Meal.create_meal(preference, Allergies);
-//            AvailableMeals = manager.assign_custome_task(Chefs, create_mealMap);
-//            System.out.println("Your Available Meals :" + AvailableMeals + "\n" + "Choose What You Want !");
-//            int j = 1;
-//            System.out.println("0- Nothing, Thank You!");
-//            for (String item : AvailableMeals) {
-//                System.out.println(j + "- " + item);
-//                j++;
-//            }
-//            int meal = Integer.parseInt(scanner.nextLine());
-//            if(meal==0){
-//                break;
-//            }
-//            String mealName = AvailableMeals.get(meal - 1);
-//            System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
-//            String chefName = manager.getChef_name();
-//
-//            order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
-//
-//            customer_Notification.UpcomingOrdersReminder(1, order, 1);
-//            pastOrders.addPastOrder(order);
-//            GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
-//            invoice.generateInvoice(order);
-//
-//            preference.clear();
-//            Allergies.clear();
-//
-//        }
-//        if (id == 3) {
-//
-//            if(pastOrders.getPastOrders()==null){
-//                System.out.println("Sorry Your History Is Empty !");
-//            }
-//            else{
-//                System.out.println("Your Past Meals: \n");
-//                int i=1;
-//                for (Order order : pastOrders.getPastOrders()) {
-//                    System.out.println(i + "- " + order.getMealName());
-//                    i++;
-//                }
-//            }
-//        }
-//
-//
-//
-//
-//    }
+
 
     public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime,int meal){
 
@@ -149,11 +90,6 @@ public class Customer extends Person{
         invoice.generateInvoice(order);
 
     }
-//    public void setOrders(Order order) {
-//        orders = getCustomerPastOrders();
-//        orders.add(order);
-//    }
-
 
     public List<Order> getCustomerPastOrders () {
         return pastOrders.getPastOrders();
