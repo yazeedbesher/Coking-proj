@@ -1,4 +1,4 @@
-package org.example.ahmad_project.AcceptanceTest;
+package org.example.ahmad_project;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
