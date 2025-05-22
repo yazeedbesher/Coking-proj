@@ -54,7 +54,7 @@ public class HelloApplication {
             } else if (id == 1) {
                 AdminWork(registeredAdmins, registeredCustomers, registeredChefs);
             } else if (id == 2) {
-                Manager currentManager = Signin.login(registeredManagers);
+                Manager currentManager = login(registeredManagers);
                 if (currentManager != null) {
                     while (true) {
                         System.out.println("What do you want to do ");
@@ -110,12 +110,6 @@ public class HelloApplication {
             } else if (id == 4) {
 
 
-
-
-
-
-
-
                 //currentCustomer.make_order(registeredChefs, );
 
             }
@@ -128,7 +122,7 @@ public class HelloApplication {
         Scanner scanner = new Scanner(System.in);
         boolean ifCustomerFound = false;
         Boolean ifChefFound = false;
-        Admin currentAdmin = Signin.login(admins);
+        Admin currentAdmin = login(admins);
         if (currentAdmin != null) {
 
             while (true) {
@@ -198,7 +192,7 @@ public class HelloApplication {
 
     static void chefWork(List<Chef> chefs, List<Customer> customers) {
         boolean ifCustomerFound = false;
-        Chef currentChef = Signin.login(chefs);
+        Chef currentChef = login(chefs);
         if (currentChef != null) {
 
 
@@ -244,9 +238,9 @@ public class HelloApplication {
 
 
     static void customerWork(List<Customer> customers, List<Chef> chefs,Manager manager) {
-//        Customer currentCustomer = Signin.login(customers);
+//        Customer currentCustomer = login(customers);
 //        if (currentCustomer == null) {
-//            currentCustomer = Signup.signup(customers);
+//            currentCustomer = signup(customers);
 //        }
 //        System.out.println("Logged in as: " + currentCustomer.getCustomerName());
 //
@@ -281,8 +275,47 @@ public class HelloApplication {
 //        }
     }
 
+    public static Customer signup(List<Customer> customerList) {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("You're a new customer. Please sign up:");
 
+        System.out.print("Enter your ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter your address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter your phone: ");
+        String phone = scanner.nextLine();
+
+        Customer newCustomer = new Customer(id, name, address, phone);
+        customerList.add(newCustomer);
+        System.out.println("Sign-up successful. Welcome, " + name + "!");
+
+        return newCustomer;
+    }
+
+    public static <T extends Person> T login(List<T> userList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please Sign in:");
+        System.out.print("Enter your ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        for (T user : userList) {
+            if (user.getUserID() == id) {
+                System.out.println("Welcome back, " + user.getUserName() + "!");
+                return user;
+            }
+        }
+
+        System.out.println("User not found.");
+        return null;
+    }
 
     static LocalDateTime SelectTime(){
         Scanner scanner = new Scanner(System.in);
