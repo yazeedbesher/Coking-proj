@@ -12,7 +12,7 @@ public class Chef extends Person {
     String notification = "You Have Recieced a New Task To do";
     List<String> Custome_Meals;
     List<String> Meals;
-    boolean ifCustomerFound;
+
     List<String> MealsAvailable;
     Scanner scanner = new Scanner(System.in);
     List<Order> Addorders;
@@ -27,7 +27,7 @@ public class Chef extends Person {
         Custome_Meals = new ArrayList<>();
         Meals = new ArrayList<>();
         MealsAvailable = new ArrayList<>();
-        Addorders=new ArrayList<>();
+        Addorders = new ArrayList<>();
 
         Meals.add("Kabsa");
         Meals.add("Lazania");
@@ -107,66 +107,24 @@ public class Chef extends Person {
     }
 
 
-    public void showCustomerOrderHistory(List<Customer> customers){
+    public void showCustomerOrderHistory(Customer customer) {
 
-        System.out.println("Please enter Customer ID");
-        while(true){
-            int customerId = Integer.parseInt(scanner.nextLine());
 
-            for (Customer customer : customers) {
-                if (customer.getCustomerID() == customerId) {
-                    ifCustomerFound = true;
-
-                    System.out.println("1. Show Order History 0. Exit ");
-                    int choice = Integer.parseInt(scanner.nextLine());
-
-                    if (choice == 0) {
-                        return;
-                    }
-
-                    else if (choice == 1) {
-                        displayCustomerOrderHistory(customer);
-                        System.out.println("What would you like to do?");
-                        System.out.println("1.Add These Meals in My kitchen Recommendation 2. Show Order History for another Customer 0. Exit ");
-                        int c = Integer.parseInt(scanner.nextLine());
-                        if(c == 0){return;}
-                        if(c == 1){
-
-                            if(customer.getCustomerPastOrders()==null){
-                                System.out.println("Your Orders History is Empty , Try Again :(");
-                                return;
-                            }
-                            Addorders = customer.getCustomerPastOrders();
-                            for(Order order : Addorders){
-                               if(!Meals.contains(order.mealName));{
-                                   Meals.add(order.mealName);
-                                    System.out.println(order.mealName+" Added To the Kitchen");
-                                }
-                            }
-
-                        }
-                        else if (c == 2){showCustomerOrderHistory(customers);}
-
-                    }
-
-                    else if (choice == 2) {
-                        break;
-
-                    }
-                }
-            }
-
-            if (!ifCustomerFound) {
-                System.out.println("Invalid Customer ID /0- Exit  1-Try Again ");
-                int choice = Integer.parseInt(scanner.nextLine());
-                if (choice == 0) {return;}
-                else if (choice == 1) {
-                    showCustomerOrderHistory(customers);
-                }
-            }
-            break;
+        if (customer.getCustomerPastOrders() == null) {
+            System.out.println("Your Orders History is Empty , Try Again :(");
+            return;
         }
+        Addorders = customer.getCustomerPastOrders();
+        for (Order order : Addorders) {
+            if (!Meals.contains(order.mealName)) ;
+            {
+                Meals.add(order.mealName);
+                System.out.println(order.mealName + " Added To the Kitchen");
+            }
+        }
+
     }
+
     public static void displayCustomerOrderHistory(Customer customer){
 
         if(customer.getCustomerPastOrders()!=null){

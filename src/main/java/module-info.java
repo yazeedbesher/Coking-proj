@@ -12,6 +12,7 @@ module com.example.cooking_proj {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires io.cucumber.java;
+    requires java.logging;
 
 
     opens com.example.cooking_proj to javafx.fxml;

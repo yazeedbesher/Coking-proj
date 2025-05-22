@@ -6,10 +6,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.cooking_proj.Chef.displayCustomerOrderHistory;
+
 //Ahmad
 public class HelloApplication {
     static int ordersTDs=200;
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
             List<Customer> registeredCustomers = new ArrayList<>();
@@ -18,7 +20,7 @@ public class HelloApplication {
             List<Manager> registeredManagers = new ArrayList<>();
             StockSystem stockSystem = new StockSystem();
             Supplier supplier = new Supplier();
-            Scanner scanner = new Scanner(System.in);
+
 
 
             Admin admin = new Admin(222, "Saad", "Jenin", "0595638731");
@@ -106,12 +108,7 @@ public class HelloApplication {
                 }
 
                 else if (id == 3) {
-                        Chef currentChef = Signin.login(registeredChefs);
-                        if (currentChef != null) {
-
-                                currentChef.showCustomerOrderHistory(registeredCustomers);
-
-                        }
+                    chefWork(registeredChefs,registeredCustomers);
                 }
 
                 else if (id == 4) {
@@ -201,5 +198,57 @@ public class HelloApplication {
             }
         }
     }
+
+
+    static void chefWork(List<Chef> chefs, List<Customer> customers) {
+        boolean ifCustomerFound=false;
+        Chef currentChef = Signin.login(chefs);
+        if (currentChef != null) {
+
+
+
+            System.out.println("Please enter Customer ID");
+            while(true){
+                int customerId = Integer.parseInt(scanner.nextLine());
+
+                for (Customer customer : customers) {
+                    if (customer.getCustomerID() == customerId) {
+                        ifCustomerFound = true;
+
+                        System.out.println("1. Show Order History 0. Exit ");
+                        int choice = Integer.parseInt(scanner.nextLine());
+
+                        if (choice == 0) {
+                            return;
+                        }
+
+                        else if (choice == 1) {
+                            displayCustomerOrderHistory(customer);
+                            System.out.println("What would you like to do?");
+                            System.out.println("1.Add These Meals in My kitchen Recommendation 2. Show Order History for another Customer 0. Exit ");
+                            int c = Integer.parseInt(scanner.nextLine());
+                            if(c == 0){return;}
+                            if(c == 1) {
+                            }
+                            else if (c == 2){
+                                currentChef.showCustomerOrderHistory(customer);}
+
+                            }
+                        }
+                    }
+
+                    if (!ifCustomerFound) {
+                        System.out.println("Invalid Customer ID");
+                    }
+                    break;
+                }
+            }
+
+
+
+
+
+        }
     }
+
 
