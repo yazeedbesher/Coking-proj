@@ -108,14 +108,46 @@ public class HelloApplication {
             } else if (id == 3) {
                 chefWork(registeredChefs, registeredCustomers);
             } else if (id == 4) {
+                Customer currentCustomer = login(registeredCustomers);
 
+                if (currentCustomer == null) {
+                    currentCustomer = signup(registeredCustomers);
+                }
+                System.out.println("Logged in as: " + currentCustomer.getCustomerName());
+               // currentCustomer.make_order(registeredChefs, );
+                customerWork(currentCustomer,registeredChefs,manager);
+            }
+        }
+    }
 
-                //currentCustomer.make_order(registeredChefs, );
+ static void customerWork(Customer currentCustomer,List<Chef> chefs,Manager manager) {
+     List<String>Meals = new ArrayList<>();
+     Create_Custome_Meal_2 custome_Meal=new Create_Custome_Meal_2();
 
+        while (true){
+            System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History 0-Exit");
+            Scanner scanner = new Scanner(System.in);
+            int id = Integer.parseInt(scanner.nextLine());
+            if (id==0){
+                break;
+            }
+            else if (id==1){
+                Meals = custome_Meal.GetMeals();
+                int i = 1;
+                System.out.println("Choose Your Meal");
+                System.out.println("0- Nothing, Thank You!");
+                for (String item : Meals) {
+                    System.out.println(i + "- " + item);
+                    i++;
+                }
+                int meal = Integer.parseInt(scanner.nextLine());
+                if(meal==0){
+                    break;
+                }
+                currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal);
             }
 
-        }//Ahmad
-
+            }
     }
 
     static void AdminWork(List<Admin> admins, List<Customer> customers, List<Chef> chefs) {
@@ -236,44 +268,6 @@ public class HelloApplication {
         }
     }
 
-
-    static void customerWork(List<Customer> customers, List<Chef> chefs,Manager manager) {
-//        Customer currentCustomer = login(customers);
-//        if (currentCustomer == null) {
-//            currentCustomer = signup(customers);
-//        }
-//        System.out.println("Logged in as: " + currentCustomer.getCustomerName());
-//
-//        while (true){
-//            System.out.println("Choose /: 1-Choose Meal 2-Custome My Order 3-My History");
-//            Scanner scanner = new Scanner(System.in);
-//            int id = Integer.parseInt(scanner.nextLine());
-//            if (id==0){
-//                break;
-//            }
-//            else if (id==1){
-//
-//                Meals = custome_Meal.GetMeals();
-//                int i = 1;
-//                System.out.println("Choose Your Meal");
-//                System.out.println("0- Nothing, Thank You!");
-//                for (String item : Meals) {
-//                    System.out.println(i + "- " + item);
-//                    i++;
-//                }
-//                int meal = Integer.parseInt(scanner.nextLine());
-//                if(meal==0){
-//                    break;
-//                }
-//                currentCustomer.makeOrder1(chefs,manager,SelectTime());
-//            }
-//
-//
-//
-//
-//
-//        }
-    }
 
     public static Customer signup(List<Customer> customerList) {
         Scanner scanner = new Scanner(System.in);

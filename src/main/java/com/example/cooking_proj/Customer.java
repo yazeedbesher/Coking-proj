@@ -65,7 +65,6 @@ public class Customer extends Person{
         return Allergies;
     }
 
-    //Ahmad
 //    public void make_order(,int State) {
 //
 //
@@ -126,29 +125,25 @@ public class Customer extends Person{
 //
 //
 //    }
-//    public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){
-//
-//        String mealName = Meals.get(meal - 1);
-//        String chefName = manager.assign_Task(Chefs, mealName);
-//        System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
-//
-//        Random rand = new Random();
-//        int randomInt = rand.nextInt(100);
-//
-//        order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
-//
-//        customer_Notification.UpcomingOrdersReminder(1, order, 1);
-//        pastOrders.addPastOrder(order);
-//        GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
-//        invoice.generateInvoice(order);
-//
-//    }
-//    public void makeOrder2(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){
-//
-//
-//
-//    }
-//    public void makeOrder3(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime){}
+
+    public void makeOrder1(List<Chef> Chefs, Manager manager, LocalDateTime pickUpTime,int meal){
+
+        String mealName = Meals.get(meal - 1);
+        String chefName = manager.assign_Task(Chefs, mealName);
+        System.out.println("Chef : We assigned You a Task To Cook  " + mealName);
+
+        Random rand = new Random();
+        int randomInt = rand.nextInt(100);
+
+        order = manager.initlize_order(getCustomerID(), getCustomerName(), chefName, mealName,pickUpTime);
+
+        customer_Notification.UpcomingOrdersReminder(1, order, 1);
+        pastOrders.addPastOrder(order);
+        GenerateInvoicesAndTrackFinancialReports invoice =new GenerateInvoicesAndTrackFinancialReports();
+        invoice.generateInvoice(order);
+
+    }
+
 
     public List<Order> getCustomerPastOrders () {
         return pastOrders.getPastOrders();
