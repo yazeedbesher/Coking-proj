@@ -1,4 +1,4 @@
-package org.example.ahmad_project.AcceptanceTest;
+package org.example.ahmad_project;
 
 import com.example.cooking_proj.StockSystem;
 import io.cucumber.java.en.Then;

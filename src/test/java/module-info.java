@@ -1,4 +1,12 @@
-module com.example.cooking_proj {
+open module com.example.cooking_proj.test {
+    requires com.example.cooking_proj;
+    requires io.cucumber.java;
+    requires junit;
+    requires java.desktop;
+    requires org.junit.jupiter.api;
+
+    exports org.example.ahmad_project;
+
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,13 +18,5 @@ module com.example.cooking_proj {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
-    requires java.desktop;
-    requires io.cucumber.java;
-
-
-    opens com.example.cooking_proj to javafx.fxml;
-    exports com.example.cooking_proj;
-
-
+    requires io.cucumber.junit;
 }
-
