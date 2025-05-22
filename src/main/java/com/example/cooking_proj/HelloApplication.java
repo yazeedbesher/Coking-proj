@@ -121,7 +121,7 @@ public class HelloApplication {
     }
 
  static void customerWork(Customer currentCustomer,List<Chef> chefs,Manager manager) {
-     List<String>Meals = new ArrayList<>();
+     List<String>Meals;
      Create_Custome_Meal_2 custome_Meal=new Create_Custome_Meal_2();
 
         while (true){
@@ -146,7 +146,12 @@ public class HelloApplication {
                 }
                 currentCustomer.makeOrder1(chefs,manager,SelectTime(),meal);
             }
+            else if (id==2){
 
+            }
+            else if (id==3){
+
+            }
             }
     }
 
