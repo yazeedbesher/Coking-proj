@@ -65,6 +65,7 @@ public class Customer extends Person{
         return Allergies;
     }
 
+    //Ahmad
 //    public void make_order(,int State) {
 //
 //
