@@ -20,7 +20,7 @@ public class Customer extends Person{
     List<String>AvailableMeals;
     NotificationsAndAlerts customer_Notification;
     Order order;
-    Track_past_orders_and_personalized_meal_plans pastOrders;
+    public Track_past_orders_and_personalized_meal_plans pastOrders;
 
     public Customer(int customerID, String customerName, String customerAddress, String customerPhone) {
         super(customerID,customerName);

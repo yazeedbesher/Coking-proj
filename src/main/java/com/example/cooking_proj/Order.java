@@ -13,6 +13,9 @@ public class Order {
     LocalDateTime orderDate;
     LocalDateTime pickUpTime;
 
+    public Order(int orderID, int customerID, String customerName, String chefAhmad, LocalDateTime now, String s, String mainCourse, LocalDateTime localDateTime) {
+    }
+
     public int getOrderID() {
         return orderID;
     }

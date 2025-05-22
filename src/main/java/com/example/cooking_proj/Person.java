@@ -9,6 +9,10 @@ public abstract class Person {
        this.customerName=name;
     }
 
+    public Person() {
+
+    }
+
     public int getUserID() {
         return customerID;
     }

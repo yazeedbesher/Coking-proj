@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Create_Custome_Meal_2 {
     List<String> ingredients ;// المكونات المتوفرة
-    Map<String, String> incompatiblePairs = new HashMap<>();
+    public Map<String, String> incompatiblePairs = new HashMap<>();
     List<String> selectedIngredients; // المكونات المختارة
     List<String> selectedAllegries;
     List<String> Meals;

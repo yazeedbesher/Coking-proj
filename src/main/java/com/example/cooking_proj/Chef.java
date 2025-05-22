@@ -31,6 +31,10 @@ public class Chef extends Person {
         Meals.add("Fried Chicken");
     }
 
+    public Chef() {
+        super();
+    }
+
     public String getName() {
         return name;
     }

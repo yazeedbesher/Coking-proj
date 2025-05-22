@@ -4,33 +4,24 @@ import java.util.List;
 
 public class GenerateInvoicesAndTrackFinancialReports {
 
-
-
-public boolean generateInvoice(Order order) {
-    if(order==null){
-        return false;
+    public boolean generateInvoice(Order order) {
+        if (order == null) {
+            return false;
+        }
+        Invoice invoice = new Invoice();
+        invoice.generateInvoice(order);
+        return true;
     }
-    Invoice invoice = new Invoice();
-    invoice.generateInvoice(order);
-    return true;
-}
 
-public void generateTrackFinancialReport(List<Customer> customers, List<Chef> chefs) {
-    if(customers==null|| customers.isEmpty()){
-        return;
+    public boolean generateTrackFinancialReport(List<Customer> customers, List<Chef> chefs) {
+        if (customers == null || customers.isEmpty()) {
+            return false;
+        }
+        if (chefs == null || chefs.isEmpty()) {
+            return false;
+        }
+        FinanceReport financeReport = new FinanceReport();
+        financeReport.generateFinanceReport(customers, chefs);
+        return true;
     }
-    if(chefs==null||chefs.isEmpty()){
-        return;
-    }
-    FinanceReport financeReport = new FinanceReport();
-    financeReport.generateFinanceReport(customers, chefs);
-
-}
-
-
-
-
-
-
-
 }
