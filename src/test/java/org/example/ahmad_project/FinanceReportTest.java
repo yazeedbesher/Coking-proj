@@ -11,7 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FinanceReportTest {
-
     private FinanceReport financeReport;
 
     @BeforeEach
@@ -26,7 +25,7 @@ class FinanceReportTest {
     private Customer createCustomerWithOrders(String customerName, int customerID, List<Order> orders) {
         Customer customer = new Customer(customerID, customerName, "Address", "12345");
         for (Order order : orders) {
-            customer.pastOrders.addPastOrder(order); // استخدام الآلية الصحيحة للإضافة
+            customer.pastOrders.addPastOrder(order);
         }
         return customer;
     }
@@ -96,11 +95,15 @@ class FinanceReportTest {
     }
 
     @Test
-    void testReportOutput_doesNotThrow() {
+    void testReportOutput_containsValidData() {
         Order order = createOrder(1, 1, "Zaid", "Chef Z", "Zinger");
         Customer customer = createCustomerWithOrders("Zaid", 1, List.of(order));
         Chef chef = new Chef(5, "Chef Z", "911", 4.0, 2.0);
 
-        assertDoesNotThrow(() -> financeReport.generateFinanceReport(List.of(customer), List.of(chef)));
+        financeReport.generateFinanceReport(List.of(customer), List.of(chef));
+        String reportContent = financeReport.getReport();
+        assertTrue(reportContent.contains("Total Orders: 1"));
+        assertTrue(reportContent.contains("Customer Name: Zaid"));
+        assertTrue(reportContent.contains("Chef Name: Chef Z"));
     }
 }

@@ -9,7 +9,7 @@ public class Chef extends Person {
     private Double expretise;
     private Double workload;
     List<String> Custome_Meals;
-    List<String> Meals;
+    public List<String> Meals;
     List<String> MealsAvailable;
     List<Order> Addorders;
 

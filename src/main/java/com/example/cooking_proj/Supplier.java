@@ -39,14 +39,15 @@ public class Supplier {
         supply.put(ingredients, Price);
     }
 
-    public Map<List<String>, List<Integer>> getSupply(){
+    public Map<List<String>, List<Integer>> getSupply() {
         return supply;
     }
 
-    public Integer Check_Price(String ingredient){
-            int index = ingredients.indexOf(ingredient);
-            int correspondingValue = Price.get(index);
-            return correspondingValue;
+    public Integer Check_Price(String ingredient) {
+        int index = ingredients.indexOf(ingredient);
+        if (index == -1 || index >= Price.size()) {
+            return null;  // ingredient not found or index out of range
+        }
+        return Price.get(index);
     }
-
 }

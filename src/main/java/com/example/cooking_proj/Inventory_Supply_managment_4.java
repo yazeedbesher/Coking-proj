@@ -71,4 +71,11 @@ public class Inventory_Supply_managment_4 {
     }
 
 
+    public Map<String, Integer> getQuantities() {
+    return quantities;
+    }
+
+    public Map<String, Integer> getThresholds() {
+    return thresholds;
+    }
 }

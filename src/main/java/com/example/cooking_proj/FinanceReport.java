@@ -4,20 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FinanceReport {
-
     List<Customer> customers;
     List<Chef> chefs;
+    String report;
+
     public FinanceReport() {
         customers = new ArrayList<>();
         chefs = new ArrayList<>();
+        report = "";
     }
+
     public void generateFinanceReport(List<Customer> customers, List<Chef> chefs) {
         this.customers = customers;
-        String report = "";
+        this.chefs = chefs;
+        report = "";
 
         report += "=========== Order Summary ===========\n";
         report += "Total Orders: " + getAllOrdersCount() + "\n\n";
-
 
         report += "=========== Orders Per Chef =========\n";
         for (Chef chef : chefs) {
@@ -26,7 +29,6 @@ public class FinanceReport {
         }
         report += "\n";
 
-
         report += "========= Orders Per Customer =======\n";
         for (Customer customer : customers) {
             report += "Customer Name: " + customer.getCustomerName() +
@@ -34,28 +36,24 @@ public class FinanceReport {
         }
         report += "=====================================\n";
 
-
         System.out.println();
         System.out.println();
         System.out.println(report);
         System.out.println();
         System.out.println();
-
-
-
     }
 
-
-public int getAllOrdersCount() {
-    int allOrdersCount = 0;
-    for (Customer customer : customers) {
-        List<Order> pastOrders = customer.getCustomerPastOrders();
-        if (pastOrders != null) {
-            allOrdersCount += pastOrders.size();
+    public int getAllOrdersCount() {
+        int allOrdersCount = 0;
+        for (Customer customer : customers) {
+            List<Order> pastOrders = customer.getCustomerPastOrders();
+            if (pastOrders != null) {
+                allOrdersCount += pastOrders.size();
+            }
         }
+        return allOrdersCount;
     }
-    return allOrdersCount;
-}
+
     public int getChefOrdersCount(Chef chef) {
         int chefOrdersCount = 0;
         for (Customer customer : customers) {
@@ -76,6 +74,7 @@ public int getAllOrdersCount() {
         return pastOrders == null ? 0 : pastOrders.size();
     }
 
-
-
+    public String getReport() {
+        return report;
+    }
 }

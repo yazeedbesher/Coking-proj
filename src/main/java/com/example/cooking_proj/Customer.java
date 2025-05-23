@@ -16,7 +16,7 @@ public class Customer extends Person{
     dietary_preferences_and_allergies dietary_preferences_and_allergies;
     List<Order> orders;
     List<List> create_mealMap;
-    List<String>Meals;
+    public List<String>Meals;
     List<String>AvailableMeals;
     NotificationsAndAlerts customer_Notification;
     Order order;
@@ -94,4 +94,6 @@ public class Customer extends Person{
     public List<Order> getCustomerPastOrders () {
         return pastOrders.getPastOrders();
     }
+
+
 }

@@ -12,23 +12,23 @@ public class NotificationsAndAlerts {
 
         try {
             if (order.getPickUpTime().isBefore(LocalDateTime.now())) {
-                System.err.println("Reminder failed: The delivery time has already passed.");
+                System.out.println("Reminder failed: The delivery time has already passed.");
                 return false;
             }
 
             // التحقق من الاسم حسب نوع التذكير
             if (reminderFor == 1) { // للزبون
                 if (order.getCustomerName() == null || order.getCustomerName().isEmpty()) {
-                    System.err.println("Reminder failed: Invalid customer data.");
+                    System.out.println("Reminder failed: Invalid customer data.");
                     return false;
                 }
             } else if (reminderFor == 2) { // للطاهي
                 if (order.getChefName() == null || order.getChefName().isEmpty()) {
-                    System.err.println("Reminder failed: Invalid chef data.");
+                    System.out.println("Reminder failed: Invalid chef data.");
                     return false;
                 }
             } else {
-                System.err.println("Reminder failed: Invalid reminder type.");
+                System.out.println("Reminder failed: Invalid reminder type.");
                 return false;
             }
 
@@ -48,7 +48,7 @@ public class NotificationsAndAlerts {
 
             return true;
         } catch (Exception e) {
-            System.err.println("Reminder failed: " + e.getMessage());
+            System.out.println("Reminder failed: " + e.getMessage());
             return false;
         }
     }
